@@ -32,7 +32,7 @@ const NavToggle = ({ expand, onChange }) => {
           <Dropdown
             placement="topStart"
             trigger="click"
-            rendertitle={() => {
+            renderTitle={() => {
               return <Cog style={styles.iconStyles} />;
             }}
           >
@@ -187,7 +187,7 @@ const styles = {
     paddingBottom: '10px',
     fontSize: 36,
     height: 56,
-    background: 'linear-gradient(to right, #4EE2EC, #3CB371)',
+    background: 'linear-gradient(to right, #f44336, #3CB371)',
     color: ' #fff',
     whiteSpace: 'nowrap',
     overflow: 'hidden'

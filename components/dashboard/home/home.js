@@ -3,10 +3,13 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Grid, Row, Col, Nav, Button, Panel } from 'rsuite';
 import PeoplesIcon from '@rsuite/icons/Peoples';
+import PeopleBranchIcon from '@rsuite/icons/PeopleBranch';
+import TaskIcon from '@rsuite/icons/Task';
+import ProjectIcon from '@rsuite/icons/Project';
 import Users from '../../../assets/users.png';
-import Servicemen from '../../../assets/servicemen.png';
+import Servicemen from '../../../assets/skills.png';
 import Jobs from '../../../assets/jobs.png';
-import Skills from '../../../assets/skills.png';
+import Skills from '../../../assets/servicemen.png';
 import CountUp from 'react-countup';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -65,7 +68,7 @@ const Home = () => {
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#f44336', borderRadius: 50 }}>
-                                        <PeoplesIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
+                                        <PeopleBranchIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
@@ -80,7 +83,7 @@ const Home = () => {
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#f44336', borderRadius: 50 }}>
-                                        <PeoplesIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
+                                        <ProjectIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
@@ -95,7 +98,7 @@ const Home = () => {
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#f44336', borderRadius: 50 }}>
-                                        <PeoplesIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
+                                        <TaskIcon color="white" style={{ fontSize: "2em", marginTop: "10px" }} />
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
