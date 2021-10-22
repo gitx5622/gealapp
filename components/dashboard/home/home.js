@@ -10,6 +10,7 @@ import Users from '../../../assets/users.png';
 import Servicemen from '../../../assets/skills.png';
 import Jobs from '../../../assets/jobs.png';
 import Skills from '../../../assets/servicemen.png';
+import Graph from '../../../assets/graph.png';
 import CountUp from 'react-countup';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -110,33 +111,61 @@ const Home = () => {
                     </Col>
                 </Row>
             </Grid>
-            <div style={{ marginTop: "40px", marginLeft: "20px" }}>
-                <h5>Cumulative figure of all salemen, jobs, skills and all users</h5><br />
-                <Nav>
-                    <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                        <div>
-                            <Nav.Dropdown title="Reports">
-                                <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                            </Nav.Dropdown>
-                        </div>
-                        <div style={{ marginRight: "70px" }}>
-                            <Nav.Item active><Button color="red" appearance="primary">Users</Button></Nav.Item>
-                            <Nav.Item>Servicemen</Nav.Item>
-                            <Nav.Item>Jobs</Nav.Item>
-                            <Nav.Item>Skills</Nav.Item>
-                        </div>
-                    </div>
-                </Nav><br />
-                <Chart
-                    options={state.options}
-                    series={state.series}
-                    type="area"
-                    height={300}
-                    width='95%'
-                />
+            <div style={{ marginTop: "40px", marginLeft: "10px" }}>
+                <Grid fluid>
+                    <Row className="show-grid">
+                        <Col xs={12}>
+                            <h5>Cumulative figure of all salemen, jobs, skills and all users</h5><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item active><Button color="red" appearance="primary">Users</Button></Nav.Item>
+                                        <Nav.Item>Servicemen</Nav.Item>
+                                        <Nav.Item>Jobs</Nav.Item>
+                                        <Nav.Item>Skills</Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Chart
+                                options={state.options}
+                                series={state.series}
+                                type="area"
+                                height={300}
+                                width='100%'
+                            />
+                        </Col>
+                        <Col xs={12}>
+                            <h5>Cumulative figure of all salemen, jobs, skills and all users</h5><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item>Users</Nav.Item>
+                                        <Nav.Item active><Button color="green" appearance="primary">Servicemen</Button></Nav.Item>
+                                        <Nav.Item>Jobs</Nav.Item>
+                                        <Nav.Item>Skills</Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Image src={Graph} alt="" height={350} />
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         </div >
     )
