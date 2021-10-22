@@ -1,6 +1,7 @@
 import React from  'react';
 import GealLayout from '../layout/geal-layout';
 import ListUsers from '../users/list-users';
+import UserDetails from '../users/user-details';
 import {useDispatch, useSelector} from "react-redux";
 import {getRoles} from "../../state/actions/roleAction";
 import Home from './home/home';
@@ -58,10 +59,10 @@ const GealDashboard = ({section}) => {
                     <ListUsers section={section}/>
             
                 );
-            // case 'specific-user':
-            //     return (
-            //         <UserDetails section={section}/>
-            //     );
+            case 'specific-user':
+                return (
+                    <UserDetails section={section}/>
+                );
             case undefined:
                 return '';
             default:

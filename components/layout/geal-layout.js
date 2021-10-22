@@ -14,6 +14,9 @@ import AppSelectIcon from '@rsuite/icons/AppSelect';
 import LocationIcon from '@rsuite/icons/Location';
 import ExploreIcon from '@rsuite/icons/Explore';
 import CheckOutlineIcon from '@rsuite/icons/CheckOutline';
+import AdminIcon from '@rsuite/icons/Admin';
+import UserBadgeIcon from '@rsuite/icons/UserBadge';
+import ListIcon from '@rsuite/icons/List';
 import TaskIcon from '@rsuite/icons/Task';
 import NoticeIcon from '@rsuite/icons/Notice';
 import SearchIcon from '@rsuite/icons/Search';
@@ -85,7 +88,7 @@ const GealLayout = ({children}) => {
                 </Box>
               </center>
           </Sidenav.Header>
-          <Sidenav style={{color:"black"}} expanded={expand} defaultOpenKeys={['3']} appearance="default">
+          <Sidenav style={{color:"black", fontFamily:"Montserrat,Helvetica,Arial,serif"}} expanded={expand} defaultOpenKeys={['3']} appearance="default">
             <Sidenav.Body>
               <Nav>
                 <Nav.Item eventKey="1" active icon={<DashboardIcon />} onClick={() => router.push('/dashboard/home', undefined, {shallow: true}) }>
@@ -101,12 +104,12 @@ const GealLayout = ({children}) => {
                   icon={<GlobalIcon color="#3498FF"/>}
                   placement="rightStart"
                 >
-                  <Dropdown.Item eventKey="3-1" style={{color:"black"}}>All Jobs</Dropdown.Item>
-                  <Dropdown.Item eventKey="3-2" style={{color:"black"}}>Active Jobs</Dropdown.Item>
-                  <Dropdown.Item eventKey="3-3" style={{color:"black"}}>Scheduled Jobs</Dropdown.Item>
-                  <Dropdown.Item eventKey="3-4" style={{color:"black"}}>Completed Jobs</Dropdown.Item>
-                  <Dropdown.Item eventKey="3-5" style={{color:"black"}}>Pending Jobs</Dropdown.Item>
-                  <Dropdown.Item eventKey="3-5" style={{color:"black"}}>Rejected Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-1" style={{color:"black"}} icon={<ListIcon color="green"/>}> All Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-2" style={{color:"black"}} icon={<ListIcon color="green"/>}>Active Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-3" style={{color:"black"}} icon={<ListIcon color="green"/>}>Scheduled Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-4" style={{color:"black"}} icon={<ListIcon color="green"/>}>Completed Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-5" style={{color:"black"}} icon={<ListIcon color="green"/>}>Pending Jobs</Dropdown.Item>
+                  <Dropdown.Item eventKey="3-5" style={{color:"black"}} icon={<ListIcon color="green"/>}>Rejected Jobs</Dropdown.Item>
                 </Dropdown>
                 <Dropdown
                   eventKey="4"
@@ -115,9 +118,9 @@ const GealLayout = ({children}) => {
                   icon={<PeoplesIcon color="#3498FF"/>}
                   placement="rightStart"
                 >
-                  <Dropdown.Item eventKey="4-1" onClick={() => router.push('/user/list-users', undefined, {shallow: true})}>All Users</Dropdown.Item>
-                  <Dropdown.Item eventKey="4-2">All Servicemen</Dropdown.Item>
-                  <Dropdown.Item eventKey="4-3">All Clients</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-1" icon={<UserBadgeIcon color="green"/>} onClick={() => router.push('/user/list-users', undefined, {shallow: true})}>All Users</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-2" icon={<UserBadgeIcon color="green"/>}>All Servicemen</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-3" icon={<UserBadgeIcon color="green"/>}>All Clients</Dropdown.Item>
                 </Dropdown>
                 <Dropdown
                   eventKey="4"
@@ -126,7 +129,7 @@ const GealLayout = ({children}) => {
                   icon={<AppSelectIcon color="#3498FF"/>}
                   placement="rightStart"
                 >
-                  <Dropdown.Item eventKey="4-1">Roles</Dropdown.Item>
+                  <Dropdown.Item eventKey="4-1" icon={<AdminIcon color="green"/>}>Roles</Dropdown.Item>
                 </Dropdown>
                 <Nav.Item eventKey="2" icon={<ExploreIcon color="#3498FF"/>}>
                   Servicemen Locations
@@ -160,9 +163,9 @@ const GealLayout = ({children}) => {
               </Dropdown>
             </Nav>
             <Nav pullRight>
-              <Nav.Item icon={<Badge content={10}><TaskIcon style={{fontSize:"2em"}}/></Badge>}/>
+              <Nav.Item icon={<Badge color="cyan" content={10}><TaskIcon style={{fontSize:"2em"}}/></Badge>}/>
               <Nav.Item icon={<NoticeIcon style={{fontSize:"2em"}}/>}/>
-              <Nav.Item icon={<Badge content={999}><SearchIcon style={{fontSize:"2em"}}/></Badge>}/>
+              <Nav.Item icon={<Badge color="cyan" content={999}><SearchIcon style={{fontSize:"2em"}}/></Badge>}/>
               <Nav.Item><center><Box style={{marginTop:"-10px", textDecoration:"none"}}>John Doe<br/>Admin</Box></center></Nav.Item>
               <Nav.Item onClick={handleLogout} icon={<Avatar size="md" circle src="https://avatars2.githubusercontent.com/u/12592949?s=460&v=4" style={{marginTop:"-10px"}} />}/>
             </Nav>
@@ -184,8 +187,8 @@ const styles = {
     paddingBottom: '10px',
     fontSize: 36,
     height: 56,
-    background: '#34c3ff',
-    color: ' #000',
+    background: 'linear-gradient(to right, #4EE2EC, #3CB371)',
+    color: ' #fff',
     whiteSpace: 'nowrap',
     overflow: 'hidden'
   },

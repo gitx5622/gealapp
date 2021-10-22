@@ -50,7 +50,8 @@ export const createUser = (dispatch, credentials) => {
     axiosConfig
         .post(`/users`, credentials, {
             headers: {
-                'token': localStorage.token,
+                'Authorization': `Bearer ${localStorage.token}`,
+                'phone': '0712966136',
             },
         })
         .then(response => {
@@ -74,20 +75,21 @@ export const createUser = (dispatch, credentials) => {
         });
 }
 
-export const getUser = (dispatch, userId) => {
+export const getUser = async(dispatch, userId) => {
     dispatch({
         type: GET_USER,
     });
-    axiosConfig
-        .get(`/users/${userId}`, {
+    await axiosConfig
+        .get(`/admin-api/get-user/${userId}`, {
             headers: {
-                'token': localStorage.token,
+                'Authorization': `Bearer ${localStorage.token}`,
+                'phone': '0712966136',
             },
         })
         .then(response => {
             dispatch({
                 type: GET_USER_SUCCESS,
-                order: response.data,
+                user: response.data.user,
             })
         })
         .catch(error => {
