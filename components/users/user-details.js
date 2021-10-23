@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { List, Grid, Modal, Row, Col, Avatar, Panel, ButtonToolbar, Button, Form } from 'rsuite';
+import { List, Grid, Modal, Row, Col, Tag, Panel, ButtonToolbar, Button, Form } from 'rsuite';
 import { getUser } from '../../state/actions/usersAction';
 
 
@@ -18,13 +18,7 @@ const UserDetails = () => {
     const { user } = userSelector;
 
     React.useEffect(() => {
-
         getUser(dispatch, userID);
-
-        localStorage.firstNameFChar = user?.first_name;
-
-        localStorage.lastNameFChar = user?.last_name;
-
     }, [dispatch, userID]);
 
     return (
@@ -57,7 +51,7 @@ const UserDetails = () => {
                             <List.Item style={{ background: "#34c3ff" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                                     <h4>{user.first_name} {user.last_name}</h4>
-                                    <Avatar circle style={{ background: '#7B1FA2' }}>{() => localStorage.firstNameFChar[0]}{() => localStorage.lastNameFChar[0]}</Avatar>
+                                    <Tag size="lg" color="violet">{user.role}</Tag>
                                 </div>
                             </List.Item>
                         </List>
