@@ -203,8 +203,6 @@ const ListClients = () => {
                                 <Chart
                                     options={state.options}
                                     series={state.series}
-                                    autoScaleYaxis={true}
-                                    autoScaleXaxis={true}
                                     type="bar"
                                     height={350}
                                     width="100%"
@@ -235,8 +233,6 @@ const ListClients = () => {
                                 <Chart
                                     options={polar.options}
                                     series={polar.series}
-                                    autoScaleYaxis={true}
-                                    autoScaleXaxis={true}
                                     type="polarArea"
                                     height={395}
                                     width="100%"

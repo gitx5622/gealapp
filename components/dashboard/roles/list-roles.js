@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Grid, Row, Drawer,ButtonToolbar, Form, Col, List, Panel, Checkbox, Button } from 'rsuite';
+import { Table, Grid, Row, Drawer, ButtonToolbar, Form, Col, List, Panel, Checkbox, Button } from 'rsuite';
 import { getRoles } from "../../../state/actions/roleAction";
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { Box } from '@mui/material';
@@ -110,21 +110,21 @@ const ListRoles = () => {
             </div>
             <br />
             <Grid fluid>
-                <Panel shaded style={{background:"whitesmoke"}}>
+                <Panel shaded style={{ background: "whitesmoke" }}>
                     <Row>
                         <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
                             <List bordered>
                                 <List.Item>
-                                  <ModelIcon spin style={{fontSize:"2em"}}/>&#160;&#160; <span style={{fontSize:"18px"}}>Current Role</span>
+                                    <ModelIcon spin style={{ fontSize: "2em" }} />&#160;&#160; <span style={{ fontSize: "18px" }}>Current Role</span>
                                 </List.Item>
                             </List>
                         </Col>
                         <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
                             <List bordered>
                                 <List.Item style={{ color: "#1675e0" }}>
-                                    <div style={{display:"flex", justifyContent: "space-between"}}>
-                                    <h5>{roles.role}</h5>
-                                    <SpinnerIcon pulse style={{ fontSize: '2em' }} />
+                                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <h5>{roles.role}</h5>
+                                        <SpinnerIcon pulse style={{ fontSize: '2em' }} />
                                     </div>
                                 </List.Item>
                             </List>
@@ -141,10 +141,10 @@ const ListRoles = () => {
                         ))}
                     </Row>
                 </Panel>
-            </Grid><br/>
+            </Grid><br />
             <Button color="cyan" appearance="primary">Update role</Button>
         </div>
-            );
+    );
 };
 
-            export default ListRoles;
+export default ListRoles;

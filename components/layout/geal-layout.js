@@ -28,6 +28,7 @@ import { useRouter } from "next/router";
 
 
 const NavToggle = ({ expand, onChange }) => {
+  const router = useRouter();
   return (
     <Navbar appearance="subtle" className="nav-toggle">
       <Navbar.Body>
@@ -35,9 +36,6 @@ const NavToggle = ({ expand, onChange }) => {
           <Dropdown
             placement="topStart"
             trigger="click"
-            renderTitle={() => {
-              return <Cog style={styles.iconStyles} />;
-            }}
           >
             <Dropdown.Item>Help</Dropdown.Item>
             <Dropdown.Item>Settings</Dropdown.Item>
@@ -47,7 +45,7 @@ const NavToggle = ({ expand, onChange }) => {
 
         <Nav pullRight>
           <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
-            {expand ? <ArowBackIcon /> : <PageNextIcon />}
+            {expand ? <ArowBackIcon style={{color:"red", fontSize:"30px"}}/> : <PageNextIcon style={{fontSize:"30px", color:"red"}}/>}
           </Nav.Item>
         </Nav>
       </Navbar.Body>
@@ -117,32 +115,32 @@ const GealLayout = ({ children }) => {
                   Servicemen
                 </Nav.Item>
                 <Nav.Item
-                  eventKey="2"
+                  eventKey="3"
                   icon={<PeopleBranchIcon color="#3498FF" />}
                   onClick={() => router.push('/dashboard/clients/list-clients', undefined, { shallow: true })}>
                   Clients
                 </Nav.Item>
                 <Nav.Item
-                  eventKey="2"
+                  eventKey="4"
                   icon={<AlipayIcon color="#3498FF" />}
                   onClick={() => router.push('/dashboard/payments/payments', undefined, { shallow: true })}>
                   Payments
                 </Nav.Item>
                 <Dropdown
-                  eventKey="3"
+                  eventKey="5"
                   trigger="hover"
                   title="Jobs"
                   icon={<GlobalIcon color="#3498FF" />}
                   placement="rightStart"
                 >
                   <Dropdown.Item
-                    eventKey="3-1"
+                    eventKey="5-1"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
                   > All Jobs</Dropdown.Item>
                   <Dropdown.Item
-                    eventKey="3-2"
+                    eventKey="5-2"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
@@ -150,7 +148,7 @@ const GealLayout = ({ children }) => {
                     Active Jobs
                   </Dropdown.Item>
                   <Dropdown.Item
-                    eventKey="3-3"
+                    eventKey="5-3"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
@@ -158,7 +156,7 @@ const GealLayout = ({ children }) => {
                     Scheduled Jobs
                   </Dropdown.Item>
                   <Dropdown.Item
-                    eventKey="3-4"
+                    eventKey="5-4"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
@@ -166,7 +164,7 @@ const GealLayout = ({ children }) => {
                     Completed Jobs
                   </Dropdown.Item>
                   <Dropdown.Item
-                    eventKey="3-5"
+                    eventKey="6-5"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
@@ -174,7 +172,7 @@ const GealLayout = ({ children }) => {
                     Pending Jobs
                   </Dropdown.Item>
                   <Dropdown.Item
-                    eventKey="3-5"
+                    eventKey="7-5"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
                     onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
@@ -183,7 +181,7 @@ const GealLayout = ({ children }) => {
                   </Dropdown.Item>
                 </Dropdown>
                 <Dropdown
-                  eventKey="4"
+                  eventKey="8"
                   trigger="hover"
                   title="User Management"
                   icon={<PeoplesIcon color="#3498FF" />}
@@ -194,30 +192,30 @@ const GealLayout = ({ children }) => {
                   <Dropdown.Item eventKey="4-3" icon={<UserBadgeIcon color="green" />} onClick={() => router.push('/dashboard/clients/list-clients', undefined, { shallow: true })}>All Clients</Dropdown.Item>
                 </Dropdown>
                 <Dropdown
-                  eventKey="4"
+                  eventKey="9"
                   trigger="hover"
                   title="Role Management"
                   icon={<AppSelectIcon color="#3498FF" />}
                   placement="rightStart"
                 >
                   <Dropdown.Item
-                    eventKey="4-1"
+                    eventKey="9-1"
                     icon={<AdminIcon color="green" />}
                     onClick={() => router.push('/dashboard/roles/list-roles', undefined, { shallow: true })}
                   >Roles</Dropdown.Item>
                 </Dropdown>
                 <Nav.Item
-                  eventKey="2"
+                  eventKey="10"
                   icon={<ExploreIcon color="#3498FF" />}>
                   Servicemen Locations
                 </Nav.Item>
                 <Nav.Item
-                  eventKey="2"
+                  eventKey="11"
                   icon={<LocationIcon color="#3498FF" />}>
                   Maps
                 </Nav.Item>
                 <Nav.Item
-                  eventKey="2"
+                  eventKey="12"
                   icon={<CheckOutlineIcon color="#3498FF" />}>
                   Approval Requests
                 </Nav.Item>

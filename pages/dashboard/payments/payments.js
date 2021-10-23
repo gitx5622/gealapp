@@ -7,6 +7,7 @@ const Payments = () => {
     useEffect(() => {
         try {
             JSON.parse(localStorage.currentUser);
+            JSON.parse(localStorage.roles);
         } catch (error) {
             localStorage.clear();
             window.location.replace('/');

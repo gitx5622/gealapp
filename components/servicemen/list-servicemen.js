@@ -211,8 +211,6 @@ const ListServicemen = () => {
                                 <Chart
                                     options={state.options}
                                     series={state.series}
-                                    autoScaleYaxis={true}
-                                    autoScaleXaxis={true}
                                     type="line"
                                     height={350}
                                     width="100%"
@@ -240,8 +238,6 @@ const ListServicemen = () => {
                                 <Chart
                                     options={polar.options}
                                     series={polar.series}
-                                    autoScaleYaxis={true}
-                                    autoScaleXaxis={true}
                                     type="polarArea"
                                     height={360}
                                     width="100%"
@@ -268,30 +264,30 @@ const ListServicemen = () => {
                         <Form fluid>
                             <Form.Group controlId="name-1">
                                 <Form.ControlLabel>First Name</Form.ControlLabel>
-                                <Form.Control name="name" />
+                                <Form.Control name="name-1" />
                                 <Form.HelpText>Required</Form.HelpText>
                             </Form.Group>
                             <Form.Group controlId="name-2">
                                 <Form.ControlLabel>Last Name</Form.ControlLabel>
-                                <Form.Control name="name" />
+                                <Form.Control name="name-2" />
                                 <Form.HelpText>Required</Form.HelpText>
                             </Form.Group>
                             <Form.Group controlId="email-1">
                                 <Form.ControlLabel>Email</Form.ControlLabel>
-                                <Form.Control name="email" type="email" />
+                                <Form.Control name="email-1" type="email" />
                                 <Form.HelpText>Required</Form.HelpText>
                             </Form.Group>
                             <Form.Group controlId="phone-1">
                                 <Form.ControlLabel>Phone</Form.ControlLabel>
-                                <Form.Control name="name" />
+                                <Form.Control name="phone-1" />
                             </Form.Group>
                             <Form.Group controlId="gender-1">
                                 <Form.ControlLabel>Gender</Form.ControlLabel>
-                                <Form.Control name="name" />
+                                <Form.Control name="gender-1" />
                             </Form.Group>
                             <Form.Group controlId="country-1">
                                 <Form.ControlLabel>Gender</Form.ControlLabel>
-                                <Form.Control name="name" />
+                                <Form.Control name="country-1" />
                             </Form.Group>
                             <Form.Group>
                                 <ButtonToolbar>
@@ -336,10 +332,10 @@ const ListServicemen = () => {
                     </Col>
                     <Col xs={24} sm={12} md={6}>
                         <FormControl style={{ width: "60%", marginLeft: "100px" }}>
-                            <InputLabel id="gender=label">Gender</InputLabel>
+                            <InputLabel id="gender-label">Gender</InputLabel>
                             <Select
                                 labelId="gender-label"
-                                id="gender"
+                                id="gender-label"
                                 value={gender}
                                 label="Gender"
                                 sx={{ color: 'black' }}

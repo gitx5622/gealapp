@@ -16,7 +16,7 @@ export const getRoles = (dispatch) => {
             }
         )
         .then(response => {
-            console.log(response);
+            localStorage.roles = JSON.stringify(response.data);
             dispatch({
                 type: GET_ROLE_SUCCESS,
                 roles: response.data,

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Pagination, Grid, Row, Col, DatePicker, InputGroup, Tag, Button, Drawer, Form, ButtonToolbar } from 'rsuite';
+import {
+    Table, Pagination, Grid, Row, Col, DatePicker,Panel,
+    InputGroup, Tag, Button, Drawer, Form, ButtonToolbar
+} from 'rsuite';
 import AddOutlineIcon from '@rsuite/icons/AddOutline'
 import { getUsers } from '../../state/actions/usersAction';
 import Select from '@mui/material/Select';
@@ -87,7 +90,7 @@ const ListUsers = () => {
     }, [dispatch, searchTerm, gender, country, startDate, endDate]);
 
     return (
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "20px", marginLeft: "10px", marginRight: "10px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
                 <h5>Users List:</h5>
                 <Button
@@ -147,6 +150,7 @@ const ListUsers = () => {
                 </Drawer>
             </div>
             <br />
+            <Panel shaded>
             <span style={{ color: "#1675E0", marginLeft: "5px" }}><Tag color="green">Search filter:</Tag></span>
             <Grid fluid style={{ marginBottom: "5px", marginTop: "3px" }}>
                 <Row >
@@ -196,65 +200,66 @@ const ListUsers = () => {
                     </Col>
                 </Row>
             </Grid>
-            <Table bordered={true} cellBordered={true} height={500} data={data} loading={loading} style={{ color: "black", fontFamily: "Quicksand, sans-serif" }}>
-                <Table.Column width={50} align="center" resizable>
-                    <Table.HeaderCell style={{ background: "#34c3ff" }}><h6>Id</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="id" style={{ color: "#1675E0" }} />
-                </Table.Column>
-                <Table.Column width={100} resizable>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>First Name</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="first_name" />
-                </Table.Column>
+                <Table bordered={true} cellBordered={true} height={500} data={data} loading={loading} style={{ color: "black", fontFamily: "Quicksand, sans-serif" }}>
+                    <Table.Column width={50} align="center" resizable>
+                        <Table.HeaderCell style={{ background: "#34c3ff" }}><h6>Id</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="id" style={{ color: "#1675E0" }} />
+                    </Table.Column>
+                    <Table.Column width={100} resizable>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>First Name</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="first_name" />
+                    </Table.Column>
 
-                <Table.Column width={100}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Last Name</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="last_name" />
-                </Table.Column>
+                    <Table.Column width={100}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Last Name</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="last_name" />
+                    </Table.Column>
 
-                <Table.Column width={200}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Email</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="email" style={{ color: "#1675E0" }} />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Phone</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="phone" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Gender</h6></Table.HeaderCell>
-                    <GenderCell dataKey="gender" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Country</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="country" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Created At</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="created_at" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Actions</h6></Table.HeaderCell>
-                    <ActionCell dataKey="id" />
-                </Table.Column>
-            </Table>
-            <div style={{ padding: 20 }}>
-                <Pagination
-                    prev
-                    next
-                    first
-                    last
-                    ellipsis
-                    boundaryLinks
-                    maxButtons={5}
-                    size="xs"
-                    layout={['total', '-', 'limit', '|', 'pager', 'skip']}
-                    total={pagination.count}
-                    limitOptions={[10, 20]}
-                    limit={limit}
-                    activePage={page}
-                    onChangePage={setPage}
-                    onChangeLimit={handleChangeLimit}
-                />
-            </div>
+                    <Table.Column width={200}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Email</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="email" style={{ color: "#1675E0" }} />
+                    </Table.Column>
+                    <Table.Column width={200} flexGrow={1}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Phone</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="phone" />
+                    </Table.Column>
+                    <Table.Column width={200} flexGrow={1}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Gender</h6></Table.HeaderCell>
+                        <GenderCell dataKey="gender" />
+                    </Table.Column>
+                    <Table.Column width={200} flexGrow={1}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Country</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="country" />
+                    </Table.Column>
+                    <Table.Column width={200} flexGrow={1}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Created At</h6></Table.HeaderCell>
+                        <Table.Cell dataKey="created_at" />
+                    </Table.Column>
+                    <Table.Column width={200} flexGrow={1}>
+                        <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Actions</h6></Table.HeaderCell>
+                        <ActionCell dataKey="id" />
+                    </Table.Column>
+                </Table>
+                <div style={{ padding: 20 }}>
+                    <Pagination
+                        prev
+                        next
+                        first
+                        last
+                        ellipsis
+                        boundaryLinks
+                        maxButtons={5}
+                        size="xs"
+                        layout={['total', '-', 'limit', '|', 'pager', 'skip']}
+                        total={pagination.count}
+                        limitOptions={[10, 20]}
+                        limit={limit}
+                        activePage={page}
+                        onChangePage={setPage}
+                        onChangeLimit={handleChangeLimit}
+                    />
+                </div>
+            </Panel>
         </div>
     );
 };

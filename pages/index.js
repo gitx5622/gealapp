@@ -112,7 +112,7 @@ export default function Home() {
           }}
         >
             <Box sx={{ml: 5, color: '#1976D2', '@media only screen and (max-width: 600px)': {display: 'none'}}}>
-                <h1>Geal Admin</h1>
+                <h3>Geal Admin</h3>
             </Box>
       </Grid>
         <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>

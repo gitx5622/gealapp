@@ -393,8 +393,6 @@ const Payments = () => {
                 <Chart
                     options={state.options}
                     series={state.series}
-                    autoScaleYaxis={true}
-                    autoScaleXaxis={true}
                     type="line"
                     height={350}
                     width="100%"
