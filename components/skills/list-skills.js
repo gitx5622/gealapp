@@ -43,7 +43,7 @@ const GenderCell = ({ rowData, dataKey, ...props }) => {
     );
 };
 
-const ListUsers = () => {
+const ListSkills = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
@@ -83,24 +83,17 @@ const ListUsers = () => {
     });
 
     React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country, startDate, endDate);
-    }, [dispatch, searchTerm, gender, country, startDate, endDate]);
+        getUsers(dispatch, searchTerm, gender, country);
+    }, [dispatch, searchTerm, gender, country]);
 
     return (
         <div style={{ marginTop: "20px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                <h5>Users List:</h5>
-                <Button
-                    color="cyan"
-                    appearance="primary"
-                    onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} />
-                </Button>
-                <Drawer
-                    size='xs'
-                    open={openWithHeader}
-                    onClose={() => setOpenWithHeader(false)}>
-                    <Drawer.Header>setStartDate
-                        <Drawer.Title>Add User</Drawer.Title>
+                <h5>Skiils List:</h5>
+                <Button color="cyan" appearance="primary" onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} /></Button>
+                <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
+                    <Drawer.Header>
+                        <Drawer.Title>Add Skill</Drawer.Title>
                         <Drawer.Actions>
                             <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
                                 Close
@@ -259,4 +252,4 @@ const ListUsers = () => {
     );
 };
 
-export default ListUsers;
+export default ListSkills;

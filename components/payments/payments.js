@@ -1,16 +1,99 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { Table, Pagination, Grid, Row, Col, DatePicker, InputGroup, Tag, Button, Drawer, Form, ButtonToolbar } from 'rsuite';
-import AddOutlineIcon from '@rsuite/icons/AddOutline'
-import { getUsers } from '../../state/actions/usersAction';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { FormControl, Box, InputLabel, TextField } from '@mui/material';
+import {
+    Nav, Panel, Steps, ButtonGroup, Button, Tag, InputGroup, Table,
+    Grid, Form, Row, Col, Checkbox, ButtonToolbar, DatePicker, Pagination,
+} from 'rsuite';
+import { TextField, FormControl, Box, InputLabel, Select, MenuItem } from '@mui/material';
 import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
+import { getUsers } from '../../state/actions/usersAction';
+import { useDispatch, useSelector } from "react-redux";
+import Pesapal from '../../assets/pesapal.png';
+import Mpesa from '../../assets/mpesa.png';
+import Airtel from '../../assets/airtel.png';
+import Equity from '../../assets/equity.png';
+import Visa from '../../assets/visa.png';
+import Master from '../../assets/master.png';
 import { useRouter } from 'next/router';
+import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+const state = {
+
+    series: [{
+        name: 'TEAM A',
+        type: 'column',
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+    }, {
+        name: 'TEAM B',
+        type: 'area',
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+    }, {
+        name: 'TEAM C',
+        type: 'line',
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+    }],
+    options: {
+        chart: {
+            height: 350,
+            type: 'line',
+            stacked: false,
+        },
+        stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
+            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+        ],
+        markers: {
+            size: 0
+        },
+        xaxis: {
+            type: 'datetime'
+        },
+        yaxis: {
+            title: {
+                text: 'Points',
+            },
+            min: 0
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
+
+                }
+            }
+        }
+    },
 
 
+};
 const ActionCell = ({ rowData, dataKey, ...props }) => {
     function handleAction() {
         alert(`id:${rowData[dataKey]}`);
@@ -43,8 +126,26 @@ const GenderCell = ({ rowData, dataKey, ...props }) => {
     );
 };
 
-const ListUsers = () => {
-    const [openWithHeader, setOpenWithHeader] = useState(false);
+const styles = {
+    marginBottom: 50,
+};
+
+const CustomNav = ({ active, onSelect, ...props }) => {
+    return (
+        <Nav {...props} activeKey={active} onSelect={onSelect} style={styles}>
+            <Nav.Item eventKey="home">
+                MPESA
+            </Nav.Item>
+            <Nav.Item eventKey="news">Creadit Cards</Nav.Item>
+            <Nav.Item eventKey="solutions">Debit Cards</Nav.Item>
+            <Nav.Item eventKey="about">Other Mobile Money</Nav.Item>
+        </Nav>
+    );
+};
+
+const Payments = () => {
+    const [active, setActive] = React.useState('home');
+    const [step, setStep] = React.useState(0);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -86,67 +187,98 @@ const ListUsers = () => {
         getUsers(dispatch, searchTerm, gender, country, startDate, endDate);
     }, [dispatch, searchTerm, gender, country, startDate, endDate]);
 
+    const onChange = nextStep => {
+        setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
+    };
+
+    const onNext = () => onChange(step + 1);
+    const onPrevious = () => onChange(step - 1);
     return (
-        <div style={{ marginTop: "20px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                <h5>Users List:</h5>
-                <Button
-                    color="cyan"
-                    appearance="primary"
-                    onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} />
-                </Button>
-                <Drawer
-                    size='xs'
-                    open={openWithHeader}
-                    onClose={() => setOpenWithHeader(false)}>
-                    <Drawer.Header>setStartDate
-                        <Drawer.Title>Add User</Drawer.Title>
-                        <Drawer.Actions>
-                            <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
-                                Close
-                            </Button>
-                        </Drawer.Actions>
-                    </Drawer.Header>
-                    <Drawer.Body>
-                        <Form fluid>
-                            <Form.Group controlId="name-1">
-                                <Form.ControlLabel>First Name</Form.ControlLabel>
-                                <Form.Control name="name" />
-                                <Form.HelpText>Required</Form.HelpText>
-                            </Form.Group>
-                            <Form.Group controlId="name-2">
-                                <Form.ControlLabel>Last Name</Form.ControlLabel>
-                                <Form.Control name="name" />
-                                <Form.HelpText>Required</Form.HelpText>
-                            </Form.Group>
-                            <Form.Group controlId="email-1">
-                                <Form.ControlLabel>Email</Form.ControlLabel>
-                                <Form.Control name="email" type="email" />
-                                <Form.HelpText>Required</Form.HelpText>
-                            </Form.Group>
-                            <Form.Group controlId="phone-1">
-                                <Form.ControlLabel>Phone</Form.ControlLabel>
-                                <Form.Control name="name" />
-                            </Form.Group>
-                            <Form.Group controlId="gender-1">
-                                <Form.ControlLabel>Gender</Form.ControlLabel>
-                                <Form.Control name="name" />
-                            </Form.Group>
-                            <Form.Group controlId="country-1">
-                                <Form.ControlLabel>Gender</Form.ControlLabel>
-                                <Form.Control name="name" />
-                            </Form.Group>
-                            <Form.Group>
-                                <ButtonToolbar>
-                                    <Button appearance="primary">Submit</Button>
-                                    <Button appearance="default">Cancel</Button>
-                                </ButtonToolbar>
-                            </Form.Group>
-                        </Form>
-                    </Drawer.Body>
-                </Drawer>
-            </div>
-            <br />
+        <div style={{ marginTop: "20px", marginLeft: "10px", marginRight: "10px" }}>
+            <h6>Make Payment</h6><br />
+            <Panel shaded>
+                <Steps current={step}>
+                    <Steps.Item title="Payment Method" description="Choose Payment option" />
+                    <Steps.Item title="View Payment Details" description="View Selected Payment Details" />
+                    <Steps.Item title="Enter Payment Details" description="Enter payment details" />
+                    <Steps.Item title="Complete" description="Complete Payment" />
+                </Steps>
+                <hr />
+                <Panel>
+                    {step === 0 && (
+                        <div style={{ display: "flex", justifyContent: "space-around", height: "80px" }}>
+                            <Checkbox defaultChecked> <Image src={Mpesa} alt="" width={80} height={50} /></Checkbox>
+                            <Checkbox> <Image src={Pesapal} alt="" width={100} height={50} /></Checkbox>
+                            <Checkbox> <Image src={Airtel} alt="" width={80} height={50} /></Checkbox>
+                            <Checkbox> <Image src={Equity} alt="" width={80} height={50} /></Checkbox>
+                            <Checkbox> <Image src={Visa} alt="" width={80} height={50} /></Checkbox>
+                            <Checkbox> <Image src={Master} alt="" width={80} height={50} /></Checkbox>
+                        </div>
+                    )}
+                    {step === 1 && (
+                        <div>
+                            <h6>Payment Details</h6>
+                            <p>Send Mpesa Kshs. </p>
+                            <Panel>
+                                <p>
+                                    Step 1: Go to M-PESA on your phone<br />
+
+                                    Step 2: Select Lipa na M-pesa option in the drop-down<br />
+
+                                    Step 3: Select the Pay Bill option<br />
+
+                                    Step 4:  Enter the business number 206206<br />
+
+                                    Step 5: asks for account number, which is automatically generated based on the service you used.<br />
+
+                                    Step 6: Enter the amount, which was generated as an invoice.<br />
+
+                                    Step 7: Enter M-pesa Pin Number and Press Send<br />
+
+                                    Step 8: Confirmation message from M-pesa and you are set!
+                                </p>
+                            </Panel>
+                        </div>
+                    )}
+                    {step === 2 && (
+                        <div>
+                            <Form>
+                                <Form.Group controlId="name">
+                                    <Form.ControlLabel>Phone Number</Form.ControlLabel>
+                                    <Form.Control name="name" />
+                                    <Form.HelpText>Required</Form.HelpText>
+                                </Form.Group>
+                                <Form.Group controlId="name">
+                                    <Form.ControlLabel>Confirmation Code</Form.ControlLabel>
+                                    <Form.Control name="name" />
+                                    <Form.HelpText>Required</Form.HelpText>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                    )}
+                    {step === 3 && (
+                        <Panel shaded>
+                            <h4>Are you sure you want to make a payment of Amount(Kshs 10,000) to Graphine East Africa  Limited</h4>
+                            <ButtonToolbar>
+                                <Button color="green" appearance="primary">Yes</Button>
+                                <Button color="red" appearance="primary">No</Button>
+                            </ButtonToolbar>
+                        </Panel>
+                    )}
+                </Panel>
+                <hr />
+                <ButtonGroup>
+                    <Button color='orange' appearance="primary" onClick={onPrevious} disabled={step === 0}>
+                        Previous
+                    </Button>
+                    <Button color='cyan' appearance="primary" onClick={onNext} disabled={step === 3}>
+                        Next
+                    </Button>
+                </ButtonGroup>
+            </Panel><br />
+            <h6>Transactions</h6>
+            <CustomNav appearance="tabs" active={active} onSelect={setActive} />
+            <div style={{marginTop: "-40px"}}>
             <span style={{ color: "#1675E0", marginLeft: "5px" }}><Tag color="green">Search filter:</Tag></span>
             <Grid fluid style={{ marginBottom: "5px", marginTop: "3px" }}>
                 <Row >
@@ -196,6 +328,7 @@ const ListUsers = () => {
                     </Col>
                 </Row>
             </Grid>
+            </div>
             <Table bordered={true} cellBordered={true} height={500} data={data} loading={loading} style={{ color: "black", fontFamily: "Quicksand, sans-serif" }}>
                 <Table.Column width={50} align="center" resizable>
                     <Table.HeaderCell style={{ background: "#34c3ff" }}><h6>Id</h6></Table.HeaderCell>
@@ -255,8 +388,20 @@ const ListUsers = () => {
                     onChangeLimit={handleChangeLimit}
                 />
             </div>
+            <h4>Payment Reports</h4>
+            <Panel shaded>
+                <Chart
+                    options={state.options}
+                    series={state.series}
+                    autoScaleYaxis={true}
+                    autoScaleXaxis={true}
+                    type="line"
+                    height={350}
+                    width="100%"
+                />
+            </Panel>
         </div>
-    );
-};
+    )
+}
 
-export default ListUsers;
+export default Payments

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Pagination, Grid, Row, Col, DatePicker, InputGroup, Tag, Button, Drawer, Form, ButtonToolbar } from 'rsuite';
+import {
+    Table, Pagination, Grid, Row, Col, DatePicker, Nav, Panel,
+    InputGroup, Tag, Button, Drawer, Form, ButtonToolbar, Divider
+} from 'rsuite';
 import AddOutlineIcon from '@rsuite/icons/AddOutline'
 import { getUsers } from '../../state/actions/usersAction';
 import Select from '@mui/material/Select';
@@ -9,6 +12,8 @@ import { FormControl, Box, InputLabel, TextField } from '@mui/material';
 import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
 const ActionCell = ({ rowData, dataKey, ...props }) => {
@@ -43,7 +48,102 @@ const GenderCell = ({ rowData, dataKey, ...props }) => {
     );
 };
 
-const ListUsers = () => {
+const state = {
+
+    series: [{
+        name: 'TEAM A',
+        type: 'column',
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+    }, {
+        name: 'TEAM B',
+        type: 'area',
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+    }, {
+        name: 'TEAM C',
+        type: 'line',
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+    }],
+    options: {
+        chart: {
+            stacked: false,
+        },
+        stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
+            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+        ],
+        markers: {
+            size: 0
+        },
+        xaxis: {
+            type: 'datetime'
+        },
+        yaxis: {
+            title: {
+                text: 'Points',
+            },
+            min: 0
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
+
+                }
+            }
+        }
+    },
+};
+const polar = {
+    series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
+    options: {
+        chart: {
+            type: 'polarArea',
+        },
+        stroke: {
+            colors: ['#fff']
+        },
+        fill: {
+            opacity: 0.8
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    },
+};
+const ListServicemen = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
@@ -83,24 +183,81 @@ const ListUsers = () => {
     });
 
     React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country, startDate, endDate);
-    }, [dispatch, searchTerm, gender, country, startDate, endDate]);
+        getUsers(dispatch, searchTerm, gender, country);
+    }, [dispatch, searchTerm, gender, country]);
 
     return (
         <div style={{ marginTop: "20px" }}>
+            <div>
+                <h5>Servicemen Reports</h5><br />
+                <Grid fluid>
+                    <Row className="show-grid">
+                        <Col xs={12}>
+                            <p>Cumulative graphs of signed servicemen</p><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item active><Button color="red" appearance="primary">Signed Sevicemen</Button></Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Panel shaded>
+                                <Chart
+                                    options={state.options}
+                                    series={state.series}
+                                    autoScaleYaxis={true}
+                                    autoScaleXaxis={true}
+                                    type="line"
+                                    height={350}
+                                    width="100%"
+                                />
+                            </Panel>
+                        </Col>
+                        <Col xs={12}>
+                            <p>Cumulative graphs of selected Servicemen</p><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item active><Button color="red" appearance="primary">Selected Servicemen</Button></Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Panel shaded>
+                                <Chart
+                                    options={polar.options}
+                                    series={polar.series}
+                                    autoScaleYaxis={true}
+                                    autoScaleXaxis={true}
+                                    type="polarArea"
+                                    height={360}
+                                    width="100%"
+                                />
+                            </Panel>
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
+            <Divider />
             <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                <h5>Users List:</h5>
-                <Button
-                    color="cyan"
-                    appearance="primary"
-                    onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} />
-                </Button>
-                <Drawer
-                    size='xs'
-                    open={openWithHeader}
-                    onClose={() => setOpenWithHeader(false)}>
-                    <Drawer.Header>setStartDate
-                        <Drawer.Title>Add User</Drawer.Title>
+                <h5>Servicemen List:</h5>
+                <Button color="cyan" appearance="primary" onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} /></Button>
+                <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
+                    <Drawer.Header>
+                        <Drawer.Title>Add Servicemen</Drawer.Title>
                         <Drawer.Actions>
                             <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
                                 Close
@@ -259,4 +416,4 @@ const ListUsers = () => {
     );
 };
 
-export default ListUsers;
+export default ListServicemen;

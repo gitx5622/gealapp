@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Pagination, Grid, Row, Col, DatePicker, InputGroup, Tag, Button, Drawer, Form, ButtonToolbar } from 'rsuite';
+import {
+    Table, Pagination, Grid, Row, Col, DatePicker,Panel,
+    InputGroup, Tag, Button, Drawer, Form, Nav, ButtonToolbar, Divider
+} from 'rsuite';
 import AddOutlineIcon from '@rsuite/icons/AddOutline'
 import { getUsers } from '../../state/actions/usersAction';
 import Select from '@mui/material/Select';
@@ -9,8 +12,95 @@ import { FormControl, Box, InputLabel, TextField } from '@mui/material';
 import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
+const polar = {
 
+    series: [42, 47, 52, 58, 65],
+    options: {
+        labels: ['Rose A', 'Rose B', 'Rose C', 'Rose D', 'Rose E'],
+        fill: {
+            opacity: 1
+        },
+        stroke: {
+            width: 1,
+            colors: undefined
+        },
+        yaxis: {
+            show: false
+        },
+        legend: {
+            position: 'bottom'
+        },
+        plotOptions: {
+            polarArea: {
+                rings: {
+                    strokeWidth: 0
+                },
+                spokes: {
+                    strokeWidth: 0
+                },
+            }
+        },
+        theme: {
+            monochrome: {
+                enabled: true,
+                shadeTo: 'light',
+                shadeIntensity: 0.6
+            }
+        }
+    },
+
+};
+const state = {
+
+    series: [{
+        name: 'Net Profit',
+        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+    }, {
+        name: 'Revenue',
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+    }, {
+        name: 'Free Cash Flow',
+        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+    }],
+    options: {
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        },
+        yaxis: {
+            title: {
+                text: '$ (thousands)'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "$ " + val + " thousands"
+                }
+            }
+        }
+    },
+};
 const ActionCell = ({ rowData, dataKey, ...props }) => {
     function handleAction() {
         alert(`id:${rowData[dataKey]}`);
@@ -43,7 +133,7 @@ const GenderCell = ({ rowData, dataKey, ...props }) => {
     );
 };
 
-const ListUsers = () => {
+const ListClients = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [loading, setLoading] = useState(false);
     const [limit, setLimit] = useState(10);
@@ -83,24 +173,87 @@ const ListUsers = () => {
     });
 
     React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country, startDate, endDate);
-    }, [dispatch, searchTerm, gender, country, startDate, endDate]);
+        getUsers(dispatch, searchTerm, gender, country);
+    }, [dispatch, searchTerm, gender, country]);
 
     return (
         <div style={{ marginTop: "20px" }}>
+            <div>
+                <h5>Clients Reports</h5><br />
+                <Grid fluid>
+                    <Row className="show-grid">
+                        <Col xs={12}>
+                            <p>Cumulative graphs of signed clients</p><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item active><Button color="red" appearance="primary">Signed Clients</Button></Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Panel shaded>
+                                <center>
+                                    <div style={{width:"100%"}}>
+                                <Chart
+                                    options={state.options}
+                                    series={state.series}
+                                    autoScaleYaxis={true}
+                                    autoScaleXaxis={true}
+                                    type="bar"
+                                    height={350}
+                                    width="100%"
+                                />
+                                </div>
+                                </center>
+                            </Panel>
+                        </Col>
+                        <Col xs={12}>
+                            <p>Cumulative graphs of selected clients</p><br />
+                            <Nav>
+                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                    <div>
+                                        <Nav.Dropdown title="Reports">
+                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
+                                        </Nav.Dropdown>
+                                    </div>
+                                    <div style={{ marginRight: "10px" }}>
+                                        <Nav.Item active><Button color="red" appearance="primary">Selected Clients</Button></Nav.Item>
+                                    </div>
+                                </div>
+                            </Nav><br />
+                            <Panel shaded>
+                                <center>
+                                <Chart
+                                    options={polar.options}
+                                    series={polar.series}
+                                    autoScaleYaxis={true}
+                                    autoScaleXaxis={true}
+                                    type="polarArea"
+                                    height={395}
+                                    width="100%"
+                                />
+                                </center>
+                            </Panel>
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
+            <Divider />
             <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                <h5>Users List:</h5>
-                <Button
-                    color="cyan"
-                    appearance="primary"
-                    onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} />
-                </Button>
-                <Drawer
-                    size='xs'
-                    open={openWithHeader}
-                    onClose={() => setOpenWithHeader(false)}>
-                    <Drawer.Header>setStartDate
-                        <Drawer.Title>Add User</Drawer.Title>
+                <h5>Clients List:</h5>
+                <Button color="cyan" appearance="primary" onClick={() => setOpenWithHeader(true)}><AddOutlineIcon color="white" style={{ fontSize: '2em' }} /></Button>
+                <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
+                    <Drawer.Header>
+                        <Drawer.Title>Add Client</Drawer.Title>
                         <Drawer.Actions>
                             <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
                                 Close
@@ -259,4 +412,4 @@ const ListUsers = () => {
     );
 };
 
-export default ListUsers;
+export default ListClients;
