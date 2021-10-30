@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Header, Content, Nav, Sidebar, Dropdown, Navbar } from 'rsuite';
 import { logoutUser } from "../../state/actions/userLogoutAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserRoles } from "../../state/actions/roleAction";
 import { Sidenav, Badge } from 'rsuite';
 import { Box } from '@mui/material';
 import Image from 'next/image';
@@ -23,7 +25,6 @@ import ListIcon from '@rsuite/icons/List';
 import TaskIcon from '@rsuite/icons/Task';
 import NoticeIcon from '@rsuite/icons/Notice';
 import SearchIcon from '@rsuite/icons/Search';
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 
@@ -45,7 +46,7 @@ const NavToggle = ({ expand, onChange }) => {
 
         <Nav pullRight>
           <Nav.Item onClick={onChange} style={{ width: 56, textAlign: 'center' }}>
-            {expand ? <ArowBackIcon style={{color:"red", fontSize:"30px"}}/> : <PageNextIcon style={{fontSize:"30px", color:"red"}}/>}
+            {expand ? <ArowBackIcon style={{ color: "red", fontSize: "30px" }} /> : <PageNextIcon style={{ fontSize: "30px", color: "red" }} />}
           </Nav.Item>
         </Nav>
       </Navbar.Body>
@@ -55,8 +56,17 @@ const NavToggle = ({ expand, onChange }) => {
 
 const GealLayout = ({ children }) => {
   const [expand, setExpand] = React.useState(true);
+  const [first, setFirst] = React.useState(null);
+  const [last, setLast] = React.useState(null);
   const router = useRouter();
   const dispatch = useDispatch();
+  const roleSelector = useSelector(state => state.roleState);
+  const { user_roles } = roleSelector;
+  const permissions = user_roles.user_permissions;
+
+  const view_users = permissions.filter(el => el.toLowerCase().indexOf('view-users'.toLowerCase()) !== -1)[0];
+  const view_user = permissions.filter(el => el.toLowerCase().indexOf('view-user'.toLowerCase()) !== -1);
+  const view_sub_category = permissions.filter(el => el.toLowerCase().indexOf('view-sub-category'.toLowerCase()) !== -1);
 
   const handleLogout = () => {
     const sessionID = localStorage.sessionID
@@ -70,6 +80,24 @@ const GealLayout = ({ children }) => {
       </Alert>
     }
   }
+  React.useEffect(() => {
+    const value = localStorage.currentUser;
+    const user = value ? JSON.parse(value) : undefined;
+    setFirst(user.first_name);
+    setLast(user.last_name);
+  }, [])
+  React.useEffect(() => {
+    getUserRoles(dispatch);
+  }, [dispatch])
+
+  React.useEffect(() => {
+    try {
+      JSON.parse(localStorage.currentUser);
+    } catch (error) {
+      localStorage.clear();
+      window.location.replace('/');
+    }
+  }, []);
 
   return (
     <div className="show-fake-browser sidebar-page" style={{ color: "black" }}>
@@ -187,7 +215,9 @@ const GealLayout = ({ children }) => {
                   icon={<PeoplesIcon color="#3498FF" />}
                   placement="rightStart"
                 >
-                  <Dropdown.Item eventKey="4-1" icon={<UserBadgeIcon color="green" />} onClick={() => router.push('/user/list-users', undefined, { shallow: true })}>All Users</Dropdown.Item>
+                  {view_users && (
+                    <Dropdown.Item eventKey="4-1" icon={<UserBadgeIcon color="green" />} onClick={() => router.push('/user/list-users', undefined, { shallow: true })}>All Users</Dropdown.Item>
+                  )}
                   <Dropdown.Item eventKey="4-2" icon={<UserBadgeIcon color="green" />} onClick={() => router.push('/dashboard/servicemen/list-servicemen', undefined, { shallow: true })}>All Servicemen</Dropdown.Item>
                   <Dropdown.Item eventKey="4-3" icon={<UserBadgeIcon color="green" />} onClick={() => router.push('/dashboard/clients/list-clients', undefined, { shallow: true })}>All Clients</Dropdown.Item>
                 </Dropdown>
@@ -202,7 +232,14 @@ const GealLayout = ({ children }) => {
                     eventKey="9-1"
                     icon={<AdminIcon color="green" />}
                     onClick={() => router.push('/dashboard/roles/list-roles', undefined, { shallow: true })}
-                  >Roles</Dropdown.Item>
+                  >Roles
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey="9-2"
+                    icon={<AdminIcon color="green" />}
+                    onClick={() => router.push('/dashboard/roles/create-role', undefined, { shallow: true })}
+                  >Create Role
+                  </Dropdown.Item>
                 </Dropdown>
                 <Nav.Item
                   eventKey="10"
@@ -253,7 +290,7 @@ const GealLayout = ({ children }) => {
                   icon={<SearchIcon style={{ fontSize: "2em" }} />} />
                 <Nav.Item>
                   <center>
-                    <Box style={{ marginTop: "-10px", textDecoration: "none" }}>John Doe<br />Admin</Box>
+                    <Box style={{ marginTop: "-10px", textDecoration: "none" }}>{first} {last}<br />Admin</Box>
                   </center>
                 </Nav.Item>
                 <Nav.Item

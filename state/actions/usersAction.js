@@ -17,7 +17,7 @@ export const getUsers= (dispatch, search, gender, country) => {
         .get(`/admin-api/filter-users?search=${search}&gender=${gender}&country=${country}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`,
-                'phone': '0712966136',
+                'phone': `${JSON.parse(localStorage.currentUser).phone}`,
             },
         })
         .then(response => {
@@ -51,7 +51,7 @@ export const createUser = (dispatch, credentials) => {
         .post(`/users`, credentials, {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`,
-                'phone': '0712966136',
+                'phone': `${JSON.parse(localStorage.currentUser).phone}`,
             },
         })
         .then(response => {
@@ -83,7 +83,7 @@ export const getUser = async(dispatch, userId) => {
         .get(`/admin-api/get-user/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`,
-                'phone': '0712966136',
+                'phone': `${JSON.parse(localStorage.currentUser).phone}`,
             },
         })
         .then(response => {

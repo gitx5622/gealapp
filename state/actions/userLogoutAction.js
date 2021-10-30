@@ -12,7 +12,7 @@ export const logoutUser = (dispatchLogoutUser, sessionID) => {
             .delete(`/admin-api/sessions/${sessionID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': '0712966136',
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
                 },
             })
             .then(response => {
