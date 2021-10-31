@@ -4,6 +4,12 @@ import {
     CREATE_ROLE_PERMISSIONS_SUCCESS, CREATE_ROLE_PERMISSIONS_ERROR, GET_ROLE_PERMISSIONS,
     GET_ROLE_PERMISSIONS_SUCCESS, GET_ROLE_PERMISSIONS_ERROR, GET_ALL_ROLES, GET_ALL_ROLES_SUCCESS,
     GET_ALL_ROLES_ERROR,
+    UPDATE_ROLE_PERMISSIONS,
+    UPDATE_ROLE_PERMISSIONS_SUCCESS,
+    UPDATE_ROLE_PERMISSIONS_ERROR,
+    DELETE_ROLES_AND_PERMISSIONS,
+    DELETE_ROLES_AND_PERMISSIONS_SUCCESS,
+    DELETE_ROLES_AND_PERMISSIONS_ERROR,
 } from "../dispatchTypes";
 
 export const initialRoleState = {
@@ -18,6 +24,8 @@ export const initialRoleState = {
         role: '',
         user_permissions: []
     },
+    updated_permissions: {},
+    deleted_role_permissions: {}
 }
 
 export const roleReducer = (state = initialRoleState, action) => {
@@ -134,6 +142,54 @@ export const roleReducer = (state = initialRoleState, action) => {
             };
         }
         case CREATE_ROLE_PERMISSIONS_ERROR: {
+            return {
+                ...state,
+                isError: true,
+                isSuccess: false,
+                isLoading: false,
+                errorMessage: action.errorMessage,
+            };
+        }
+        case UPDATE_ROLE_PERMISSIONS: {
+            return {
+                ...state,
+                isError: false,
+                isLoading: true,
+            };
+        }
+        case UPDATE_ROLE_PERMISSIONS_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: true,
+                updated_permissions: action.updated_permissions,
+            };
+        }
+        case UPDATE_ROLE_PERMISSIONS_ERROR: {
+            return {
+                ...state,
+                isError: true,
+                isSuccess: false,
+                isLoading: false,
+                errorMessage: action.errorMessage,
+            };
+        }
+        case DELETE_ROLES_AND_PERMISSIONS: {
+            return {
+                ...state,
+                isError: false,
+                isLoading: true,
+            };
+        }
+        case DELETE_ROLES_AND_PERMISSIONS_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: true,
+                deleted_role_permissions: state.all_roles.user_permissions.findIndex(item => item.name === action.role_name).splice(index, 1)
+            };
+        }
+        case DELETE_ROLES_AND_PERMISSIONS_ERROR: {
             return {
                 ...state,
                 isError: true,

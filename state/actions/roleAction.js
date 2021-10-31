@@ -3,7 +3,10 @@ import {
     GET_ROLE, GET_ROLE_ERROR, GET_ROLE_SUCCESS, GET_ALL_PERMISSIONS,
     GET_ALL_PERMISSIONS_ERROR, GET_ALL_PERMISSIONS_SUCCESS, CREATE_ROLE_PERMISSIONS,
     CREATE_ROLE_PERMISSIONS_SUCCESS, CREATE_ROLE_PERMISSIONS_ERROR, GET_ROLE_PERMISSIONS,
-    GET_ROLE_PERMISSIONS_ERROR, GET_ALL_ROLES, GET_ALL_ROLES_SUCCESS, GET_ALL_ROLES_ERROR, GET_ROLE_PERMISSIONS_SUCCESS
+    GET_ROLE_PERMISSIONS_ERROR, GET_ALL_ROLES, GET_ALL_ROLES_SUCCESS, GET_ALL_ROLES_ERROR, 
+    GET_ROLE_PERMISSIONS_SUCCESS, UPDATE_ROLE_PERMISSIONS, UPDATE_ROLE_PERMISSIONS_SUCCESS, 
+    UPDATE_ROLE_PERMISSIONS_ERROR, DELETE_ROLES_AND_PERMISSIONS, DELETE_ROLES_AND_PERMISSIONS_SUCCESS,
+    DELETE_ROLES_AND_PERMISSIONS_ERROR,
 
 } from "../dispatchTypes";
 
@@ -172,4 +175,69 @@ export const createRolePermissions = (dispatch, bodyData) => {
                     'Lost connection to the server. Kindly check your internet connection',
             });
         });
+};
+
+export const updateRolePermissions = async (dispatch, bodyData) => {
+    dispatch({
+        type: UPDATE_ROLE_PERMISSIONS,
+    });
+    try {
+        return await axiosConfig
+        .put(
+            '/admin-api/update-role-permissions', bodyData,
+            {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                },
+            }
+        )
+            .then(response => {
+                dispatch({
+                    type: UPDATE_ROLE_PERMISSIONS_SUCCESS,
+                    updated_permissions: response.data,
+                });
+                return response;
+            });
+    } catch (error) {
+        dispatch({
+            type: UPDATE_ROLE_PERMISSIONS_ERROR,
+            errorMessage: error.response.data.message,
+        });
+
+        return error.response;
+    }
+};
+
+export const deleteRolePermissions = async (dispatch, role_name) => {
+    dispatch({
+        type: DELETE_ROLES_AND_PERMISSIONS,
+    });
+    try {
+        return await axiosConfig
+        .delete(
+            `/admin-api/delete-role/${role_name}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                },
+            }
+        )
+            .then(response => {
+                dispatch({
+                    type: DELETE_ROLES_AND_PERMISSIONS_SUCCESS,
+                    role_name: role_name,
+                    deleted_role_permissions: response.data,
+                });
+                return response;
+            });
+    } catch (error) {
+        dispatch({
+            type: DELETE_ROLES_AND_PERMISSIONS_ERROR,
+            errorMessage: error.response.data.message,
+        });
+
+        return error.response;
+    }
 };
