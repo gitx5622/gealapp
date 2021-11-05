@@ -28,7 +28,7 @@ const Index = () => {
                             It will have functions as data managing, web based searching, M&R request (requesting a service
                             man for repair and maintenance services ), messaging with users through email.
                            </p><br/><br/>
-                       <Button style={{background: "#3498ff"}}>Get Started</Button>
+                       <Button style={{background: "#3498ff", color: "white"}}>Get Started</Button>
                     </Col>
                     <Col xs={12}>
                         <center>

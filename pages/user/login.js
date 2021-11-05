@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Head from 'next/head'
-import {loginUser} from "../state/actions/userLoginAction";
+import {loginUser} from "../../state/actions/userLoginAction";
 
 
 function Copyright(props) {
