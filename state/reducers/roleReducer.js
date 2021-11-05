@@ -186,7 +186,7 @@ export const roleReducer = (state = initialRoleState, action) => {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                deleted_role_permissions: state.all_roles.user_permissions.findIndex(item => item.name === action.role_name).splice(index, 1)
+                deleted_role_permissions: state.all_roles.user_permissions.filter(item => item.role_name !== action.role_name)
             };
         }
         case DELETE_ROLES_AND_PERMISSIONS_ERROR: {

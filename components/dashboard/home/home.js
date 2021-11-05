@@ -127,7 +127,7 @@ const Home = () => {
                                         </Nav.Dropdown>
                                     </div>
                                     <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button color="red" appearance="primary">Users</Button></Nav.Item>
+                                        <Nav.Item active><Button size="sm" color="red" appearance="primary">Users</Button></Nav.Item>
                                         <Nav.Item>Servicemen</Nav.Item>
                                         <Nav.Item>Jobs</Nav.Item>
                                         <Nav.Item>Skills</Nav.Item>
@@ -156,7 +156,7 @@ const Home = () => {
                                     </div>
                                     <div style={{ marginRight: "10px" }}>
                                         <Nav.Item>Users</Nav.Item>
-                                        <Nav.Item active><Button color="green" appearance="primary">Servicemen</Button></Nav.Item>
+                                        <Nav.Item active><Button size="sm" color="green" appearance="primary">Servicemen</Button></Nav.Item>
                                         <Nav.Item>Jobs</Nav.Item>
                                         <Nav.Item>Skills</Nav.Item>
                                     </div>

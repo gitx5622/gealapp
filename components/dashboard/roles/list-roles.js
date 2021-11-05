@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/router';
 import { Grid, Row, Form, Col, Button, ButtonToolbar, Modal, Panel, Input, Checkbox, CheckboxGroup, Drawer } from 'rsuite';
 import { deleteRolePermissions, getAllPermissions, getAllRoles, getRolePermissions } from "../../../state/actions/roleAction";
 
@@ -15,6 +16,7 @@ const ListRoles = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [selectedRole, setSelectedRole] = useState('admin');
+    const router = useRouter();
     const dispatch = useDispatch();
     const roleSelector = useSelector(state => state.roleState);
     const { all_permissions, all_roles, role_permissions } = roleSelector;
@@ -35,6 +37,7 @@ const ListRoles = () => {
     const handleDelete = (role_name) => {
         deleteRolePermissions(dispatch, role_name);
         setOpen(false);
+        router.push('/dashboard/roles/list-roles')
     }
 
     const handleRoleUpdateSubmit = () => {

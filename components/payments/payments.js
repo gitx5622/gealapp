@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import {
-    Nav, Panel, Steps, ButtonGroup, Button, Tag, InputGroup, Table,
-    Grid, Form, Row, Col, Checkbox, ButtonToolbar, DatePicker, Pagination,
+    Nav, Panel, ButtonToolbar, ButtonGroup, Button, Tag, InputGroup, Table,
+    Grid, Row, Col, DatePicker, Pagination,
 } from 'rsuite';
 import { TextField, FormControl, Box, InputLabel, Select, MenuItem } from '@mui/material';
 import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import { getUsers } from '../../state/actions/usersAction';
 import { useDispatch, useSelector } from "react-redux";
-import Pesapal from '../../assets/pesapal.png';
-import Mpesa from '../../assets/mpesa.png';
-import Airtel from '../../assets/airtel.png';
-import Equity from '../../assets/equity.png';
-import Visa from '../../assets/visa.png';
-import Master from '../../assets/master.png';
 import { useRouter } from 'next/router';
-import Image from "next/image";
 import dynamic from 'next/dynamic';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -94,6 +87,19 @@ const state = {
 
 
 };
+
+const CustomButtonGroup = ({ appearance }) => (
+    <ButtonToolbar>
+      <ButtonGroup>
+        <Button appearance={appearance}>standing Charge and material costs</Button>
+        <Button appearance={appearance}>client approval of JOB completion</Button>
+        <Button appearance={appearance}>client payment of for labor more than 1 day</Button>
+        <Button appearance={appearance}>any Cash received by servicemen</Button>
+      </ButtonGroup>
+    </ButtonToolbar>
+  );
+
+  
 const ActionCell = ({ rowData, dataKey, ...props }) => {
     function handleAction() {
         alert(`id:${rowData[dataKey]}`);
@@ -187,96 +193,11 @@ const Payments = () => {
         getUsers(dispatch, searchTerm, gender, country, startDate, endDate);
     }, [dispatch, searchTerm, gender, country, startDate, endDate]);
 
-    const onChange = nextStep => {
-        setStep(nextStep < 0 ? 0 : nextStep > 3 ? 3 : nextStep);
-    };
-
-    const onNext = () => onChange(step + 1);
-    const onPrevious = () => onChange(step - 1);
     return (
         <div style={{ marginTop: "20px", marginLeft: "10px", marginRight: "10px" }}>
-            <h6>Make Payment</h6><br />
-            <Panel shaded>
-                <Steps current={step}>
-                    <Steps.Item title="Payment Method" description="Choose Payment option" />
-                    <Steps.Item title="View Payment Details" description="View Selected Payment Details" />
-                    <Steps.Item title="Enter Payment Details" description="Enter payment details" />
-                    <Steps.Item title="Complete" description="Complete Payment" />
-                </Steps>
-                <hr />
-                <Panel>
-                    {step === 0 && (
-                        <div style={{ display: "flex", justifyContent: "space-around", height: "80px" }}>
-                            <Checkbox defaultChecked> <Image src={Mpesa} alt="" width={80} height={50} /></Checkbox>
-                            <Checkbox> <Image src={Pesapal} alt="" width={100} height={50} /></Checkbox>
-                            <Checkbox> <Image src={Airtel} alt="" width={80} height={50} /></Checkbox>
-                            <Checkbox> <Image src={Equity} alt="" width={80} height={50} /></Checkbox>
-                            <Checkbox> <Image src={Visa} alt="" width={80} height={50} /></Checkbox>
-                            <Checkbox> <Image src={Master} alt="" width={80} height={50} /></Checkbox>
-                        </div>
-                    )}
-                    {step === 1 && (
-                        <div>
-                            <h6>Payment Details</h6>
-                            <p>Send Mpesa Kshs. </p>
-                            <Panel>
-                                <p>
-                                    Step 1: Go to M-PESA on your phone<br />
-
-                                    Step 2: Select Lipa na M-pesa option in the drop-down<br />
-
-                                    Step 3: Select the Pay Bill option<br />
-
-                                    Step 4:  Enter the business number 206206<br />
-
-                                    Step 5: asks for account number, which is automatically generated based on the service you used.<br />
-
-                                    Step 6: Enter the amount, which was generated as an invoice.<br />
-
-                                    Step 7: Enter M-pesa Pin Number and Press Send<br />
-
-                                    Step 8: Confirmation message from M-pesa and you are set!
-                                </p>
-                            </Panel>
-                        </div>
-                    )}
-                    {step === 2 && (
-                        <div>
-                            <Form>
-                                <Form.Group controlId="name">
-                                    <Form.ControlLabel>Phone Number</Form.ControlLabel>
-                                    <Form.Control name="name" />
-                                    <Form.HelpText>Required</Form.HelpText>
-                                </Form.Group>
-                                <Form.Group controlId="name">
-                                    <Form.ControlLabel>Confirmation Code</Form.ControlLabel>
-                                    <Form.Control name="name" />
-                                    <Form.HelpText>Required</Form.HelpText>
-                                </Form.Group>
-                            </Form>
-                        </div>
-                    )}
-                    {step === 3 && (
-                        <Panel shaded>
-                            <h4>Are you sure you want to make a payment of Amount(Kshs 10,000) to Graphine East Africa  Limited</h4>
-                            <ButtonToolbar>
-                                <Button color="green" appearance="primary">Yes</Button>
-                                <Button color="red" appearance="primary">No</Button>
-                            </ButtonToolbar>
-                        </Panel>
-                    )}
-                </Panel>
-                <hr />
-                <ButtonGroup>
-                    <Button color='orange' appearance="primary" onClick={onPrevious} disabled={step === 0}>
-                        Previous
-                    </Button>
-                    <Button color='cyan' appearance="primary" onClick={onNext} disabled={step === 3}>
-                        Next
-                    </Button>
-                </ButtonGroup>
-            </Panel><br />
+        <div>
             <h6>Transactions</h6>
+            </div>
             <CustomNav appearance="tabs" active={active} onSelect={setActive} />
             <div style={{marginTop: "-40px"}}>
             <span style={{ color: "#1675E0", marginLeft: "5px" }}><Tag color="green">Search filter:</Tag></span>
@@ -330,11 +251,11 @@ const Payments = () => {
             </Grid>
             </div>
             <Table bordered={true} cellBordered={true} height={500} data={data} loading={loading} style={{ color: "black", fontFamily: "Quicksand, sans-serif" }}>
-                <Table.Column width={50} align="center" resizable>
+                <Table.Column width={50} align="center">
                     <Table.HeaderCell style={{ background: "#34c3ff" }}><h6>Id</h6></Table.HeaderCell>
                     <Table.Cell dataKey="id" style={{ color: "#1675E0" }} />
                 </Table.Column>
-                <Table.Column width={100} resizable>
+                <Table.Column width={100}>
                     <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>First Name</h6></Table.HeaderCell>
                     <Table.Cell dataKey="first_name" />
                 </Table.Column>
@@ -390,6 +311,7 @@ const Payments = () => {
             </div>
             <h4>Payment Reports</h4>
             <Panel shaded>
+            <CustomButtonGroup appearance="ghost" />
                 <Chart
                     options={state.options}
                     series={state.series}

@@ -190,10 +190,15 @@ const ListClients = () => {
                                         <Nav.Dropdown title="Reports">
                                             <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
                                             <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Ongoing Jobs</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Scheduled jobs</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Job Card quotation</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Generated job cards</Nav.Dropdown.Item>
+                                            <Nav.Dropdown.Item>Rescheduled jobs reminders</Nav.Dropdown.Item>
                                         </Nav.Dropdown>
                                     </div>
                                     <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button color="red" appearance="primary">Signed Clients</Button></Nav.Item>
+                                        <Nav.Item active><Button size="sm" color="red" appearance="primary">Signed Clients</Button></Nav.Item>
                                     </div>
                                 </div>
                             </Nav><br />
@@ -224,7 +229,7 @@ const ListClients = () => {
                                         </Nav.Dropdown>
                                     </div>
                                     <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button color="red" appearance="primary">Selected Clients</Button></Nav.Item>
+                                        <Nav.Item active><Button size="sm" color="red" appearance="primary">Selected Clients</Button></Nav.Item>
                                     </div>
                                 </div>
                             </Nav><br />

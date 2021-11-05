@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Form, ButtonToolbar, Button, Input, Grid, Row, Col, Checkbox, CheckboxGroup } from 'rsuite';
 import { useSelector, useDispatch } from 'react-redux';
 import { createRolePermissions, getAllPermissions } from '../../../state/actions/roleAction';
@@ -13,6 +14,7 @@ const CreateRole = () => {
         description: ""
     })
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const userPermissionSelector = useSelector(state => state.roleState);
 
@@ -36,6 +38,7 @@ const CreateRole = () => {
 
         if (role_name !== "" && description !== "") {
             createRolePermissions(dispatch, bodyData);
+            router.push('/dashboard/roles/list-roles')
         }
 
     }

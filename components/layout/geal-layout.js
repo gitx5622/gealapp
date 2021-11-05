@@ -65,8 +65,8 @@ const GealLayout = ({ children }) => {
   const permissions = user_roles.user_permissions;
 
   const view_users = permissions.filter(el => el.toLowerCase().indexOf('view-users'.toLowerCase()) !== -1)[0];
-  const view_user = permissions.filter(el => el.toLowerCase().indexOf('view-user'.toLowerCase()) !== -1);
-  const view_sub_category = permissions.filter(el => el.toLowerCase().indexOf('view-sub-category'.toLowerCase()) !== -1);
+  const view_user = permissions.filter(el => el.toLowerCase().indexOf('view-user'.toLowerCase()) !== -1)[0];
+  const view_sub_category = permissions.filter(el => el.toLowerCase().indexOf('view-sub-category'.toLowerCase()) !== -1)[0];
 
   const handleLogout = () => {
     const sessionID = localStorage.sessionID
@@ -253,7 +253,9 @@ const GealLayout = ({ children }) => {
                 </Nav.Item>
                 <Nav.Item
                   eventKey="12"
-                  icon={<CheckOutlineIcon color="#3498FF" />}>
+                  icon={<CheckOutlineIcon color="#3498FF" />}
+                  onClick={() => router.push('/dashboard/servicemen/service-registration', undefined, { shallow: true })}
+                  >
                   Approval Requests
                 </Nav.Item>
               </Nav>

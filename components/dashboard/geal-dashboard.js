@@ -4,6 +4,7 @@ import ListUsers from '../users/list-users';
 import UserDetails from '../users/user-details';
 import Home from './home/home';
 import ListServicemen from '../servicemen/list-servicemen';
+import ServiceRegistration from '../servicemen/service-registration';
 import ListJobs from '../jobs/list-jobs';
 import ListSkills from '../skills/list-skills';
 import ListClients from '../clients/list-clients';
@@ -25,6 +26,10 @@ const GealDashboard = ({ section }) => {
             case 'list-servicemen':
                 return (
                     <ListServicemen />
+                );
+            case 'service-registration':
+                return (
+                    <ServiceRegistration />
                 );
             case 'list-jobs':
                 return (

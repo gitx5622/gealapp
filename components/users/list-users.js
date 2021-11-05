@@ -102,7 +102,7 @@ const ListUsers = () => {
                     size='xs'
                     open={openWithHeader}
                     onClose={() => setOpenWithHeader(false)}>
-                    <Drawer.Header>setStartDate
+                    <Drawer.Header>
                         <Drawer.Title>Add User</Drawer.Title>
                         <Drawer.Actions>
                             <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
