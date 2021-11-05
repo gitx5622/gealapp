@@ -1,25 +1,15 @@
 import React from 'react';
 import {Navbar, Nav, Dropdown, Grid, Row, Col, Button, Divider} from 'rsuite';
 import Footer from "../components/dashboard/home/footer";
+import { useRouter } from "next/router";
 
 const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
+    const router = useRouter();
     return (
         <Navbar {...props}>
             <Navbar.Brand href="#" style={{fontSize:"20px"}}>Graphine East Efrica Limited</Navbar.Brand>
-            <Nav onSelect={onSelect} activeKey={activeKey}>
-                <Nav.Item eventKey="1" >
-                    Home
-                </Nav.Item>
-                <Nav.Item eventKey="2">News</Nav.Item>
-                <Nav.Item eventKey="3">Products</Nav.Item>
-                <Dropdown title="About">
-                    <Dropdown.Item eventKey="4">Company</Dropdown.Item>
-                    <Dropdown.Item eventKey="5">Team</Dropdown.Item>
-                    <Dropdown.Item eventKey="6">Contact</Dropdown.Item>
-                </Dropdown>
-            </Nav>
             <Nav pullRight>
-                <Button style={{marginTop: "10px", marginRight:"10px"}}>Login</Button>
+                <Button onClick={() => router.push('user/login')} style={{marginTop: "10px", marginRight:"10px"}}>Login</Button>
             </Nav>
         </Navbar>
     );
@@ -38,7 +28,7 @@ const Index = () => {
                             It will have functions as data managing, web based searching, M&R request (requesting a service
                             man for repair and maintenance services ), messaging with users through email.
                            </p><br/><br/>
-                       <Button color="orange" appearance="primary">Get Started</Button>
+                       <Button style={{background: "#3498ff"}}>Get Started</Button>
                     </Col>
                     <Col xs={12}>
                         <center>
