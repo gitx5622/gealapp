@@ -2,7 +2,6 @@ import React from 'react';
 import GealLayout from '../layout/geal-layout';
 import ListUsers from '../users/list-users';
 import UserDetails from '../users/user-details';
-import Home from './home/home';
 import ListServicemen from '../servicemen/list-servicemen';
 import ServiceRegistration from '../servicemen/service-registration';
 import ListJobs from '../jobs/list-jobs';
@@ -15,10 +14,6 @@ import CreateRole from './roles/create-role';
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
         switch (section) {
-            case 'home':
-                return (
-                    <Home />
-                );
             case 'payments':
                 return (
                     <Payments />

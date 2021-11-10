@@ -1,6 +1,7 @@
 import * as React from "react";
 import { CustomProvider } from 'rsuite';
 import '../styles/globals.css';
+import "react-multi-carousel/lib/styles.css";
 import 'rsuite/dist/rsuite.min.css';
 import Head from 'next/head';
 import { Provider } from 'react-redux';

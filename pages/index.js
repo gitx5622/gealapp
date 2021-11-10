@@ -1,63 +1,176 @@
 import React from 'react';
-import {Navbar, Nav, Dropdown, Grid, Row, Col, Button, Divider} from 'rsuite';
+import {Navbar, Nav, Grid, Row, Col, Button, Panel, Avatar, Message, Divider} from 'rsuite';
 import Footer from "../components/dashboard/home/footer";
 import { useRouter } from "next/router";
+import Repair from "../assets/repair.png";
+import HomeRepair from "../assets/green-energy.jpg";
+import Maintenance from "../assets/maintenance.png";
+import Image from  "next/image";
+import ShapeLeft from '../assets/shapeleft.png';
+import Electrical from '../assets/electrical.png';
+import Civil from '../assets/civil.png';
+import ShapeRight from '../assets/shaperight.png';
+import Carousel from 'react-multi-carousel';
 
-const NavBarInstance = ({ onSelect, activeKey, ...props }) => {
+const NavBarInstance = () => {
     const router = useRouter();
     return (
-        <Navbar {...props}>
-            <Navbar.Brand href="#" style={{fontSize:"20px"}}>Graphine East Efrica Limited</Navbar.Brand>
+        <Navbar style={{padding:"10px"}}>
+                <Navbar.Brand href="#" style={{marginTop:"-20px",fontSize:"25px", color:"orange",fontWeight:700}}>QUICKFIX-SI</Navbar.Brand>
             <Nav pullRight>
-                <Button onClick={() => router.push('user/login')} style={{marginTop: "10px", marginRight:"10px"}}>Login</Button>
+                <Button color="cyan" appearance="primary" onClick={() => router.push('user/login')} style={{marginRight:"10px", borderRadius:"50px"}}>Login</Button>
             </Nav>
         </Navbar>
     );
+};
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 6,
+        slidesToSlide: 1 // optional, default to 1.
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 4,
+        slidesToSlide: 1 // optional, default to 1.
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 2,
+        slidesToSlide: 1 // optional, default to 1.
+    }
 };
 
 const Index = () => {
     const [activeKey, setActiveKey] = React.useState(null);
     return (
         <div>
-            <NavBarInstance appearance="inverse" activeKey={activeKey} onSelect={setActiveKey} />
+            <NavBarInstance activeKey={activeKey} onSelect={setActiveKey} />
+            <div style={{padding: '0px', background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)"}}>
             <Grid fluid>
-                <Row style={{marginLeft:"30px", marginRight:"30px", marginTop:'10px'}}>
+                <Row style={{padding:"20px", marginLeft:"7em", marginRight:"7em", marginTop:'10px',}}>
                     <Col xs={12}>
-                        <h1>M&R  is a mobile application with a web service in order to get Maintenance or Repair  services. </h1>
-                           <p style={{fontSize: '20px', marginTop: "5px", lineHeight: 2.5}}> The mobile application will work on mobile Android devices and also IoS devices..
-                            It will have functions as data managing, web based searching, M&R request (requesting a service
-                            man for repair and maintenance services ), messaging with users through email.
+                        <h1 style={{color: "white"}}>Residential Appliances Maintenance</h1>
+                           <p style={{color:"white", fontSize: '24px', marginTop: "5px", lineHeight: 2.5}}>
+                               Reliable service when
+                               you need it the most
                            </p><br/><br/>
-                       <Button style={{background: "#3498ff", color: "white"}}>Get Started</Button>
+                       <Button color="orange" appearance="primary" style={{padding:"12px", color: "white", borderRadius:"50px"}}>Get Started</Button>
                     </Col>
                     <Col xs={12}>
-                        <center>
-                            <img src="https://bodaorda.toprated.co.ke/static/media/pic1.52c27ba0.png" alt="homepage" width="300" height="500"/>
-                        </center>
+                        <Grid fluid>
+                            <Row>
+                                <Col xs={18}>
+                                    <h3 style={{color: "orange"}}>Our Services:</h3>
+                                    <ul style={{listStyle:"none", fontSize:"30px", color:"white"}}>
+                                        <li style={{marginBottom:"10px"}}><Avatar size="md" circle style={{background:"orange"}}>RS</Avatar> Kitchen</li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Laundry </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Appliances</li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Power Generators </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Security Systems </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Audi visuals equipment  </li>
+                                    </ul>
+                                </Col>
+                                <Col xs={6}>
+                                    <Image src={Repair} alt="homepage" width="300" height="800"/>
+                                </Col>
+                            </Row>
+                        </Grid>
                     </Col>
                 </Row>
-            </Grid><Divider/>
-            <div style={{marginLeft:"30px", marginRight:"30px"}}>
-                <center><h3 style={{color:"#3498ff" }}>Product Functions</h3></center><br/>
-                <Grid fluid>
-                    <Row>
-                        <Col xs={12}>
-                            <div style={{marginLeft:"70px", marginRight:"30px"}}>
-                                <img src="https://bodaorda.toprated.co.ke/static/media/pic1.52c27ba0.png" alt="homepage" width="300" height="500"/>
-                            </div>
-                        </Col>
-                        <Col xs={12}>
-                            <h4>M&R  consists of these main tasks:</h4>
-                            <p style={{fontSize:"2em", lineHeight: 2.5}}>
-                                • Data Managing<br/>
-                                • Web based search<br/>
-                                • Messaging<br/>
-                                • Payments<br/>
-                                • Application documents receiving from service men
-                            </p>
-                        </Col>
-                    </Row>
-                </Grid>
+            </Grid>
+            </div>
+            <Message style={{background:"#00BCD4", paddingLeft:"5em"}}>
+                <h3 style={{color:"white"}}>Coronavirus - You are in safe hands</h3>
+                <p style={{color:"white"}}>All Services still available with measures in place to protect both customers and employees, keeping everyone safe.</p>
+            </Message>
+            <div style={{display: "flex", justifyContent:"space-between"}}>
+                <div style={{float: "left"}}>
+                    <Image src={ShapeLeft} alt="shape right" width="200" height="320"/>
+                </div>
+                <div style={{marginRight:"-50px",marginLeft:"-50px"}}>
+                        <div style={{display:"flex", justifyContent: 'space-between', gap: '2em'}}>
+                            <div><Panel shaded><Image src={Electrical} alt="shape right" width="200" height="200"/><h5>Electrical works</h5></Panel></div>
+                            <div><Panel shaded><Image src={Civil} alt="shape right" width="200" height="200"/><h5>Civil works</h5></Panel></div>
+                            <div><Panel shaded><Image src={Electrical} alt="shape right" width="200" height="200"/><h5>Water System & drainage </h5></Panel></div>
+                            <div><Panel shaded><Image src={Civil} alt="shape right" width="200" height="200"/><h5>Interior works </h5></Panel></div>
+                        </div><br/>
+                    <div style={{display:"flex", justifyContent:"center", gap: "2em"}}>
+                        <Button color="orange" appearance="primary">Commercial Appliances  Maintenance </Button>
+                        <Button color="cyan" appearance="primary">Hotels & Institutions Appliances Maintenance</Button>
+                    </div><br/>
+                </div>
+                <div style={{float: "right"}}>
+                    <Image src={ShapeRight} alt="shape right" width="200" height="320"/>
+                </div>
+            </div>
+            <Grid>
+                <Row>
+                    <center><h2>Quickfix Repairs and Maintenance</h2></center>
+                    <Col xs={12}>
+                        <center><h3 style={{color: "orange"}}>Green Energy Services</h3>
+                        <Image src={HomeRepair} alt="homepage" width="400" height="300"/></center>
+                        <ul style={{listStyle:"none", fontSize:"30px"}}>
+                            <li><Avatar style={{background:"green"}} size="sm" circle>RS</Avatar> Maintenance</li>
+                            <li><Avatar style={{background:"green"}}  size="sm" circle>RS</Avatar> Installation</li>
+                            <li><Avatar style={{background:"green"}}  size="sm" circle>RS</Avatar> Energy Audit </li>
+                            <li><Avatar style={{background:"green"}}   size="sm" circle>RS</Avatar> Energy saving consultation</li>
+                        </ul>
+                    </Col>
+                    <Col xs={12}>
+                        <center><h3 style={{color: "orange"}}>Entertainment Maintenance & Repairs</h3>
+                        <Image src={Maintenance} alt="homepage" width="400" height="300"/></center>
+                        <Grid fluid>
+                            <Row>
+                                <Col xs={12}>
+                                    <ul style={{listStyle:"none", fontSize:"25px"}}>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Betting Machines </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Kinds Fun Machines </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Bouncing Castle </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Audi visuals equipment </li>
+                                    </ul>
+                                </Col>
+                                <Col xs={12}>
+                                    <ul style={{listStyle:"none", fontSize:"25px"}}>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Maintenance</li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Installation</li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Energy Audit </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Energy saving consultation</li>
+                                    </ul>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </Col>
+                </Row>
+            </Grid>
+            <div style={{background:"whitesmoke", paddingTop:"20px", marginBottom:"-30px"}}>
+                <center><h3>Other Repairs and maintenance offered</h3></center><br/>
+                <Carousel
+                    swipeable={false}
+                    arrows={false}
+                    draggable={false}
+                    responsive={responsive}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    autoPlay={true}
+                    autoPlaySpeed={3000}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                >
+                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Kids Trains </Button></center></div>
+                    <div><center><Button color="cyan" appearance="ghost">Roll caster </Button></center></div>
+                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Speed  Boats </Button></center></div>
+                    <div><center><Button color="orange" appearance="ghost">Kids Swings </Button></center></div>
+                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Power Generators </Button></center></div>
+                    <div><center><Button color="green" appearance="ghost">Security Systems</Button></center></div>
+                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Energy Audit </Button></center></div>
+                    <div style={{marginBottom:"50px"}}><center><Button color="red" appearance="ghost">Betting Machines </Button></center></div>
+                </Carousel>
             </div>
             <br/>
             <Footer/>
