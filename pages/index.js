@@ -49,7 +49,7 @@ const Index = () => {
             <div style={{padding: '0px', background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)"}}>
             <Grid fluid>
                 <Row style={{padding:"20px", marginLeft:"7em", marginRight:"7em", marginTop:'10px',}}>
-                    <Col xs={12}>
+                    <Col xs={24} sm={24} md={12}>
                         <h1 style={{color: "white"}}>Residential Appliances Maintenance</h1>
                            <p style={{color:"white", fontSize: '24px', marginTop: "5px", lineHeight: 2.5}}>
                                Reliable service when
@@ -60,7 +60,7 @@ const Index = () => {
                     <Col xs={12}>
                         <Grid fluid>
                             <Row>
-                                <Col xs={18}>
+                                <Col xs={24} sm={24} md={18}>
                                     <h3 style={{color: "orange"}}>Our Services:</h3>
                                     <ul style={{listStyle:"none", fontSize:"30px", color:"white"}}>
                                         <li style={{marginBottom:"10px"}}><Avatar size="md" circle style={{background:"orange"}}>QS</Avatar> Kitchen</li>
@@ -71,7 +71,7 @@ const Index = () => {
                                         <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Audi visuals equipment  </li>
                                     </ul>
                                 </Col>
-                                <Col xs={6}>
+                                <Col xs={12} sm={12} md={6}>
                                     <Image src={Repair} alt="homepage" width="300" height="800"/>
                                 </Col>
                             </Row>
@@ -107,7 +107,7 @@ const Index = () => {
             <Grid>
                 <Row>
                     <center><h2>Quickfix Repairs and Maintenance</h2></center>
-                    <Col xs={12}>
+                    <Col xs={24} sm={24} md={12}>
                         <center><h3 style={{color: "orange"}}>Green Energy Services</h3>
                         <Image src={HomeRepair} alt="homepage" width="400" height="300"/></center>
                         <ul style={{listStyle:"none", fontSize:"30px"}}>
@@ -117,12 +117,12 @@ const Index = () => {
                             <li><Avatar style={{background:"green"}}   size="sm" circle>QS</Avatar> Energy saving consultation</li>
                         </ul>
                     </Col>
-                    <Col xs={12}>
+                    <Col xs={24} sm={24} md={12}>
                         <center><h3 style={{color: "orange"}}>Entertainment Maintenance & Repairs</h3>
                         <Image src={Maintenance} alt="homepage" width="400" height="300"/></center>
                         <Grid fluid>
                             <Row>
-                                <Col xs={12}>
+                                <Col xs={24} sm={24} md={12}>
                                     <ul style={{listStyle:"none", fontSize:"25px"}}>
                                         <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Betting Machines </li>
                                         <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Kinds Fun Machines </li>
@@ -130,7 +130,7 @@ const Index = () => {
                                         <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Audi visuals equipment </li>
                                     </ul>
                                 </Col>
-                                <Col xs={12}>
+                                <Col xs={24} sm={24} md={12}>
                                     <ul style={{listStyle:"none", fontSize:"25px"}}>
                                         <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Maintenance</li>
                                         <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Installation</li>
