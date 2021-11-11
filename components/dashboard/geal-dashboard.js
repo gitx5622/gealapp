@@ -11,6 +11,7 @@ import ListRoles from './roles/list-roles';
 import Payments from '../payments/payments';
 import CreateRole from './roles/create-role';
 import Home from './home/home';
+import ServicemenMaps from "../servicemen/servicemen-maps";
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
@@ -30,6 +31,10 @@ const GealDashboard = ({ section }) => {
             case 'service-registration':
                 return (
                     <ServiceRegistration />
+                );
+            case 'servicemen':
+                return (
+                    <ServicemenMaps />
                 );
             case 'list-jobs':
                 return (

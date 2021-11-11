@@ -245,6 +245,7 @@ const GealLayout = ({ children }) => {
                 </Nav.Item>
                 <Nav.Item
                   eventKey="11"
+                  onClick={() => router.push('/dashboard/maps/servicemen', undefined, {shallow: true})}
                   icon={<LocationIcon color="#3498FF" />}>
                   Maps
                 </Nav.Item>
@@ -314,7 +315,7 @@ const styles = {
     paddingBottom: '10px',
     fontSize: 36,
     height: 56,
-    background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)",
+    background: 'linear-gradient(to right, #f44336, #3CB371)',
     color: ' #fff',
     whiteSpace: 'nowrap',
     overflow: 'hidden'
