@@ -75,9 +75,7 @@ const GealLayout = ({ children }) => {
       localStorage.clear();
       router.push('/');
     } else {
-      <Alert severity="error">You cannot logout user -
-        You still have an active Session
-      </Alert>
+
     }
   }
   React.useEffect(() => {
@@ -106,7 +104,6 @@ const GealLayout = ({ children }) => {
           style={{ display: 'flex', height: '100vh', color: "black", flexDirection: 'column' }}
           width={expand ? 260 : 56}
           collapsible
-          appearance="inverse"
         >
           <Sidenav.Header>
             <center>
@@ -119,7 +116,7 @@ const GealLayout = ({ children }) => {
                     height={40}
                     alt="" />
                 </Box>
-                <b>GEAL APP</b>
+                <b>QUICKFIX</b>
               </Box>
             </center>
           </Sidenav.Header>
@@ -269,7 +266,7 @@ const GealLayout = ({ children }) => {
         <Container>
           <Header>
             <Navbar
-              style={{ color: "black", fontSize: "16px", fontFamily: "Montserrat,Helvetica,Arial,serif" }}>
+              style={{background:"#EAEEF3", color: "black", fontSize: "16px", fontFamily: "Montserrat,Helvetica,Arial,serif" }}>
               <Navbar.Brand href="#">
                 Dashboard
               </Navbar.Brand>
@@ -317,7 +314,7 @@ const styles = {
     paddingBottom: '10px',
     fontSize: 36,
     height: 56,
-    background: 'linear-gradient(to right, #f44336, #3CB371)',
+    background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)",
     color: ' #fff',
     whiteSpace: 'nowrap',
     overflow: 'hidden'

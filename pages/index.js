@@ -168,9 +168,9 @@ const Index = () => {
                     <div><center><Button style={{ padding: "20px" }} color="red" appearance="primary">Speed  Boats </Button></center></div>
                     <div><center><Button style={{ padding: "20px" }} color="orange" appearance="ghost">Kids Swings </Button></center></div>
                     <div><center><Button style={{ padding: "20px", background: "#006E7D", color: "white" }}>Power Generators </Button></center></div>
-                    <div><center><Button style={{ padding: "20px", padding: "20px" }} color="green" appearance="primary">Security Systems</Button></center></div>
-                    <div style={{ marginBottom: "50px" }}><center><Button style={{ padding: "20px", padding: "20px" }} color="red" appearance="ghost">Betting Machines </Button></center></div>
-                    <div><center><Button style={{ padding: "20px", padding: "20px" }} color="blue" appearance="primary">Energy Audit </Button></center></div>
+                    <div><center><Button style={{  padding: "20px" }} color="green" appearance="primary">Security Systems</Button></center></div>
+                    <div style={{ marginBottom: "50px" }}><center><Button style={{ padding: "20px" }} color="red" appearance="ghost">Betting Machines </Button></center></div>
+                    <div><center><Button style={{ padding: "20px" }} color="blue" appearance="primary">Energy Audit </Button></center></div>
                 </Carousel>
             </div>
             <br />
