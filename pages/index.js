@@ -18,7 +18,7 @@ const NavBarInstance = () => {
         <Navbar style={{padding:"10px"}}>
                 <Navbar.Brand href="#" style={{marginTop:"-20px",fontSize:"25px", color:"orange",fontWeight:700}}>QUICKFIX-SI</Navbar.Brand>
             <Nav pullRight>
-                <Button color="cyan" appearance="primary" onClick={() => router.push('user/login')} style={{marginRight:"10px", borderRadius:"50px"}}>Login</Button>
+                <Button color="cyan" appearance="primary" onClick={() => router.push('user/login')} style={{marginRight:"10px", borderRadius:"50px"}}>Login to Dashboard</Button>
             </Nav>
         </Navbar>
     );
@@ -64,11 +64,11 @@ const Index = () => {
                                     <h3 style={{color: "orange"}}>Our Services:</h3>
                                     <ul style={{listStyle:"none", fontSize:"30px", color:"white"}}>
                                         <li style={{marginBottom:"10px"}}><Avatar size="md" circle style={{background:"orange"}}>RS</Avatar> Kitchen</li>
-                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Laundry </li>
-                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Appliances</li>
-                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Power Generators </li>
-                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Security Systems </li>
-                                        <li><Avatar size="md" circle  style={{background:"orange"}}>RS</Avatar> Audi visuals equipment  </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Laundry </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Appliances</li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Power GeneratoQS </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Security Systems </li>
+                                        <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Audi visuals equipment  </li>
                                     </ul>
                                 </Col>
                                 <Col xs={6}>
@@ -111,10 +111,10 @@ const Index = () => {
                         <center><h3 style={{color: "orange"}}>Green Energy Services</h3>
                         <Image src={HomeRepair} alt="homepage" width="400" height="300"/></center>
                         <ul style={{listStyle:"none", fontSize:"30px"}}>
-                            <li><Avatar style={{background:"green"}} size="sm" circle>RS</Avatar> Maintenance</li>
-                            <li><Avatar style={{background:"green"}}  size="sm" circle>RS</Avatar> Installation</li>
-                            <li><Avatar style={{background:"green"}}  size="sm" circle>RS</Avatar> Energy Audit </li>
-                            <li><Avatar style={{background:"green"}}   size="sm" circle>RS</Avatar> Energy saving consultation</li>
+                            <li><Avatar style={{background:"green"}} size="sm" circle>QS</Avatar> Maintenance</li>
+                            <li><Avatar style={{background:"green"}}  size="sm" circle>QS</Avatar> Installation</li>
+                            <li><Avatar style={{background:"green"}}  size="sm" circle>QS</Avatar> Energy Audit </li>
+                            <li><Avatar style={{background:"green"}}   size="sm" circle>QS</Avatar> Energy saving consultation</li>
                         </ul>
                     </Col>
                     <Col xs={12}>
@@ -124,18 +124,18 @@ const Index = () => {
                             <Row>
                                 <Col xs={12}>
                                     <ul style={{listStyle:"none", fontSize:"25px"}}>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Betting Machines </li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Kinds Fun Machines </li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Bouncing Castle </li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Audi visuals equipment </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Betting Machines </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Kinds Fun Machines </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Bouncing Castle </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Audi visuals equipment </li>
                                     </ul>
                                 </Col>
                                 <Col xs={12}>
                                     <ul style={{listStyle:"none", fontSize:"25px"}}>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Maintenance</li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Installation</li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Energy Audit </li>
-                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>RS</Avatar> Energy saving consultation</li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Maintenance</li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Installation</li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Energy Audit </li>
+                                        <li> <Avatar style={{background:"#FA8900"}} size="sm" circle>QS</Avatar> Energy saving consultation</li>
                                     </ul>
                                 </Col>
                             </Row>
