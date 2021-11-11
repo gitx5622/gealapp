@@ -10,10 +10,15 @@ import ListClients from '../clients/list-clients';
 import ListRoles from './roles/list-roles';
 import Payments from '../payments/payments';
 import CreateRole from './roles/create-role';
+import Home from './home/home';
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
         switch (section) {
+            case 'home':
+                return (
+                    <Home />
+                );
             case 'payments':
                 return (
                     <Payments />

@@ -7,7 +7,7 @@ const Footer = () => {
            <footer style={{fontFamily: "Quicksand, sans-serif", background:"#2a465c", padding:"20px", color: "white"}}>
                <Grid>
                    <Row>
-                       <Col xs={6}>
+                       <Col xs={24} sm={24} md={6}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
                                <center><h4>QUICKFIX-SI</h4></center><br/>
                                <li>FAQ</li>
@@ -15,7 +15,7 @@ const Footer = () => {
                                <li>Privacy Policy</li>
                            </ul>
                        </Col>
-                       <Col xs={6}>
+                       <Col xs={24} sm={24} md={6}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
                                <center><h5>QUICKFIX-SI</h5></center><br/>
                                <li>FAQ</li>
@@ -23,7 +23,7 @@ const Footer = () => {
                                <li>Privacy Policy</li>
                            </ul>
                        </Col>
-                       <Col xs={6}>
+                       <Col xs={24} sm={24} md={6}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
                                <center><h5>QUICKFIX-SI</h5></center><br/>
                                <li>FAQ</li>
@@ -31,7 +31,7 @@ const Footer = () => {
                                <li>Privacy Policy</li>
                            </ul>
                        </Col>
-                       <Col xs={6}>
+                       <Col xs={24} sm={24} md={6}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
                                <center><h4>About Us</h4></center><br/>
                                <li>Phone : 0722779770</li>

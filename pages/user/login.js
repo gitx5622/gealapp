@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Head from 'next/head'
-import {loginUser} from "../../state/actions/userLoginAction";
+import { loginUser } from "../../state/actions/userLoginAction";
 
 
 function Copyright(props) {
@@ -62,8 +62,8 @@ export default function Home() {
 
         loginUser(dispatch, bodyData).then(response => {
             console.log(response);
-            if (response.status === 200) router.push('/dashboard/home', undefined, {shallow: true});
-            if (response.status === 401)setLoginStatus({ loading: false, error: response.message });
+            if (response.status === 200) router.push('/dashboard/home', undefined, { shallow: true });
+            if (response.status === 401) setLoginStatus({ loading: false, error: response.message });
         });
     };
 
@@ -77,7 +77,7 @@ export default function Home() {
 
     React.useEffect(() => {
         const user = localStorage.currentUser && JSON.parse(localStorage.currentUser);
-        if (user){
+        if (user) {
             router.push('/dashboard/home');
         } else {
             localStorage.clear();
@@ -102,7 +102,7 @@ export default function Home() {
                             sm={4}
                             md={8}
                             sx={{
-                                backgroundImage: 'url(https://professors.toprated.co.ke/_next/static/images/login-73768b9025c008203f404815155f7499.svg)',
+                                backgroundImage: `url(https://gtautomotive.com/wp-content/uploads/2021/02/red-min-min.png)`,
                                 backgroundRepeat: 'no-repeat',
                                 backgroundColor: (t) =>
                                     t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -110,7 +110,7 @@ export default function Home() {
                                 backgroundPosition: 'center',
                             }}
                         >
-                            <Box sx={{ml: 5, color: '#1976D2', '@media only screen and (max-width: 600px)': {display: 'none'}}}>
+                            <Box sx={{ ml: 5, color: '#1976D2', '@media only screen and (max-width: 600px)': { display: 'none' } }}>
                                 <h3>Geal Admin</h3>
                             </Box>
                         </Grid>
@@ -129,12 +129,12 @@ export default function Home() {
                                 </Avatar>
                                 <Typography component="h1" variant="h5">
                                     <center>
-                                        Welcome to Geal Admin! 👋 <br/>
+                                        Welcome to Geal Admin! 👋 <br />
                                         Sign in
                                     </center>
                                 </Typography>
                                 {loginStatus.error && (
-                                    <Alert severity="error">{loginStatus.error }</Alert>
+                                    <Alert severity="error">{loginStatus.error}</Alert>
                                 )}
                                 <Box component="form" noValidate onSubmit={handleUserLogin} sx={{ mt: 1 }}>
                                     <TextField
@@ -180,7 +180,7 @@ export default function Home() {
                                             </Link>
                                         </Grid>
                                         <Grid item>
-                                            <Box sx={{cursor: 'pointer', color: '#1796D2'}} onClick={() => router.push('/user/register',  undefined, { shallow: true})}>
+                                            <Box sx={{ cursor: 'pointer', color: '#1796D2' }} onClick={() => router.push('/user/register', undefined, { shallow: true })}>
                                                 Don&sbquo;t have an account? Sign Up
                                             </Box>
                                         </Grid>
