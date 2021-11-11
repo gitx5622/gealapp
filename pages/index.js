@@ -63,7 +63,7 @@ const Index = () => {
                                 <Col xs={18}>
                                     <h3 style={{color: "orange"}}>Our Services:</h3>
                                     <ul style={{listStyle:"none", fontSize:"30px", color:"white"}}>
-                                        <li style={{marginBottom:"10px"}}><Avatar size="md" circle style={{background:"orange"}}>RS</Avatar> Kitchen</li>
+                                        <li style={{marginBottom:"10px"}}><Avatar size="md" circle style={{background:"orange"}}>QS</Avatar> Kitchen</li>
                                         <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Laundry </li>
                                         <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Appliances</li>
                                         <li><Avatar size="md" circle  style={{background:"orange"}}>QS</Avatar> Power GeneratoQS </li>
@@ -162,14 +162,14 @@ const Index = () => {
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-40-px"
                 >
-                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Kids Trains </Button></center></div>
-                    <div><center><Button color="cyan" appearance="ghost">Roll caster </Button></center></div>
-                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Speed  Boats </Button></center></div>
-                    <div><center><Button color="orange" appearance="ghost">Kids Swings </Button></center></div>
-                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Power Generators </Button></center></div>
-                    <div><center><Button color="green" appearance="ghost">Security Systems</Button></center></div>
-                    <div><center><Button style={{background:"#006E7D", color: "white"}}>Energy Audit </Button></center></div>
-                    <div style={{marginBottom:"50px"}}><center><Button color="red" appearance="ghost">Betting Machines </Button></center></div>
+                    <div><center><Button style={{padding:"20px", background:"#006E7D", color: "white"}}>Kids Trains </Button></center></div>
+                    <div><center><Button  style={{padding:"20px"}} color="cyan" appearance="ghost">Roll caster </Button></center></div>
+                    <div><center><Button style={{padding:"20px"}}color="red" appearance="primary">Speed  Boats </Button></center></div>
+                    <div><center><Button  style={{padding:"20px"}}color="orange" appearance="ghost">Kids Swings </Button></center></div>
+                    <div><center><Button style={{padding:"20px", background:"#006E7D", color: "white"}}>Power Generators </Button></center></div>
+                    <div><center><Button style={{padding:"20px", padding:"20px"}} color="green" appearance="primary">Security Systems</Button></center></div>
+                    <div style={{marginBottom:"50px"}}><center><Button style={{padding:"20px", padding:"20px"}} color="red" appearance="ghost">Betting Machines </Button></center></div>
+                    <div><center><Button style={{padding:"20px", padding:"20px"}} color="blue" appearance="primary">Energy Audit </Button></center></div>
                 </Carousel>
             </div>
             <br/>
