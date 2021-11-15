@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col} from 'rsuite';
+import {Grid, Row, Col, Divider} from 'rsuite';
 
 const Footer = () => {
     return (
@@ -9,7 +9,7 @@ const Footer = () => {
                    <Row>
                        <Col xs={24} sm={24} md={8}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
-                               <center><h5>About Us</h5></center><br/>
+                               <center><h4>About Us</h4></center><Divider/>
                                <p>
                                    Quickfix was created with the sole intention of providing
                                    our customers with a nationwide service that is both fast and reliable.
@@ -18,7 +18,7 @@ const Footer = () => {
                        </Col>
                        <Col xs={24} sm={24} md={8}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
-                               <center><h4>Follow Us</h4></center><br/>
+                               <center><h4>Follow Us</h4></center><Divider/>
                                <li>Twitter</li>
                                <li>Facebook</li>
                                <li>Google plus</li>
@@ -27,7 +27,7 @@ const Footer = () => {
                        </Col>
                        <Col xs={24} sm={24} md={8}>
                            <ul style={{listStyle: 'none', fontSize:"18px", textAlign:"center"}}>
-                               <center><h4>Contact Us</h4></center><br/>
+                               <center><h4>Contact Us</h4></center><Divider/>
                                <li>Phone : 0722779770</li>
                                <li>Email : Info@QuicKfix-Si.Com</li>
                                <li>Address : Po box   4788 -00200 City Square Nairobi</li>
