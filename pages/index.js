@@ -9,6 +9,7 @@ import BouncingSection from '../assets/bouncing.jpeg';
 import CivilSection from '../assets/civil.jpg';
 import ElectricalSection from '../assets/electrical.jpg';
 import InterirorSection from '../assets/interior.jpg';
+import BettingSection from '../assets/betting.jpg';
 import KidSwingSection from '../assets/kid-swing.jpg';
 import KidsfunSection from '../assets/kids-fun.jpg';
 import KidstrainSection from '../assets/kids-train.png';
@@ -54,18 +55,37 @@ const Index = () => {
     const [activeKey, setActiveKey] = React.useState(null);
     const [cooker, setCooker] = React.useState(true);
     const [washing, setWashing] = React.useState(false);
+    const [betting, setBetting] = React.useState(false);
+    const [kidsFun, setKidsFun] = React.useState(false);
+    const [kidSwing, setKidSwing] = React.useState(false);
     const instance1  = (
         <ButtonToolbar >
             <Dropdown icon={<CheckOutlineIcon/>} title="Residential Appliances" trigger="hover" style={{background:"yellow"}}>
                 <Dropdown.Menu style={{width:200}} icon={<CheckOutlineIcon/>} title="Refrigeration and air conditioning">
                     <Dropdown.Menu title="Cooker">
-                        <Dropdown.Item onClick={() => {setCooker(true); setWashing(false); window.scroll(500, 500)}}>Cooker</Dropdown.Item>
+                        <Dropdown.Item onClick={() => {
+                            setCooker(true);
+                            setWashing(false);
+                            window.scroll(500, 500);
+                            setBetting(false);
+                            setKidsFun(false);
+                            setKidSwing(false);
+                        }}
+                        >
+                            Cooker
+                        </Dropdown.Item>
                     </Dropdown.Menu>
-                    <Dropdown.Menu title="Fridge">
-                        <Dropdown.Item onClick={() => { setWashing(true); setCooker(false)}}>Washing Machine</Dropdown.Item>
-                    </Dropdown.Menu>
-                    <Dropdown.Menu title="Appliances">
-                        <Dropdown.Item>Cooker</Dropdown.Item>
+                    <Dropdown.Menu title="Washing Machines">
+                        <Dropdown.Item onClick={() => {
+                            setWashing(true);
+                            setCooker(false);
+                            window.scroll(500, 500);
+                            setBetting(false);
+                            setKidsFun(false);
+                            setKidSwing(false);
+                        }}>
+                            Washing Machine
+                        </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
                 <Dropdown.Menu style={{width:200}} icon={<CheckOutlineIcon/>} title="Power Generators ">
@@ -385,22 +405,81 @@ const Index = () => {
         <ButtonToolbar>
             <Dropdown icon={<CheckOutlineIcon/>} title="Entertainment" trigger="hover">
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Betting Machines ">
-                    <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                    <Dropdown.Item onClick={() =>{
+                        setCooker(false);
+                        setWashing(false);
+                        setBetting(true);
+                        setKidsFun(false);
+                        setKidSwing(false);
+                        window.scroll(500, 500);
+                    }}>
+                        Betting Machines
+                    </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Kids Fun Machines ">
-                    <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                    <Dropdown.Item
+                        onClick={() =>{
+                            setCooker(false);
+                            setWashing(false);
+                            window.scroll(500, 500)
+                            setBetting(false);
+                            setKidsFun(true);
+                            setBetting(false);
+                            setKidsFun(false);
+                            setKidSwing(false);
+                        }}
+                    >
+                    </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Bouncing Castle ">
-                   <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                   <Dropdown.Item>
+                       <Image src={BouncingSection} alt="security-section" width={200} height={200}/>
+                       <p style={{color:"black"}}>Quickfix makes sure your Kids equipments are<br/>functional and well mantained</p>
+                       <Divider/>
+                       <center>
+                           <Button color="cyan" appearance="primary" style={{borderRadius:"50px", padding:"15px", width:"100%"}}>
+                               Download app
+                           </Button>
+                       </center>
+                   </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Kids Trains ">
-                        <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                        <Dropdown.Item>
+                            <Image src={KidstrainSection} alt="security-section" width={200} height={200}/>
+                            <p style={{color:"black"}}>Quickfix makes sure your Kids equipments are<br/>functional and well mantained</p>
+                            <Divider/>
+                            <center>
+                                <Button color="cyan" appearance="primary" style={{borderRadius:"50px", padding:"15px", width:"100%"}}>
+                                    Download app
+                                </Button>
+                            </center>
+                        </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Roll caster  & Speed  Boats ">
-                    <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                    <Dropdown.Item>
+                        <Image src={RollcasterSection} alt="security-section" width={100} height={200}/>
+                        <p style={{color:"black"}}>Quickfix makes sure your Roller-castles equipments are<br/>functional and well mantained</p>
+                        <Divider/>
+                        <center>
+                            <Button color="cyan" appearance="primary" style={{borderRadius:"50px", padding:"15px", width:"100%"}}>
+                                Download app
+                            </Button>
+                        </center>
+                    </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon/>} title="Kids Swings ">
-                    <Dropdown.Item>Item 3-1-1</Dropdown.Item>
+                    <Dropdown.Item
+                        onClick={() =>{
+                            setCooker(false);
+                            setWashing(false);
+                            window.scroll(500, 500)
+                            setBetting(false);
+                            setKidsFun(false);
+                            setKidSwing(true);
+                        }}
+                    >
+                        Kid Swings
+                    </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </ButtonToolbar>
@@ -478,6 +557,51 @@ const Index = () => {
                 <Grid fluid>
                     <Row>
                         <Col xs={8}><Image src={WashingSection} alt="washing-section"/></Col>
+                        <Col xs={16}>
+                            <div style={{padding:"10px"}}>
+                                <h3>Washing Machine Repairs and Maintenance</h3><Divider/>
+                                <p style={{fontSize:"24px", lineHeight:2.0}}>Searching for a reliable company to repair your cooker? Well look no further!
+                                    Quickfix will come out and fix it on a day that works for you.
+                                </p>
+                            </div>
+                        </Col>
+                    </Row>
+                </Grid>
+            )}
+            {betting && (
+                <Grid fluid>
+                    <Row>
+                        <Col xs={8}><Image src={BettingSection} alt="security-section" /></Col>
+                        <Col xs={16}>
+                            <div style={{padding:"10px"}}>
+                                <h3>Washing Machine Repairs and Maintenance</h3><Divider/>
+                                <p style={{fontSize:"24px", lineHeight:2.0}}>Searching for a reliable company to repair your cooker? Well look no further!
+                                    Quickfix will come out and fix it on a day that works for you.
+                                </p>
+                            </div>
+                        </Col>
+                    </Row>
+                </Grid>
+            )}
+            {kidsFun && (
+                <Grid fluid>
+                    <Row>
+                        <Col xs={8}><Image src={KidsfunSection} alt="security-section" /></Col>
+                        <Col xs={16}>
+                            <div style={{padding:"10px"}}>
+                                <h3>Washing Machine Repairs and Maintenance</h3><Divider/>
+                                <p style={{fontSize:"24px", lineHeight:2.0}}>Searching for a reliable company to repair your cooker? Well look no further!
+                                    Quickfix will come out and fix it on a day that works for you.
+                                </p>
+                            </div>
+                        </Col>
+                    </Row>
+                </Grid>
+            )}
+            {kidSwing && (
+                <Grid fluid>
+                    <Row>
+                        <Col xs={8}><Image src={KidSwingSection} alt="security-section" /></Col>
                         <Col xs={16}>
                             <div style={{padding:"10px"}}>
                                 <h3>Washing Machine Repairs and Maintenance</h3><Divider/>
