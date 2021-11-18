@@ -518,15 +518,15 @@ const Index = () => {
                 <Carousel autoplay={true}>
                     <div style={{display:'flex', marginBottom:"-50px"}}>
                         <div style={{marginRight:"20px"}}><Image src={Electrical} alt="electrical" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={Washing} alt="washing" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={Cooker} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={Dishwasher} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Washing} alt="washing" /><h5 style={{color:"white"}}>Washing Repairs</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Cooker} alt="shape right" /><h5 style={{color:"white"}}>Cooker Repairs</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Dishwasher} alt="shape right" /><h5 style={{color:"white"}}>Dishwasher Repairs</h5></div>
                     </div>
                     <div style={{display:'flex'}}>
-                        <div style={{marginRight:"20px"}}><Image src={Boiler} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={Cooler} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={Oven} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
-                        <div style={{marginRight:"20px"}}><Image src={tumbDryer} alt="shape right" /><h5 style={{color:"white"}}>Electrical works</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Boiler} alt="shape right" /><h5 style={{color:"white"}}>Boiler Repairs</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Cooler} alt="shape right" /><h5 style={{color:"white"}}>Cooler Repairs</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={Oven} alt="shape right" /><h5 style={{color:"white"}}>Oven Repairs</h5></div>
+                        <div style={{marginRight:"20px"}}><Image src={tumbDryer} alt="shape right" /><h5 style={{color:"white"}}>TumbDryer Repairs</h5></div>
                     </div>
                     </Carousel>
                 </div>
