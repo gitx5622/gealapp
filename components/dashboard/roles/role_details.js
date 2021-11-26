@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, Row, Col, Panel, Tag } from 'rsuite';
 
 const RoleDetails = () => {
-    const [role, setRole] = useState(localStorage.role)
+    const [role, setRole] = useState("")
     const [description, setDescription] = useState("");
     const router = useRouter();
     const { roleID } = router.query;
@@ -16,8 +16,8 @@ const RoleDetails = () => {
     useEffect(() => {
         setDescription(localStorage.description);
         setRole(localStorage.role)
-        getRolePermissions(dispatch, role);
-    }, [dispatch, role]);
+        getRolePermissions(dispatch, localStorage.role);
+    }, [dispatch, localStorage.role]);
 
     return (
         <div>
