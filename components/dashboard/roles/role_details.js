@@ -27,7 +27,7 @@ const RoleDetails = () => {
                         <Panel>
                             <Grid fluid>
                                 <Row>
-                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Role</p>
+                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Role:</p>
                                     <p style={{ fontSize: "20px" }}><b>Name:</b> {role}</p><br />
                                     <p style={{ fontSize: "20px" }}><b>Description:</b> {description}</p><br />
                                     <p style={{ fontSize: "20px" }}><b>Permissions:</b> </p>
