@@ -256,6 +256,26 @@ const GealLayout = ({ children }) => {
                   >
                   Approval Requests
                 </Nav.Item>
+                <Dropdown
+                  eventKey="13"
+                  trigger="hover"
+                  title="Reports"
+                  icon={<AppSelectIcon color="#3498FF" />}
+                  placement="rightStart"
+                >
+                  <Dropdown.Item
+                    eventKey="9-1"
+                    icon={<AdminIcon color="green" />}
+                    onClick={() => router.push('/dashboard/roles/list-roles', undefined, { shallow: true })}
+                  >Servicemen
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey="9-2"
+                    icon={<AdminIcon color="green" />}
+                    onClick={() => router.push('/dashboard/roles/create-role', undefined, { shallow: true })}
+                  >Users
+                  </Dropdown.Item>
+                </Dropdown>
               </Nav>
             </Sidenav.Body>
           </Sidenav>
@@ -272,22 +292,11 @@ const GealLayout = ({ children }) => {
                 Dashboard
               </Navbar.Brand>
               <Nav>
-                <Nav.Item>Home</Nav.Item>
-                <Nav.Item>News</Nav.Item>
-                <Nav.Item>Products</Nav.Item>
-                <Dropdown title="About">
-                  <Dropdown.Item>Company</Dropdown.Item>
-                  <Dropdown.Item>Team</Dropdown.Item>
-                  <Dropdown.Item>Contact</Dropdown.Item>
-                </Dropdown>
+                <Nav.Item>Users</Nav.Item>
+                <Nav.Item>Roles</Nav.Item>
+                <Nav.Item>Permissions</Nav.Item>
               </Nav>
               <Nav pullRight>
-                <Nav.Item
-                  icon={<Badge color="cyan" content={10}><TaskIcon style={{ fontSize: "2em" }} /></Badge>} />
-                <Nav.Item
-                  icon={<Badge color="cyan" content={999}><NoticeIcon style={{ fontSize: "2em" }} /></Badge>} />
-                <Nav.Item
-                  icon={<SearchIcon style={{ fontSize: "2em" }} />} />
                 <Nav.Item>
                   <center>
                     <Box style={{ marginTop: "-10px", textDecoration: "none" }}>{first} {last}<br />Admin</Box>
@@ -315,7 +324,7 @@ const styles = {
     paddingBottom: '10px',
     fontSize: 36,
     height: 56,
-    background: 'linear-gradient(to right, #f44336, #3CB371)',
+    background: 'linear-gradient(rgb(0, 109, 126) 0%, rgb(1, 103, 119) 21%, rgb(5, 79, 90) 57%, rgb(36, 30, 32) 93%, rgb(36, 30, 32) 100%)',
     color: ' #fff',
     whiteSpace: 'nowrap',
     overflow: 'hidden'

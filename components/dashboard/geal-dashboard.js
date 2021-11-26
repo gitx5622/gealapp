@@ -12,6 +12,7 @@ import Payments from '../payments/payments';
 import CreateRole from './roles/create-role';
 import Home from './home/home';
 import ServicemenMaps from "../servicemen/servicemen-maps";
+import RoleDetails from './roles/role_details';
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
@@ -43,6 +44,10 @@ const GealDashboard = ({ section }) => {
             case 'list-roles':
                 return (
                     <ListRoles section={section} />
+                );
+            case 'specific-role':
+                return (
+                    <RoleDetails section={section} />
                 );
             case 'create-role':
                 return (

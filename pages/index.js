@@ -626,7 +626,7 @@ const Index = () => {
 
                 <div>
                     <Navbar>
-                        <Navbar.Brand style={{ fontSize: '24px', color:"blue" }} href="#">
+                        <Navbar.Brand style={{ fontSize: '24px', color: "blue" }} href="#">
                             QUICKFIX
                         </Navbar.Brand>
                         <Nav pullRight>
@@ -634,14 +634,14 @@ const Index = () => {
                         </Nav>
                     </Navbar>
                     <Carousel style={{ padding: '20px' }} autoplay={true}>
-                        <div style={{ marginRight: "20px" }}><Image src={Electrical} alt="electrical" /><h5 style={{ color: "white" }}>Electrical works</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Washing} alt="washing" /><h5 style={{ color: "white" }}>Washing Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Cooker} alt="shape right" /><h5 style={{ color: "white" }}>Cooker Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Dishwasher} alt="shape right" /><h5 style={{ color: "white" }}>Dishwasher Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Boiler} alt="shape right" /><h5 style={{ color: "white" }}>Boiler Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Cooler} alt="shape right" /><h5 style={{ color: "white" }}>Cooler Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={Oven} alt="shape right" /><h5 style={{ color: "white" }}>Oven Repairs</h5></div>
-                        <div style={{ marginRight: "20px" }}><Image src={tumbDryer} alt="shape right" /><h5 style={{ color: "white" }}>TumbDryer Repairs</h5></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Electrical} alt="electrical" /><h5 style={{ color: "white" }}>Electrical works</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Washing} alt="washing" /><h5 style={{ color: "white" }}>Washing Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Cooker} alt="shape right" /><h5 style={{ color: "white" }}>Cooker Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Dishwasher} alt="shape right" /><h5 style={{ color: "white" }}>Dishwasher Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Boiler} alt="shape right" /><h5 style={{ color: "white" }}>Boiler Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Cooler} alt="shape right" /><h5 style={{ color: "white" }}>Cooler Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={Oven} alt="shape right" /><h5 style={{ color: "white" }}>Oven Repairs</h5></center></div>
+                        <div style={{ marginRight: "20px" }}><center><Image src={tumbDryer} alt="shape right" /><h5 style={{ color: "white" }}>TumbDryer Repairs</h5></center></div>
                     </Carousel>
                     <center><h3>Repairs and Maintenance</h3></center>
                     <p style={{ fontSize: "20px", lineHeight: 2.0 }}>Searching for a reliable company to repair your cooker?
@@ -650,7 +650,7 @@ const Index = () => {
                     </p>
                     <div style={{ background: "whitesmoke", lineHeight: 3.5 }}>
                         <center>
-                            <h3 style={{color:"blue"}}>Services offered: </h3>
+                            <h3 style={{ color: "blue" }}>Services offered: </h3>
                             <h4>Repairs and Maintenance</h4>
                             <Tag color="blue">Refrigeration and air conditioning</Tag>
                             <Tag color="blue">Power Generators</Tag>

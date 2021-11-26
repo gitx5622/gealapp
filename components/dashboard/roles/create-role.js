@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Form, ButtonToolbar, Button, Input, Grid, Row, Col, Checkbox, CheckboxGroup } from 'rsuite';
+import { Form, ButtonToolbar, Button, Input, Grid, Row, Col,Panel, Checkbox, CheckboxGroup } from 'rsuite';
 import { useSelector, useDispatch } from 'react-redux';
 import { createRolePermissions, getAllPermissions } from '../../../state/actions/roleAction';
 
@@ -47,11 +47,12 @@ const CreateRole = () => {
     }, [dispatch])
     return (
         <div>
-            <h3>Create Role</h3>
+            <Panel>
+            <p style={{ fontSize: "24px", color: "#006D7E" }}>Create New Permissions:</p><br/>
             <Grid fluid>
                 <Row>
                     <Form fluid onSubmit={handleRoleCreateSubmit}>
-                        <Col xs={24} sx={24} md={8}>
+                        <Col xs={24} sx={24} md={24}>
                             <Form.Group controlId="role_name">
                                 <Form.ControlLabel>Role Name</Form.ControlLabel>
                                 <Form.Control name="role_name" onChange={handleChange} />
@@ -61,9 +62,7 @@ const CreateRole = () => {
                                 <Form.ControlLabel>Description</Form.ControlLabel>
                                 <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} />
                             </Form.Group>
-                        </Col>
-                        <Col xs={24} sx={24} md={16}>
-                            <h3>Permissions</h3>
+                            <p style={{ fontSize: "24px", color: "#006D7E" }}>Tick Permissions:</p><br/>
                             <CheckboxGroup inline name="checkboxList" value={value} onChange={handleCheckboxChange}>
                                 <Grid fluid>
                                     <Row>
@@ -79,14 +78,12 @@ const CreateRole = () => {
                             </CheckboxGroup>
                         </Col>
                         <Form.Group>
-                            <ButtonToolbar>
-                                <Button type="submit" appearance="primary">Submit</Button>
-                                <Button appearance="default">Cancel</Button>
-                            </ButtonToolbar>
+                        <Button style={{color:"white", width:"100%", background:"#006D7E"}} type="submit">Create New Permission</Button>
                         </Form.Group>
                     </Form>
                 </Row>
             </Grid>
+            </Panel>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import {
     Nav, Panel, ButtonToolbar, ButtonGroup, Button, Tag, InputGroup, Table,
     Grid, Row, Col, DatePicker, Pagination,
 } from 'rsuite';
-import { TextField, FormControl, Box, InputLabel, Select, MenuItem } from '@mui/material';
+import { TextField, FormControl, Box, InputLabel, Drawer, MenuItem } from '@mui/material';
 import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
 import { FiEdit } from 'react-icons/fi';
 import { getUsers } from '../../state/actions/usersAction';
@@ -90,51 +90,14 @@ const state = {
 
 const CustomButtonGroup = ({ appearance }) => (
     <ButtonToolbar>
-      <ButtonGroup>
-        <Button appearance={appearance}>standing Charge and material costs</Button>
-        <Button appearance={appearance}>client approval of JOB completion</Button>
-        <Button appearance={appearance}>client payment of for labor more than 1 day</Button>
-        <Button appearance={appearance}>any Cash received by servicemen</Button>
-      </ButtonGroup>
+        <ButtonGroup>
+            <Button appearance={appearance}>standing Charge and material costs</Button>
+            <Button appearance={appearance}>client approval of JOB completion</Button>
+            <Button appearance={appearance}>client payment of for labor more than 1 day</Button>
+            <Button appearance={appearance}>any Cash received by servicemen</Button>
+        </ButtonGroup>
     </ButtonToolbar>
-  );
-
-  
-const ActionCell = ({ rowData, dataKey, ...props }) => {
-    function handleAction() {
-        alert(`id:${rowData[dataKey]}`);
-    }
-    return (
-        <Table.Cell {...props} className="link-group">
-            <Box sx={{ display: "flex", gap: 1 }}>
-                <Box sx={{ justifyContent: "center", height: "30px", width: "30px", background: "#5CB85C", borderRadius: '5px' }}>
-                    <center><AiOutlineEye style={{ fontSize: '20px', color: "white", marginTop: "5px" }} /></center>
-                </Box>
-                <Box sx={{ justifyContent: "center", height: "30px", width: "30px", background: "#d9534f", borderRadius: '5px' }}>
-                    <center><AiTwotoneDelete style={{ fontSize: '20px', color: "white", marginTop: "5px" }} /></center>
-                </Box>
-                <Box sx={{ justifyContent: "center", height: "30px", width: "30px", background: "#337AB7", borderRadius: '5px' }}>
-                    <center><FiEdit style={{ fontSize: '20px', color: "white", marginTop: "5px" }} /></center>
-                </Box>
-            </Box>
-        </Table.Cell>
-    );
-};
-
-const GenderCell = ({ rowData, dataKey, ...props }) => {
-    const router = useRouter();
-    return (
-        <Table.Cell {...props} className="link-group" >
-            <Box onClick={() => router.push(`/user/${rowData.id}`, undefined, { shallow: true })}>
-                <center><Tag color={rowData.gender === "Female" ? "green" : "orange"}>{rowData[dataKey]}</Tag></center>
-            </Box>
-        </Table.Cell>
-    );
-};
-
-const styles = {
-    marginBottom: 50,
-};
+);
 
 const CustomNav = ({ active, onSelect, ...props }) => {
     return (
@@ -195,123 +158,87 @@ const Payments = () => {
 
     return (
         <div style={{ marginTop: "20px", marginLeft: "10px", marginRight: "10px" }}>
-        <div>
-            <h6>Transactions</h6>
-            </div>
+            <p style={{ fontSize: "24px", color: "#006D7E" }}>Transanctions:</p>
             <CustomNav appearance="tabs" active={active} onSelect={setActive} />
-            <div style={{marginTop: "-40px"}}>
-            <span style={{ color: "#1675E0", marginLeft: "5px" }}><Tag color="green">Search filter:</Tag></span>
-            <Grid fluid style={{ marginBottom: "5px", marginTop: "3px" }}>
-                <Row >
-                    <Col xs={24} sm={12} md={6}>
-                        <TextField
-                            id="name"
-                            label="Search Name, Email, Phone"
-                            variant="outlined"
-                            onChange={handleSearchTermChange}
-                            value={searchTerm}
-                        />
-                    </Col>
-                    <Col xs={24} sm={12} md={6}>
-                        <TextField
-                            id="country"
-                            label="Search Country"
-                            variant="outlined"
-                            onChange={handleCountryChange}
-                            value={country}
-                        />
-                    </Col>
-                    <Col xs={24} sm={12} md={6}>
-                        <InputGroup style={{ width: 358, height: "55px" }}>
-                            <span style={{ marginTop: "5px" }}>Start Date</span>
-                            <DatePicker appearance="default" value={startDate} onChange={(date) => setStartDate(date)} style={{ width: 150 }} />
-                            <InputGroup.Addon style={{ background: "whitesmoke" }}>至</InputGroup.Addon>
-                            <span style={{ marginTop: "5px" }}>End Date</span>
-                            <DatePicker format="yyyy-MM-dd" appearance="default" value={endDate} onChange={(date) => setEndDate(date)} style={{ width: 150 }} />
-                        </InputGroup>
-                    </Col>
-                    <Col xs={24} sm={12} md={6}>
-                        <FormControl style={{ width: "60%", marginLeft: "100px" }}>
-                            <InputLabel id="gender=label">Gender</InputLabel>
-                            <Select
+            <Panel>
+                <Grid fluid style={{ marginBottom: "5px", marginTop: "3px" }}>
+                    <Row >
+                        <Col xs={24} sm={12} md={6}>
+                            <input
+                                id="name"
+                                label="Search Name, Email, Phone"
+                                variant="outlined"
+                                onChange={handleSearchTermChange}
+                                value={searchTerm}
+                                placeholder="Search Name, Email ..."
+                                style={{ height: "30px", borderRadius: '10px', padding: "5px" }}
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+                            <input
+                                id="country"
+                                label="Search Country"
+                                variant="outlined"
+                                onChange={handleCountryChange}
+                                placeholder="Search Country..."
+                                style={{ height: "30px", borderRadius: '10px', padding: "5px" }}
+                                value={country}
+                            />
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+
+                        </Col>
+                        <Col xs={24} sm={12} md={6}>
+                            <label>Gender</label>
+                            <select
                                 labelId="gender-label"
-                                id="gender"
+                                id="gender-label"
                                 value={gender}
                                 label="Gender"
-                                sx={{ color: 'black' }}
+                                style={{ color: 'black', width: '60%', height: "30px", borderRadius: '10px', padding: "5px" }}
                                 onChange={handleGenderChange}
                             >
                                 <MenuItem value="">All</MenuItem>
                                 <MenuItem value="male">Male</MenuItem>
                                 <MenuItem value='female'>Female</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Col>
-                </Row>
-            </Grid>
-            </div>
-            <Table bordered={true} cellBordered={true} height={500} data={data} loading={loading} style={{ color: "black", fontFamily: "Quicksand, sans-serif" }}>
-                <Table.Column width={50} align="center">
-                    <Table.HeaderCell style={{ background: "#34c3ff" }}><h6>Id</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="id" style={{ color: "#1675E0" }} />
-                </Table.Column>
-                <Table.Column width={100}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>First Name</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="first_name" />
-                </Table.Column>
-
-                <Table.Column width={100}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Last Name</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="last_name" />
-                </Table.Column>
-
-                <Table.Column width={200}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Email</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="email" style={{ color: "#1675E0" }} />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Phone</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="phone" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Gender</h6></Table.HeaderCell>
-                    <GenderCell dataKey="gender" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Country</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="country" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Created At</h6></Table.HeaderCell>
-                    <Table.Cell dataKey="created_at" />
-                </Table.Column>
-                <Table.Column width={200} flexGrow={1}>
-                    <Table.HeaderCell style={{ background: "#34c3ff", color: "black" }}><h6>Actions</h6></Table.HeaderCell>
-                    <ActionCell dataKey="id" />
-                </Table.Column>
-            </Table>
-            <div style={{ padding: 20 }}>
-                <Pagination
-                    prev
-                    next
-                    first
-                    last
-                    ellipsis
-                    boundaryLinks
-                    maxButtons={5}
-                    size="xs"
-                    layout={['total', '-', 'limit', '|', 'pager', 'skip']}
-                    total={pagination.count}
-                    limitOptions={[10, 20]}
-                    limit={limit}
-                    activePage={page}
-                    onChangePage={setPage}
-                    onChangeLimit={handleChangeLimit}
-                />
-            </div>
-            <h4>Payment Reports</h4>
+                            </select>
+                        </Col>
+                    </Row>
+                </Grid>
+                <table style={styles.table}>
+                    <tr>
+                        <th style={styles.table.th}>ID</th>
+                        <th style={styles.table.th}>First Name</th>
+                        <th style={styles.table.th}>Last Name</th>
+                        <th style={styles.table.th}>Email</th>
+                        <th style={styles.table.th}>Phone</th>
+                        <th style={styles.table.th}>Gender</th>
+                        <th style={styles.table.th}>Country</th>
+                        <th style={styles.table.th}>Actions</th>
+                    </tr>
+                    {users?.map((data, index) => (
+                        <tr key={index}>
+                            <td style={styles.table.td}>
+                                {data.id}
+                            </td>
+                            <td style={styles.table.td}>{data.first_name}</td>
+                            <td style={styles.table.td}>{data.last_name}</td>
+                            <td style={styles.table.td}>{data.email}</td>
+                            <td style={styles.table.td}>{data.phone}</td>
+                            <td style={styles.table.td}>{data.gender}</td>
+                            <td style={styles.table.td}>{data.country}</td>
+                            <td style={styles.table.td}>
+                                <Tag style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
+                                <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
+                                <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </Panel>
+            <p style={{ fontSize: "24px", color: "#006D7E" }}>Payment Reports:</p>
             <Panel shaded>
-            <CustomButtonGroup appearance="ghost" />
+                <CustomButtonGroup appearance="ghost" />
                 <Chart
                     options={state.options}
                     series={state.series}
@@ -324,4 +251,24 @@ const Payments = () => {
     )
 }
 
-export default Payments
+export default Payments;
+
+const styles = {
+    table: {
+        fontFamily: 'Quicksand, sans-serif',
+        borderCollapse: 'collapse',
+        width: '100%',
+        td: {
+            border: '1px solid #dddddd',
+            textAlign: 'left',
+            padding: '8px',
+        },
+        th: {
+            border: '1px solid #dddddd',
+            textAlign: 'left',
+            padding: '8px',
+            background: '#006D7E',
+            color: "white"
+        }
+    },
+}
