@@ -8,16 +8,18 @@ const RoleDetails = () => {
     const [role, setRole] = useState("")
     const [description, setDescription] = useState("");
     const router = useRouter();
-    const { roleID } = router.query;
     const dispatch = useDispatch();
     const roleSelector = useSelector(state => state.roleState);
     const { role_permissions } = roleSelector;
 
     useEffect(() => {
-        setDescription(localStorage.description);
+        getRolePermissions(dispatch, role);
+    }, [dispatch, role]);
+
+    useEffect(() => {
         setRole(localStorage.role)
-        getRolePermissions(dispatch, localStorage.role);
-    }, [dispatch, localStorage.role]);
+        setDescription(localStorage.description);
+    },[])
 
     return (
         <div>
@@ -27,7 +29,7 @@ const RoleDetails = () => {
                         <Panel>
                             <Grid fluid>
                                 <Row>
-                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Role:</p>
+                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Role</p>
                                     <p style={{ fontSize: "20px" }}><b>Name:</b> {role}</p><br />
                                     <p style={{ fontSize: "20px" }}><b>Description:</b> {description}</p><br />
                                     <p style={{ fontSize: "20px" }}><b>Permissions:</b> </p>
