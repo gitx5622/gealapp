@@ -4,9 +4,6 @@ import { useRouter } from 'next/router';
 import { List, Grid, Modal, Row, Col, Tag, Panel, ButtonToolbar, Button, Form } from 'rsuite';
 import { getUser } from '../../state/actions/usersAction';
 
-
-
-
 const UserDetails = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

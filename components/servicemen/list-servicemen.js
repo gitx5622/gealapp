@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {
-    Table, Pagination, Grid, Row, Col, DatePicker, Nav, Panel,
-    InputGroup, Tag, Button, Drawer, Form, ButtonToolbar, Divider
+import { Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Modal
 } from 'rsuite';
-import { getUsers } from '../../state/actions/usersAction';
-import MenuItem from '@mui/material/MenuItem';
-import { FormControl, Box, InputLabel, TextField } from '@mui/material';
-import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import {approveServiceman, getAllServicemen, rejectServiceman} from "../../state/actions/servicemenAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -110,6 +104,8 @@ const polar = {
     },
 };
 const ListServicemen = () => {
+    const [open, setOpen] = React.useState(false);
+    const [rejectOpen, setRejectOpen] = React.useState(false);
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
@@ -118,11 +114,16 @@ const ListServicemen = () => {
     const [endDate, setEndDate] = useState();
 
     const dispatch = useDispatch();
+    const router = useRouter();
 
-    const userSelector = useSelector(state => state.usersState);
-    const { user_list } = userSelector;
-    const { users, pagination } = user_list;
+    const servicemenSelector = useSelector(state => state.servicemenState);
+    const { servicemen } = servicemenSelector;
+    console.log(servicemen);
 
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleRejectOpen = () => setRejectOpen(true);
+    const handleRejectClose = () => setRejectOpen(false);
 
     const handleSearchTermChange = (e) => {
         setSearchTerm(e.target.value);
@@ -135,15 +136,17 @@ const ListServicemen = () => {
     }
 
     React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country);
-    }, [dispatch, searchTerm, gender, country]);
+        getAllServicemen(dispatch);
+    }, [dispatch]);
 
     return (
         <div>
             <Panel>
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen List:</p>
-                    <Button style={{ color: "white", background: "#006D7E" }} onClick={() => setOpenWithHeader(true)}>Create Servicemen</Button>
+                    <Button
+                            style={{ color: "white", background: "#006D7E" }}
+                            onClick={() => setOpenWithHeader(true)}>Create Servicemen</Button>
                     <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
                         <Drawer.Header>
                             <Drawer.Title>Add Servicemen</Drawer.Title>
@@ -198,8 +201,6 @@ const ListServicemen = () => {
                         <Col xs={24} sm={12} md={6}>
                             <input
                                 id="name"
-                                label="Search Name, Email, Phone"
-                                variant="outlined"
                                 onChange={handleSearchTermChange}
                                 value={searchTerm}
                                 placeholder="Search Name, Email ..."
@@ -209,8 +210,6 @@ const ListServicemen = () => {
                         <Col xs={24} sm={12} md={6}>
                             <input
                                 id="country"
-                                label="Search Country"
-                                variant="outlined"
                                 onChange={handleCountryChange}
                                 placeholder="Search Country..."
                                 style={{height:"30px", borderRadius: '10px', padding:"5px" }}
@@ -223,16 +222,14 @@ const ListServicemen = () => {
                         <Col xs={24} sm={12} md={6}>
                             <label>Gender</label>
                             <select
-                                labelId="gender-label"
                                 id="gender-label"
                                 value={gender}
-                                label="Gender"
                                 style={{ color: 'black', width: '60%',height:"30px", borderRadius: '10px', padding:"5px" }}
                                 onChange={handleGenderChange}
                             >
-                                <MenuItem value="">All</MenuItem>
-                                <MenuItem value="male">Male</MenuItem>
-                                <MenuItem value='female'>Female</MenuItem>
+                                <option>All</option>
+                                <option>Male</option>
+                                <option>Female</option>
                             </select>
                         </Col>
                     </Row>
@@ -242,27 +239,61 @@ const ListServicemen = () => {
                         <th style={styles.table.th}>ID</th>
                         <th style={styles.table.th}>First Name</th>
                         <th style={styles.table.th}>Last Name</th>
-                        <th style={styles.table.th}>Email</th>
                         <th style={styles.table.th}>Phone</th>
-                        <th style={styles.table.th}>Gender</th>
-                        <th style={styles.table.th}>Country</th>
+                        <th style={styles.table.th}>National ID</th>
+                        <th style={styles.table.th}>Status</th>
                         <th style={styles.table.th}>Actions</th>
                     </tr>
-                    {users?.map((data, index) => (
+                    {servicemen.registration_list?.service_registrations?.map((data, index) => (
                         <tr key={index}>
                             <td style={styles.table.td}>
                                 {data.id}
                             </td>
                             <td style={styles.table.td}>{data.first_name}</td>
                             <td style={styles.table.td}>{data.last_name}</td>
-                            <td style={styles.table.td}>{data.email}</td>
                             <td style={styles.table.td}>{data.phone}</td>
-                            <td style={styles.table.td}>{data.gender}</td>
-                            <td style={styles.table.td}>{data.country}</td>
+                            <td style={styles.table.td}>{data.national_id}</td>
+                            <td style={styles.table.td}><Tag color="orange">{data.status}</Tag></td>
                             <td style={styles.table.td}>
-                                <Tag style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
+                                <Tag
+                                    onClick={() => router.push(`/dashboard/servicemen/${data.user_id}`)}
+                                    style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
+                                <Tag onClick={handleOpen} style={{ cursor: 'pointer' }} color="blue">Approve</Tag>
+                                <Modal open={open} onClose={handleClose}>
+                                    <Modal.Header>
+                                        <Modal.Title>Approve Serviceman</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <h6>Are you sure you want to <span style={{color:"green"}}>Approve</span>  the selected serviceman</h6>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button
+                                            onClick={() => {approveServiceman(dispatch, data.user_id).then(response => console.log(response)); setOpen(false)}}
+                                            appearance="primary">
+                                            Yes
+                                        </Button>
+                                        <Button onClick={handleClose} appearance="subtle">
+                                            Cancel
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
+                                <Tag onClick={handleRejectOpen} style={{ cursor: 'pointer' }} color="red">Reject</Tag>
+                                <Modal open={rejectOpen} onClose={handleRejectClose}>
+                                    <Modal.Header>
+                                        <Modal.Title>Reject Serviceman</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <h6>Are you sure you want to <span style={{color:"red"}}>Reject</span> the selected serviceman</h6>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button onClick={() => { rejectServiceman(dispatch, data.user_id).then(response => console.log(response)); setRejectOpen(false);}} appearance="primary">
+                                            Yes
+                                        </Button>
+                                        <Button onClick={handleRejectClose} appearance="subtle">
+                                            Cancel
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
                             </td>
                         </tr>
                     ))}

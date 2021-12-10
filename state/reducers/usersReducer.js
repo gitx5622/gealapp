@@ -1,4 +1,5 @@
 import {
+    ERROR,
     GET_USER, GET_USER_ERROR, GET_USER_SUCCESS, GET_USERS, GET_USERS_ERROR, GET_USERS_SUCCESS
 } from "../dispatchTypes";
 
@@ -19,6 +20,14 @@ export const usersReducers = (
     action
 ) => {
     switch (action.type) {
+        case ERROR: {
+            return {
+                ...state,
+                isError: true,
+                isLoading: false,
+                errorMessage: action.errorMessage
+            };
+        }
         case GET_USERS: {
             return {
                 ...state,

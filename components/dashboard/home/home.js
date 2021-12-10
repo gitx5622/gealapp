@@ -52,7 +52,7 @@ const Home = () => {
             <Grid fluid>
                 <Row gutter={8} className="show-grid">
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -67,7 +67,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -82,7 +82,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -97,7 +97,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -116,7 +116,7 @@ const Home = () => {
             <Grid fluid>
                 <Row gutter={8} className="show-grid">
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -131,7 +131,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -146,7 +146,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>
@@ -161,7 +161,7 @@ const Home = () => {
                         </Panel>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
-                        <Panel shaded>
+                        <Panel shaded style={{background:"whitesmoke"}}>
                             <Row className="show-grid">
                                 <Col xs={24} sm={12} md={12}>
                                     <div style={{ display: "flex", justifyContent: "center", height: 50, width: 50, background: '#006D7E', borderRadius: 50 }}>

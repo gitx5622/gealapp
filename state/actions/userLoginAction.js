@@ -29,15 +29,9 @@ export const loginUser = async (dispatch, bodyData) => {
             return response;
         });
     } catch (error) {
-        let knownErrorStatusCodesResponses = {
-            401: "Username and password don't match",
-            400: 'Account not registered.',
-        };
         dispatch({
             type: ERROR,
-            errorMessage:
-                knownErrorStatusCodesResponses[error.response.status] ||
-                error.response.data.message,
+            errorMessage: error.response.data.message,
         });
 
         return error.response;

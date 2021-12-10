@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {
-    Table, Pagination, Grid, Row, Col, DatePicker, Nav, Panel,
-    InputGroup, Tag, Button, Drawer, Form, ButtonToolbar, Divider
+import {Grid, Row, Col, Panel, Tag, Button, Drawer, Form, ButtonToolbar
 } from 'rsuite';
 import { getUsers } from '../../state/actions/usersAction';
 import MenuItem from '@mui/material/MenuItem';
-import { FormControl, Box, InputLabel, TextField } from '@mui/material';
-import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 const ListUsers = () => {
@@ -20,6 +15,7 @@ const ListUsers = () => {
     const [endDate, setEndDate] = useState();
 
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const userSelector = useSelector(state => state.usersState);
     const { user_list } = userSelector;
@@ -100,8 +96,6 @@ const ListUsers = () => {
                         <Col xs={24} sm={12} md={6}>
                             <input
                                 id="name"
-                                label="Search Name, Email, Phone"
-                                variant="outlined"
                                 onChange={handleSearchTermChange}
                                 value={searchTerm}
                                 placeholder="Search Name, Email ..."
@@ -111,8 +105,6 @@ const ListUsers = () => {
                         <Col xs={24} sm={12} md={6}>
                             <input
                                 id="country"
-                                label="Search Country"
-                                variant="outlined"
                                 onChange={handleCountryChange}
                                 placeholder="Search Country..."
                                 style={{height:"30px", borderRadius: '10px', padding:"5px" }}
@@ -125,10 +117,8 @@ const ListUsers = () => {
                         <Col xs={24} sm={12} md={6}>
                             <label>Gender</label>
                             <select
-                                labelId="gender-label"
                                 id="gender-label"
                                 value={gender}
-                                label="Gender"
                                 style={{ color: 'black', width: '60%',height:"30px", borderRadius: '10px', padding:"5px" }}
                                 onChange={handleGenderChange}
                             >
@@ -162,7 +152,7 @@ const ListUsers = () => {
                             <td style={styles.table.td}>{data.gender}</td>
                             <td style={styles.table.td}>{data.country}</td>
                             <td style={styles.table.td}>
-                                <Tag style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
+                                <Tag onClick={() => router.push(`/user/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
                                 <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
                                 <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
                             </td>

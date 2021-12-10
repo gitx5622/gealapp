@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,7 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import { useRouter } from "next/router";
 import Paper from '@mui/material/Paper';
-import Alert from '@mui/material/Alert';
+import { Message } from 'rsuite';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -34,7 +34,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Home() {
+export default function Login() {
     const router = useRouter();
     const dispatch = useDispatch();
     const [loginDetails, setLoginDetails] = React.useState({
@@ -46,6 +46,9 @@ export default function Home() {
         loading: false,
     });
 
+    const loginSelector = useSelector(state => state.usersState);
+    const { errorMessage } = loginSelector;
+    console.log(errorMessage);
     const handleUserLogin = e => {
         setLoginStatus(status => ({
             ...status,
@@ -59,11 +62,15 @@ export default function Home() {
             phone,
             password,
         };
-
+        if (bodyData.phone !== "" && bodyData.password !== "") {
+            dispatch({
+                type:"ERROR",
+                errorMessage:"Make sure all fileld are filled"
+            })
+        }
         loginUser(dispatch, bodyData).then(response => {
             console.log(response);
-            if (response.status === 200) router.push('/dashboard/home', undefined, { shallow: true });
-            if (response.status === 401) setLoginStatus({ loading: false, error: response.message });
+            if (response.status === 200)router.push('/dashboard/home', undefined, { shallow: true });
         });
     };
 
@@ -132,9 +139,9 @@ export default function Home() {
                                         Welcome to Geal Admin! 👋 <br />
                                         Sign in
                                     </center>
-                                </Typography>
-                                {loginStatus.error && (
-                                    <Alert severity="error">{loginStatus.error}</Alert>
+                                </Typography><br/>
+                                {errorMessage && (
+                                    <Message closable style={{width:"100%"}} type="error">{errorMessage}</Message>
                                 )}
                                 <Box component="form" noValidate onSubmit={handleUserLogin} sx={{ mt: 1 }}>
                                     <TextField
@@ -161,10 +168,6 @@ export default function Home() {
                                         value={loginDetails.password}
                                         onChange={handleInputChange}
                                     />
-                                    <FormControlLabel
-                                        control={<Checkbox value="remember" color="primary" />}
-                                        label="Remember me"
-                                    />
                                     <Button
                                         type="submit"
                                         fullWidth
@@ -173,18 +176,6 @@ export default function Home() {
                                     >
                                         Sign In
                                     </Button>
-                                    <Grid container>
-                                        <Grid item xs>
-                                            <Link href="#" variant="body2">
-                                                Forgot password?
-                                            </Link>
-                                        </Grid>
-                                        <Grid item>
-                                            <Box sx={{ cursor: 'pointer', color: '#1796D2' }} onClick={() => router.push('/user/register', undefined, { shallow: true })}>
-                                                Don&sbquo;t have an account? Sign Up
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
                                     <Copyright sx={{ mt: 5 }} />
                                 </Box>
                             </Box>
