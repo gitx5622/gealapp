@@ -99,12 +99,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={PowerSection} alt="power-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -113,26 +107,13 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={KitchenSection} alt="kitchen-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
                 <Dropdown.Menu style={{ width: 200 }} icon={<CheckOutlineIcon />} title="Laundry ">
                     <Dropdown.Menu title="Laundry Appliances">
                         <Dropdown.Item>
-                            <Image src={LaundrySection} alt="laundry-section" width={300} height={200} />
-                            <p style={{ color: "black" }}>Quickfix makes sure your laundry is well<br /> functional and maintained all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
+                            Laundry
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -142,11 +123,6 @@ const Index = () => {
                             <Image src={SecuritySection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Security<br /> tight all time</p>
                             <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -155,12 +131,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={AudioSection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Audio visuals are working <br /> all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -186,12 +156,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={PowerSection} alt="power-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -200,12 +164,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={KitchenSection} alt="kitchen-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -214,12 +172,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={LaundrySection} alt="laundry-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your laundry is well<br /> functional and maintained all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -229,11 +181,6 @@ const Index = () => {
                             <Image src={SecuritySection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Security<br /> tight all time</p>
                             <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -242,12 +189,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={AudioSection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Audio visuals are working <br /> all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -273,12 +214,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={PowerSection} alt="power-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -287,12 +222,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={KitchenSection} alt="kitchen-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your power generator is well<br /> functional all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -301,12 +230,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={LaundrySection} alt="laundry-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your laundry is well<br /> functional and maintained all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -315,12 +238,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={SecuritySection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Security<br /> tight all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -329,12 +246,6 @@ const Index = () => {
                         <Dropdown.Item>
                             <Image src={AudioSection} alt="cooker-section" width={300} height={200} />
                             <p style={{ color: "black" }}>Quickfix makes sure your Audio visuals are working <br /> all time</p>
-                            <Divider />
-                            <center>
-                                <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                    Download app
-                                </Button>
-                            </center>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown.Menu>
@@ -348,60 +259,30 @@ const Index = () => {
                     <Dropdown.Item>
                         <Image src={ElectricalSection} alt="electrical-section" width={300} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Electrical systems are<br /> functional all time</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Water System and drainage ">
                     <Dropdown.Item>
                         <Image src={WaterSystemsSection} alt="kitchen-section" width={300} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Water systems are<br /> functional all time</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Interior works ">
                     <Dropdown.Item>
                         <Image src={InterirorSection} alt="kitchen-section" width={300} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Interior is <br /> looking perfect all time</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Civil works ">
                     <Dropdown.Item>
                         <Image src={CivilSection} alt="kitchen-section" width={300} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Civil work is<br /> delivered at all times</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Security Systems">
                     <Dropdown.Item>
                         <Image src={SecurityBuildingSection} alt="security-section" width={300} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Security while building is<br />well provided</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
@@ -441,36 +322,18 @@ const Index = () => {
                     <Dropdown.Item>
                         <Image src={BouncingSection} alt="security-section" width={200} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Kids equipments are<br />functional and well mantained</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Kids Trains ">
                     <Dropdown.Item>
                         <Image src={KidstrainSection} alt="security-section" width={200} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Kids equipments are<br />functional and well mantained</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Roll caster  & Speed  Boats ">
                     <Dropdown.Item>
                         <Image src={RollcasterSection} alt="security-section" width={100} height={200} />
                         <p style={{ color: "black" }}>Quickfix makes sure your Roller-castles equipments are<br />functional and well mantained</p>
-                        <Divider />
-                        <center>
-                            <Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>
-                                Download app
-                            </Button>
-                        </center>
                     </Dropdown.Item>
                 </Dropdown.Menu>
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Kids Swings ">
@@ -553,8 +416,8 @@ const Index = () => {
                                 <Col xs={16}>
                                     <div style={{ padding: "10px" }}>
                                         <h3>Cooker Repairs and Maintenance</h3><Divider />
-                                        <p style={{ fontSize: "24px", lineHeight: 2.0 }}>Searching for a reliable company to repair your cooker? Well look no further!
-                                            Quickfix will come out and fix it on a day that works for you. Download app on Playstore(Android Users) to get services
+                                        <p style={{ fontSize: "24px", lineHeight: 2.0 }}>Searching for a reliable company to repair your cooker?
+                                            Well look no further! Quickfix will come out and fix it on a day that works for you.
                                         </p>
                                     </div>
                                 </Col>
@@ -646,7 +509,7 @@ const Index = () => {
                     <center><h3>Repairs and Maintenance</h3></center>
                     <p style={{ fontSize: "20px", lineHeight: 2.0 }}>Searching for a reliable company to repair your cooker?
                         Well look no further! Quickfix will come out and fix it on a day
-                        that works for you. Download app on Playstore(Android Users) to get services
+                        that works for you.
                     </p>
                     <div style={{ background: "whitesmoke", lineHeight: 3.5 }}>
                         <center>

@@ -120,7 +120,7 @@ const UserDetails = () => {
                         </Grid>
                     </Col>
                     <Col xs={12}>
-                        <Panel header="Edit Details" collapsible shaded>
+                        <Panel header="Edit Details" shaded>
                             <Form fluid>
                                 <Form.Group controlId="name-1">
                                     <Form.ControlLabel>First Name</Form.ControlLabel>

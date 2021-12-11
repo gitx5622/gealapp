@@ -288,13 +288,12 @@ const GealLayout = ({ children }) => {
           <Header>
             <Navbar
               style={{background:"#EAEEF3", color: "black", fontSize: "16px", fontFamily: "Montserrat,Helvetica,Arial,serif" }}>
-              <Navbar.Brand href="#">
+              <Navbar.Brand href="/dashboard/home">
                 Dashboard
               </Navbar.Brand>
               <Nav>
-                <Nav.Item>Users</Nav.Item>
-                <Nav.Item>Roles</Nav.Item>
-                <Nav.Item>Permissions</Nav.Item>
+                <Nav.Item onClick={() => router.push('/user/list-users')}>Users</Nav.Item>
+                <Nav.Item onClick={() => router.push('/dashboard/roles/list-roles')}>Roles</Nav.Item>
               </Nav>
               <Nav pullRight>
                 <Nav.Item>

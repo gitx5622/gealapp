@@ -1,7 +1,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { Grid, Row, Col, Nav, Button, Panel } from 'rsuite';
+import {Grid, Row, Col, Nav, Button, Panel, Divider} from 'rsuite';
 import PeoplesIcon from '@rsuite/icons/Peoples';
 import PeopleBranchIcon from '@rsuite/icons/PeopleBranch';
 import TaskIcon from '@rsuite/icons/Task';
@@ -48,7 +48,9 @@ const Home = () => {
     return (
         <div>
             <Panel>
-            <p style={{ fontSize: "24px", color: "#006D7E" }}>Dashboard:</p><br/>
+                <Divider/>
+            <p style={{ fontSize: "28px", color: "#006D7E", textAlign:"center" }}>DASHBOARD</p>
+                <Divider/>
             <Grid fluid>
                 <Row gutter={8} className="show-grid">
                     <Col xs={24} sm={12} md={6}>
@@ -124,9 +126,9 @@ const Home = () => {
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
-                                    <center><h5><CountUp start={10} duration={4} end={230} /><br /> Users</h5></center>
+                                    <center><h5><CountUp start={10} duration={4} end={230} /><br /> Payments</h5></center>
                                 </Col>
-                                <Image src={Users} alt="" />
+                                <Image src={Skills} alt="" />
                             </Row>
                         </Panel>
                     </Col>
@@ -139,9 +141,9 @@ const Home = () => {
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
-                                    <center><h5><CountUp start={10} duration={5} end={730} /><br /> Servicemen</h5></center>
+                                    <center><h5><CountUp start={10} duration={5} end={730} /><br /> Clients</h5></center>
                                 </Col>
-                                <Image src={Servicemen} alt="" />
+                                <Image src={Jobs} alt="" />
                             </Row>
                         </Panel>
                     </Col>
@@ -154,9 +156,9 @@ const Home = () => {
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
-                                    <center><h5><CountUp start={10} duration={3} end={476} /><br /> Jobs</h5></center>
+                                    <center><h5><CountUp start={10} duration={3} end={476} /><br /> Roles</h5></center>
                                 </Col>
-                                <Image src={Jobs} alt="" />
+                                <Image src={Servicemen} alt="" />
                             </Row>
                         </Panel>
                     </Col>
@@ -169,9 +171,9 @@ const Home = () => {
                                     </div>
                                 </Col>
                                 <Col xs={24} sm={12} md={12}>
-                                    <center><h5><CountUp start={10} duration={6} end={112} /><br /> Skills</h5></center>
+                                    <center><h5><CountUp start={10} duration={6} end={112} /><br /> Permissions</h5></center>
                                 </Col>
-                                <Image src={Skills} alt="" />
+                                <Image src={Users} alt="" />
                             </Row>
                         </Panel>
                     </Col>
