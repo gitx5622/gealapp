@@ -107,7 +107,7 @@ export const rejectServiceman = async (dispatch, servicemanUserID) => {
         return await axiosConfig
             .put(`/admin-api/reject-serviceman/${servicemanUserID}`, {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
+                    'Token': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
                 },
             })

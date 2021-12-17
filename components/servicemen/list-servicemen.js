@@ -135,6 +135,23 @@ const ListServicemen = () => {
         setCountry(e.target.value);
     }
 
+    const handleRejectServiceman = (data) => {
+        rejectServiceman(dispatch, data.user_id)
+            .then(response => {
+                if(response.status === 200){
+                    setRejectOpen(false);
+                }
+            });
+    }
+    const handleApproveServiceman = (data) => {
+        approveServiceman(dispatch, data.user_id)
+            .then(response => {
+                if(response.status === 200) {
+                    setOpen(false);
+                }
+            });
+    }
+
     React.useEffect(() => {
         getAllServicemen(dispatch);
     }, [dispatch]);
@@ -268,7 +285,7 @@ const ListServicemen = () => {
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button
-                                            onClick={() => {approveServiceman(dispatch, data.user_id).then(response => console.log(response)); setOpen(false)}}
+                                            onClick={() => handleApproveServiceman(data)}
                                             appearance="primary">
                                             Yes
                                         </Button>
@@ -286,7 +303,7 @@ const ListServicemen = () => {
                                         <h6>Are you sure you want to <span style={{color:"red"}}>Reject</span> the selected serviceman</h6>
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button onClick={() => { rejectServiceman(dispatch, data.user_id).then(response => console.log(response)); setRejectOpen(false);}} appearance="primary">
+                                        <Button onClick={() => handleRejectServiceman(data)} appearance="primary">
                                             Yes
                                         </Button>
                                         <Button onClick={handleRejectClose} appearance="subtle">

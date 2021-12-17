@@ -15,6 +15,9 @@ export const loginUser = async (dispatch, bodyData) => {
                 localStorage.sessionID = tokenInfo.sid;
                 localStorage.currentUser = JSON.stringify(response.data);
                 localStorage.token = userToken;
+                dispatch({
+                    type: SUCCESS,
+                });
             }else {
                 return {
                     dispatch: {
@@ -23,9 +26,6 @@ export const loginUser = async (dispatch, bodyData) => {
                     }
                 }
             }
-            dispatch({
-                type: SUCCESS,
-            });
             return response;
         });
     } catch (error) {

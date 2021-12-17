@@ -118,7 +118,7 @@ export default function Login() {
                             }}
                         >
                             <Box sx={{ ml: 5, color: '#1976D2', '@media only screen and (max-width: 600px)': { display: 'none' } }}>
-                                <h3>Geal Admin</h3>
+                                <h3>Quickfix Admin</h3>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
@@ -136,7 +136,7 @@ export default function Login() {
                                 </Avatar>
                                 <Typography component="h1" variant="h5">
                                     <center>
-                                        Welcome to Geal Admin! 👋 <br />
+                                        Welcome to Quickfix Admin! 👋 <br />
                                         Sign in
                                     </center>
                                 </Typography><br/>

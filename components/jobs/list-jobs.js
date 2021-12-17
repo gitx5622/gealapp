@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {
-    Table, Pagination, Grid, Row, Col, DatePicker, Nav, Panel,
-    InputGroup, Tag, Button, Drawer, Form, ButtonToolbar, Divider
+import {Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider
 } from 'rsuite';
-import { getUsers } from '../../state/actions/usersAction';
 import MenuItem from '@mui/material/MenuItem';
-import { FormControl, Box, InputLabel, TextField } from '@mui/material';
-import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
-import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import {getAllJobs} from "../../state/actions/jobAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -114,15 +108,12 @@ const ListJobs = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
 
     const dispatch = useDispatch();
 
-    const userSelector = useSelector(state => state.usersState);
-    const { user_list } = userSelector;
-    const { users, pagination } = user_list;
-
+    const userSelector = useSelector(state => state.jobState);
+    const { job_list } = userSelector;
+    const { jobs } = job_list;
 
     const handleSearchTermChange = (e) => {
         setSearchTerm(e.target.value);
@@ -134,9 +125,9 @@ const ListJobs = () => {
         setCountry(e.target.value);
     }
 
-    React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country);
-    }, [dispatch, searchTerm, gender, country]);
+    useEffect(() => {
+        getAllJobs(dispatch);
+    }, [dispatch]);
 
     return (
         <div>
@@ -240,30 +231,24 @@ const ListJobs = () => {
                 <table style={styles.table}>
                     <tr>
                         <th style={styles.table.th}>ID</th>
-                        <th style={styles.table.th}>First Name</th>
-                        <th style={styles.table.th}>Last Name</th>
-                        <th style={styles.table.th}>Email</th>
-                        <th style={styles.table.th}>Phone</th>
-                        <th style={styles.table.th}>Gender</th>
-                        <th style={styles.table.th}>Country</th>
-                        <th style={styles.table.th}>Actions</th>
+                        <th style={styles.table.th}>Client Name</th>
+                        <th style={styles.table.th}>Category Name</th>
+                        <th style={styles.table.th}>Sub Category Name</th>
+                        <th style={styles.table.th}>Client Role</th>
+                        <th style={styles.table.th}>Service Name</th>
+                        <th style={styles.table.th}>Serviceman Role</th>
                     </tr>
-                    {users?.map((data, index) => (
+                    {jobs?.map((data, index) => (
                         <tr key={index}>
                             <td style={styles.table.td}>
                                 {data.id}
                             </td>
-                            <td style={styles.table.td}>{data.first_name}</td>
-                            <td style={styles.table.td}>{data.last_name}</td>
-                            <td style={styles.table.td}>{data.email}</td>
-                            <td style={styles.table.td}>{data.phone}</td>
-                            <td style={styles.table.td}>{data.gender}</td>
-                            <td style={styles.table.td}>{data.country}</td>
-                            <td style={styles.table.td}>
-                                <Tag style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
-                            </td>
+                            <td style={styles.table.td}>{data.client && data.client.first_name + data.client.last_name}</td>
+                            <td style={styles.table.td}>{data.category && data.category.name}</td>
+                            <td style={styles.table.td}>{data.sub_category && data.sub_category.name}</td>
+                            <td style={styles.table.td}>{data.client && data.client.role}</td>
+                            <td style={styles.table.td}>{data.service && data.service.name}</td>
+                            <td style={styles.table.td}>{data.service && data.service.role}</td>
                         </tr>
                     ))}
                 </table>

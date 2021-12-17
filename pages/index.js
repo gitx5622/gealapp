@@ -368,7 +368,7 @@ const Index = () => {
                 <Dropdown.Menu icon={<CheckOutlineIcon />} title="Interior works ">
                     <Dropdown.Item
                         onClick={() => {
-                            setWashing(flase);
+                            setWashing(false);
                             setCooker(false);
                             window.scroll(500, 500);
                             setBetting(false);
