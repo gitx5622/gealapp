@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Row, Col, Panel, Tag } from 'rsuite';
-import {getServiceman} from "../../state/actions/servicemenAction";
+import { getServiceman } from "../../state/actions/servicemenAction";
+import Link from 'next/link';
 
 const ServicemanDetails = () => {
     const router = useRouter();
@@ -24,62 +25,106 @@ const ServicemanDetails = () => {
                             <Grid fluid>
                                 <Row>
                                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Serviceman</p>
+                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Status: <Tag color="red">{serviceman.status}</Tag></p>
                                     <p style={{ fontSize: "20px" }}><b>Serviceman Documents:</b> </p>
                                     <table style={styles.table}>
                                         <tr>
                                             <th style={styles.table.th}>ID</th>
                                             <th style={styles.table.th}>Document Type</th>
                                             <th style={styles.table.th}>File Name</th>
+                                            <th style={styles.table.th}>Status</th>
+                                            <th style={styles.table.th}>Approved/Not</th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.thx}>1</th>
-                                            <th style={styles.table.th}>Application Letter</th>
-                                            <th style={styles.table.td}>{serviceman.application_letter}</th>
+                                            <th style={styles.table.thd}>1</th>
+                                            <th style={styles.table.td}>Application Letter</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.application_letter}`}>
+                                                    <a>{serviceman.application_letter}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.thx}>2</th>
-                                            <th style={styles.table.th}>Certificate</th>
-                                            <th style={styles.table.td}>{serviceman.certificate}</th>
+                                            <th style={styles.table.thd}>2</th>
+                                            <th style={styles.table.td}>Certificate</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.certificate}`}>
+                                                    <a>{serviceman.certificate}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.thx}>3</th>
-                                            <th style={styles.table.th}>Contract</th>
-                                            <th style={styles.table.td}>{serviceman.contract}</th>
+                                            <th style={styles.table.thd}>3</th>
+                                            <th style={styles.table.td}>Contract</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.contract}`}>
+                                                    <a>{serviceman.contract}</a>
+                                                </Link>
+
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>4</th>
-                                            <th style={styles.table.th}>Good Conduct</th>
-                                            <th style={styles.table.td}>{serviceman.good_conduct}</th>
+                                            <th style={styles.table.thd}>4</th>
+                                            <th style={styles.table.td}>Good Conduct</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.good_conduct}`}>
+                                                    <a>{serviceman.good_conduct}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>5</th>
-                                            <th style={styles.table.th}>ID Photo</th>
-                                            <th style={styles.table.td}>{serviceman.id_photo}</th>
+                                            <th style={styles.table.thd}>5</th>
+                                            <th style={styles.table.td}>ID Photo</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.id_photo}`}>
+                                                    <a>{serviceman.id_photo}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>6</th>
-                                            <th style={styles.table.th}>Curriculum Vitau(CV)</th>
-                                            <th style={styles.table.td}>{serviceman.my_cv}</th>
+                                            <th style={styles.table.thd}>6</th>
+                                            <th style={styles.table.td}>Curriculum Vitau(CV)</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.my_cv}`}>
+                                                    <a>{serviceman.my_cv}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>7</th>
-                                            <th style={styles.table.th}>Photo</th>
-                                            <th style={styles.table.td}>{serviceman.photo}</th>
+                                            <th style={styles.table.thd}>7</th>
+                                            <th style={styles.table.td}>Photo</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.photo}`}>
+                                                    <a>{serviceman.photo}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>8</th>
-                                            <th style={styles.table.th}>Curriculum Vitau(CV)</th>
-                                            <th style={styles.table.td}>{serviceman.my_cv}</th>
+                                            <th style={styles.table.thd}>8</th>
+                                            <th style={styles.table.td}>Curriculum Vitau(CV)</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.my_cv}`}>
+                                                    <a>{serviceman.my_cv}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>9</th>
-                                            <th style={styles.table.th}>Professional License</th>
-                                            <th style={styles.table.td}>{serviceman.professional_license}</th>
+                                            <th style={styles.table.thd}>9</th>
+                                            <th style={styles.table.td}>Professional License</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.professional_license}`}>
+                                                    <a>{serviceman.professional_license}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <th style={styles.table.th}>10</th>
-                                            <th style={styles.table.th}>Reference Letter</th>
-                                            <th style={styles.table.td}>{serviceman.reference_letter}</th>
+                                            <th style={styles.table.thd}>10</th>
+                                            <th style={styles.table.td}>Reference Letter</th>
+                                            <th style={styles.table.td}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.reference_letter}`}>
+                                                    <a>{serviceman.reference_letter}</a>
+                                                </Link>
+                                            </th>
                                         </tr>
                                     </table>
                                 </Row>
@@ -98,13 +143,6 @@ const styles = {
         fontFamily: 'Quicksand, sans-serif',
         borderCollapse: 'collapse',
         width: '100%',
-        thx: {
-            border: '1px solid #dddddd',
-            textAlign: 'left',
-            padding: '8px',
-            color:"white",
-            background: '#006D7E',
-        },
         td: {
             border: '1px solid #dddddd',
             textAlign: 'left',
@@ -116,6 +154,13 @@ const styles = {
             padding: '8px',
             background: '#006D7E',
             color: "white"
+        },
+        thd: {
+            border: '1px solid #dddddd',
+            textAlign: 'left',
+            padding: '8px',
+            background: 'whitesmoke',
+            color: "black"
         }
     },
 }

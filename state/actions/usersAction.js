@@ -9,12 +9,12 @@ import {
     GET_USER_ERROR,
 } from '../dispatchTypes';
 
-export const getUsers= (dispatch, search, gender, country) => {
+export const getUsers= (dispatch, search, gender, country, page, per) => {
     dispatch({
         type: GET_USERS
     });
     axiosConfig
-        .get(`/admin-api/filter-users?search=${search}&gender=${gender}&country=${country}`, {
+        .get(`/admin-api/filter-users?search=${search}&gender=${gender}&country=${country}&page=${page}&per=${per}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.token}`,
                 'phone': `${JSON.parse(localStorage.currentUser).phone}`,

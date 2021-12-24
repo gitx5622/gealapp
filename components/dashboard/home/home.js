@@ -17,40 +17,85 @@ const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
 const state = {
+
     series: [{
-        name: 'series1',
-        data: [31, 40, 28, 51, 42, 109, 100]
+        name: 'TEAM A',
+        type: 'column',
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
     }, {
-        name: 'series2',
-        data: [11, 32, 45, 32, 34, 52, 41]
+        name: 'TEAM B',
+        type: 'area',
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+    }, {
+        name: 'TEAM C',
+        type: 'line',
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
     }],
     options: {
-        dataLabels: {
-            enabled: false
+        chart: {
+            height: 350,
+            type: 'line',
+            stacked: false,
         },
         stroke: {
+            width: [0, 2, 5],
             curve: 'smooth'
         },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
+            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+        ],
+        markers: {
+            size: 0
+        },
         xaxis: {
-            type: 'datetime',
-            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            type: 'datetime'
+        },
+        yaxis: {
+            title: {
+                text: 'Points',
+            },
+            min: 0
         },
         tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            },
-        },
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " points";
+                    }
+                    return y;
+
+                }
+            }
+        }
     },
-}
+
+
+};
 
 const Home = () => {
 
     return (
         <div>
             <Panel>
-                <Divider/>
-            <p style={{ fontSize: "28px", color: "#006D7E", textAlign:"center" }}>DASHBOARD</p>
-                <Divider/>
             <Grid fluid>
                 <Row gutter={8} className="show-grid">
                     <Col xs={24} sm={12} md={6}>
@@ -180,62 +225,16 @@ const Home = () => {
                 </Row>
             </Grid>
             </Panel>
-            {/* <div style={{ marginTop: "40px", marginLeft: "10px" }}>
-                <Grid fluid>
-                    <Row className="show-grid">
-                        <Col xs={12}>
-                            <h5>Cumulative figure of all salemen, jobs, skills and all users</h5><br />
-                            <Nav>
-                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                    <div>
-                                        <Nav.Dropdown title="Reports">
-                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                                        </Nav.Dropdown>
-                                    </div>
-                                    <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button size="sm" color="red" appearance="primary">Users</Button></Nav.Item>
-                                        <Nav.Item>Servicemen</Nav.Item>
-                                        <Nav.Item>Jobs</Nav.Item>
-                                        <Nav.Item>Skills</Nav.Item>
-                                    </div>
-                                </div>
-                            </Nav><br />
-                            <Chart
-                                options={state.options}
-                                series={state.series}
-                                type="area"
-                                height={300}
-                                width='100%'
-                            />
-                        </Col>
-                        <Col xs={12}>
-                            <h5>Cumulative figure of all salemen, jobs, skills and all users</h5><br />
-                            <Nav>
-                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                    <div>
-                                        <Nav.Dropdown title="Reports">
-                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                                        </Nav.Dropdown>
-                                    </div>
-                                    <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item>Users</Nav.Item>
-                                        <Nav.Item active><Button size="sm" color="green" appearance="primary">Servicemen</Button></Nav.Item>
-                                        <Nav.Item>Jobs</Nav.Item>
-                                        <Nav.Item>Skills</Nav.Item>
-                                    </div>
-                                </div>
-                            </Nav><br />
-                            <Image src={Graph} alt="" height={350} />
-                        </Col>
-                    </Row>
-                </Grid>
-            </div> */}
+            <Panel shaded>
+            <p style={{ fontSize: "24px", color: "#006D7E" }}>User Reports:</p>
+                <Chart
+                    options={state.options}
+                    series={state.series}
+                    type="line"
+                    height={350}
+                    width="100%"
+                />
+            </Panel>
         </div >
     )
 }

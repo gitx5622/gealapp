@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Modal
+import {
+    Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Modal, Pagination
 } from 'rsuite';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -275,13 +276,13 @@ const ListServicemen = () => {
                                 <Tag
                                     onClick={() => router.push(`/dashboard/servicemen/${data.user_id}`)}
                                     style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag onClick={handleOpen} style={{ cursor: 'pointer' }} color="blue">Approve</Tag>
+                                <Tag onClick={handleOpen} style={{ cursor: 'pointer' }} color="green">Activate</Tag>
                                 <Modal open={open} onClose={handleClose}>
                                     <Modal.Header>
-                                        <Modal.Title>Approve Serviceman</Modal.Title>
+                                        <Modal.Title>Activate Serviceman</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <h6>Are you sure you want to <span style={{color:"green"}}>Approve</span>  the selected serviceman</h6>
+                                        <h6>Are you sure you want to <span style={{color:"green"}}>Activate</span>  the selected serviceman</h6>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button

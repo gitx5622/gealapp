@@ -7,7 +7,7 @@ import {
 import MenuItem from '@mui/material/MenuItem';
 import dynamic from 'next/dynamic';
 import { BoxLoading } from 'react-loadingg';
-import { getAllJobs } from "../../state/actions/jobAction";
+import {getAllJobs, getPendingJobs} from "../../state/actions/jobAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -106,7 +106,7 @@ const polar = {
         }]
     },
 };
-const ListJobs = () => {
+const PendingJobs = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [activePage, setActivePage] = React.useState(1);
@@ -117,7 +117,8 @@ const ListJobs = () => {
     const dispatch = useDispatch();
 
     const userSelector = useSelector(state => state.jobState);
-    const { job_list, isLoading, errorMessage } = userSelector;
+    const { pending_list, isLoading, errorMessage } = userSelector;
+    console.log(pending_list)
 
     const handleSearchTermChange = (e) => {
         setSearchTerm(e.target.value);
@@ -130,7 +131,7 @@ const ListJobs = () => {
     }
 
     useEffect(() => {
-        getAllJobs(dispatch, activePage, per);
+        getPendingJobs(dispatch, activePage, per);
     }, [dispatch, activePage, per]);
 
     return (
@@ -243,7 +244,7 @@ const ListJobs = () => {
                         <th style={styles.table.th}>Service</th>
                         <th style={styles.table.th}>Actions</th>
                     </tr>
-                    {job_list?.job_list?.jobs?.map((data, index) => (
+                    {pending_list?.job_list?.jobs?.map((data, index) => (
                         <tr key={index}>
                             <td style={styles.table.td}>
                                 {data.id}
@@ -262,8 +263,8 @@ const ListJobs = () => {
                         </tr>
                     ))}
                 </table><br/>
-                {job_list?.job_list?.jobs && (
-                    <Pagination size="md" total={job_list?.job_list?.pagination.count} limit={per} activePage={activePage} onChangePage={(page) => setActivePage(page)}/>
+                {pending_list?.job_list?.jobs && (
+                    <Pagination size="md" total={pending_list?.job_list?.pagination.count} limit={per} activePage={activePage} onChangePage={(page) => setActivePage(page)}/>
                 )}
             </Panel>
             <Divider />
@@ -329,7 +330,7 @@ const ListJobs = () => {
     );
 };
 
-export default ListJobs;
+export default PendingJobs;
 
 const styles = {
     table: {

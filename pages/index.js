@@ -45,10 +45,10 @@ import Head from 'next/head';
 const NavBarInstance = () => {
     const router = useRouter();
     return (
-        <Navbar style={{ padding: "10px", background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)" }}>
+        <Navbar style={{ padding: "10px", background: "white" }}>
             <Navbar.Brand href="#" style={{ borderRadius:"10px", marginTop: "-30px", fontSize: "30px", color: "orange", fontWeight: 700 }}><Image width="100px" height="65px" src={Logo} alt="logo"/></Navbar.Brand>
             <Nav pullRight>
-                <div style={{ display: 'flex', gap: "2em", color: 'white' }}>
+                <div style={{ display: 'flex', gap: "2em", color: 'black' }}>
                     <h3>Email   Info@QuicKfix-Si.Com</h3>
                     <h3>CALL US: 0722779770</h3>
                     <Button color="cyan" appearance="primary" onClick={() => router.push('user/login')} style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
@@ -85,8 +85,8 @@ const Index = () => {
         minWidth: 1000,
     });
     const instance1 = (
-        <ButtonToolbar >
-            <Dropdown icon={<CheckOutlineIcon />} title="Residential Appliances" trigger="hover" style={{ background: "yellow" }}>
+        <ButtonToolbar>
+            <Dropdown icon={<CheckOutlineIcon />} title="Residential Appliances" trigger="hover" >
                 <Dropdown.Menu style={{ width: 200 }} icon={<CheckOutlineIcon />} title="Refrigeration and air conditioning">
                     <Dropdown.Menu title="Cooker">
                         <Dropdown.Item onClick={() => {
@@ -753,7 +753,7 @@ const Index = () => {
                     </Box>
                     <div style={{ display: "flex", padding: '10px', background: "#8e8e93" }}>
                         <div>
-                            <h2 style={{ color: "white" }}>Reliable service when
+                            <h2 style={{ color: "white", fontFamily: "Raleway, sans-serif"}}>Reliable service when
                                 you need it the most</h2><br />
                             <Carousel autoplay={true}>
                                 <div style={{ display: 'flex', marginBottom: "-50px" }}>
@@ -770,12 +770,12 @@ const Index = () => {
                                 </div>
                             </Carousel>
                         </div>
-                        <div style={{ float: "right" }}>
+                        <div style={{  fontFamily: "Raleway, sans-serif", float: "right" }}>
                             <h3 style={{ color: "black" }}>Here to help Keep your
                                 appliances working
                             </h3>
                             <Image src={Repair} alt="shape right" width="350" /><Divider />
-                            <center><Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", width: "100%" }}>Get Service</Button></center>
+                            <center><Button color="cyan" appearance="primary" style={{ borderRadius: "50px", padding: "15px", color:"black", width: "100%" }}>Get Service</Button></center>
                         </div>
                     </div>
                     {cooker && (
@@ -1153,7 +1153,7 @@ const styles = {
     navbar: {
         paddingY: "1em",
         paddingX: "5em",
-        background: "whitesmoke",
+        background: "linear-gradient(to bottom, rgba(0, 109, 126, 1) 0%, rgba(1, 103, 119, 1) 21%, rgba(5, 79, 90, 1) 57%, rgba(36, 30, 32, 1) 93%, rgba(36, 30, 32, 1) 100%)",
         display: 'flex',
         gap: "2em",
         justifyContent: "center",

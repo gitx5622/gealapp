@@ -14,6 +14,7 @@ import Home from './home/home';
 import ServicemenMaps from "../servicemen/servicemen-maps";
 import RoleDetails from './roles/role_details';
 import ServicemanDetails from "../servicemen/servicemanDetails";
+import PendingJobs from "../jobs/pending";
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
@@ -45,6 +46,10 @@ const GealDashboard = ({ section }) => {
             case 'list-jobs':
                 return (
                     <ListJobs section={section} />
+                );
+            case 'pending-jobs':
+                return (
+                    <PendingJobs section={section} />
                 );
             case 'list-roles':
                 return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {Grid, Row, Col, Panel, Tag, Button, Drawer, Form, ButtonToolbar
+import {Grid, Row, Col, Panel, Tag, Button, Pagination, Drawer, Form, ButtonToolbar
 } from 'rsuite';
 import { getUsers } from '../../state/actions/usersAction';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,6 +11,8 @@ const ListUsers = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
+    const [activePage, setActivePage] = React.useState(1);
+    const [per, setPer] = React.useState(10);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
 
@@ -20,6 +22,7 @@ const ListUsers = () => {
     const userSelector = useSelector(state => state.usersState);
     const { user_list } = userSelector;
     const { users, pagination } = user_list;
+    console.log(users);
 
 
     const handleSearchTermChange = (e) => {
@@ -33,8 +36,8 @@ const ListUsers = () => {
     }
 
     React.useEffect(() => {
-        getUsers(dispatch, searchTerm, gender, country);
-    }, [dispatch, searchTerm, gender, country]);
+        getUsers(dispatch, searchTerm, gender, country, activePage, per);
+    }, [dispatch, searchTerm, gender, country, activePage, per]);
 
     return (
         <div>
@@ -137,6 +140,7 @@ const ListUsers = () => {
                         <th style={styles.table.th}>Email</th>
                         <th style={styles.table.th}>Phone</th>
                         <th style={styles.table.th}>Gender</th>
+                        <th style={styles.table.th}>Role</th>
                         <th style={styles.table.th}>Country</th>
                         <th style={styles.table.th}>Actions</th>
                     </tr>
@@ -150,15 +154,25 @@ const ListUsers = () => {
                             <td style={styles.table.td}>{data.email}</td>
                             <td style={styles.table.td}>{data.phone}</td>
                             <td style={styles.table.td}>{data.gender}</td>
+                            <td style={styles.table.td}>
+                                <Tag color={
+                                data.role === "admin" ? "green" : 
+                                data.role === "seller" ? "orange" :
+                                "red"
+                                }>
+                                    {data.role}</Tag></td>
                             <td style={styles.table.td}>{data.country}</td>
                             <td style={styles.table.td}>
                                 <Tag onClick={() => router.push(`/user/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
                                 <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
+                                <Tag style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
                             </td>
                         </tr>
                     ))}
-                </table>
+                </table><br/>
+                {users && (
+                    <Pagination size="md" total={pagination.count} limit={per} activePage={activePage} onChangePage={(page) => setActivePage(page)}/>
+                )}
             </Panel>
         </div>
     );

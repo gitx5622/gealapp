@@ -24,6 +24,26 @@ export const initialRoleState = {
         jobs: [],
         pagination: {},
     },
+    pending_list: {
+        jobs: [],
+        pagination: {},
+    },
+    active_list: {
+        jobs: [],
+        pagination: {},
+    },
+    rejected_list: {
+        jobs: [],
+        pagination: {},
+    },
+    scheduled_list: {
+        jobs: [],
+        pagination: {},
+    },
+    declined_list: {
+        jobs: [],
+        pagination: {},
+    },
     status: "",
 }
 
@@ -89,7 +109,7 @@ export const jobReducer = (state = initialRoleState, action) => {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                job_list: action.job_list,
+                scheduled_list: action.scheduled_list,
             };
         }
         case GET_SCHEDULED_JOBS_ERROR: {
@@ -113,7 +133,7 @@ export const jobReducer = (state = initialRoleState, action) => {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                job_list: action.job_list,
+                pending_list: action.pending_list,
             };
         }
         case GET_PENDING_JOBS_ERROR: {
@@ -137,7 +157,7 @@ export const jobReducer = (state = initialRoleState, action) => {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                job_list: action.job_list,
+                rejected_list: action.rejected_list,
             };
         }
         case GET_REJECTED_JOBS_ERROR: {
@@ -161,7 +181,7 @@ export const jobReducer = (state = initialRoleState, action) => {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
-                job_list: action.job_list,
+                active_list: action.active_list,
             };
         }
         case GET_ACTIVE_JOBS_ERROR: {

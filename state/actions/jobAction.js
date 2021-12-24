@@ -7,13 +7,13 @@ import {
     GET_PENDING_JOBS_SUCCESS
 } from "../dispatchTypes";
 
-export const getAllJobs = async (dispatch) => {
+export const getAllJobs = async (dispatch, page, per) => {
     dispatch({
         type: GET_ALL_JOBS
     })
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-jobs`, {
+            .get(`/admin-api/filter-jobs?page=${page}&per=${per}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -36,13 +36,13 @@ export const getAllJobs = async (dispatch) => {
     }
  };
 
-export const getPendingJobs = async (dispatch) => {
+export const getPendingJobs = async (dispatch, page, per) => {
     dispatch({
         type: GET_PENDING_JOBS
     })
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-jobs?service_status=pending`, {
+            .get(`/admin-api/filter-jobs?service_status=pending&page=${page}&per=${per}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -52,7 +52,7 @@ export const getPendingJobs = async (dispatch) => {
                 console.log(response);
                 dispatch({
                     type: GET_PENDING_JOBS_SUCCESS,
-                    job_list: response.data,
+                    pending_list: response.data,
                 })
                 return response;
             })
