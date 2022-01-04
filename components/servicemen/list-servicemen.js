@@ -301,7 +301,10 @@ const ListServicemen = () => {
                                         <Modal.Title>Reject Serviceman</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <h6>Are you sure you want to <span style={{color:"red"}}>Reject</span> the selected serviceman</h6>
+                                        <label htmlFor="reason">Reason for decline servimen:</label>
+                                        <textarea id="reason" name="reason" rows="4" cols="50" style={{width: '100%'}}>
+
+                                        </textarea>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button onClick={() => handleRejectServiceman(data)} appearance="primary">

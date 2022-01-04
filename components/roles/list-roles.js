@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 import { Grid, Row, Tag, Form, Col, Button, ButtonToolbar, Modal, Panel, Input, Checkbox, CheckboxGroup, Drawer } from 'rsuite';
-import { deleteRolePermissions, getAllPermissions, getAllRoles, getRolePermissions } from "../../../state/actions/roleAction";
+import { deleteRolePermissions, getAllPermissions, getAllRoles, getRolePermissions } from "../../state/actions/roleAction";
 import Link from 'next/link';
 
 const ListRoles = () => {

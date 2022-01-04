@@ -76,7 +76,7 @@ export const approveServiceman = async (dispatch, servicemanUserID) => {
     });
     try {
         return await axiosConfig
-            .put(`/admin-api/approve-serviceman/${servicemanUserID}`, {
+            .put(`/admin-api/approve-serviceman-file/${servicemanUserID}`, {},{
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -99,13 +99,13 @@ export const approveServiceman = async (dispatch, servicemanUserID) => {
     }
 };
 
-export const rejectServiceman = async (dispatch, servicemanUserID) => {
+export const rejectServiceman = async (dispatch, servicemanUserID, reason) => {
     dispatch({
         type: REJECT_SERVICEMAN,
     });
     try {
         return await axiosConfig
-            .put(`/admin-api/reject-serviceman/${servicemanUserID}`, {
+            .put(`/admin-api/reject-serviceman/${servicemanUserID}`, {reason},{
                 headers: {
                     'Token': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,

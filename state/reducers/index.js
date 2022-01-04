@@ -3,6 +3,7 @@ import {usersReducers} from "./usersReducer";
 import {roleReducer} from "./roleReducer";
 import {servicemenReducers} from "./servicemenReducer";
 import {jobReducer} from "./jobReducer";
+import {categoryReducer} from "./categoryReducer";
 
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   roleState: roleReducer,
   servicemenState: servicemenReducers,
   jobState: jobReducer,
+  categoryState: categoryReducer
 });
 
 export default rootReducer;

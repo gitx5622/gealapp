@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import dynamic from 'next/dynamic';
 import { BoxLoading } from 'react-loadingg';
 import { getAllJobs } from "../../state/actions/jobAction";
+import {useRouter} from "next/router";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -115,6 +116,7 @@ const ListJobs = () => {
     const [country, setCountry] = useState("");
 
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const userSelector = useSelector(state => state.jobState);
     const { job_list, isLoading, errorMessage } = userSelector;
@@ -255,7 +257,7 @@ const ListJobs = () => {
                             <td style={styles.table.td}>{data && data.sub_category.name}</td>
                             <td style={styles.table.td}>{data && data.service.name}</td>
                             <td style={styles.table.td}>
-                                <Tag onClick={() => router.push(`/user/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
+                                <Tag onClick={() => router.push(`/dashboard/jobs/job/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
                                 <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
                                 <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
                             </td>
@@ -266,6 +268,7 @@ const ListJobs = () => {
                     <Pagination size="md" total={job_list?.job_list?.pagination.count} limit={per} activePage={activePage} onChangePage={(page) => setActivePage(page)}/>
                 )}
             </Panel>
+            <Panel>
             <Divider />
             <p style={{ fontSize: "24px", color: "#006D7E" }}>All Jobs Reports:</p>
             <Divider />
@@ -325,6 +328,7 @@ const ListJobs = () => {
                     </Col>
                 </Row>
             </Grid>
+            </Panel>
         </div>
     );
 };

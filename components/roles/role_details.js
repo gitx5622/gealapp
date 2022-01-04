@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRolePermissions } from '../../../state/actions/roleAction';
+import { getRolePermissions } from '../../state/actions/roleAction';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Row, Col, Panel, Tag } from 'rsuite';

@@ -7,7 +7,7 @@ import {
 import MenuItem from '@mui/material/MenuItem';
 import dynamic from 'next/dynamic';
 import { BoxLoading } from 'react-loadingg';
-import {getAllJobs, getPendingJobs} from "../../state/actions/jobAction";
+import {getPendingJobs} from "../../state/actions/jobAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -118,7 +118,6 @@ const PendingJobs = () => {
 
     const userSelector = useSelector(state => state.jobState);
     const { pending_list, isLoading, errorMessage } = userSelector;
-    console.log(pending_list)
 
     const handleSearchTermChange = (e) => {
         setSearchTerm(e.target.value);
@@ -138,7 +137,7 @@ const PendingJobs = () => {
         <div>
             <Panel>
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                    <p style={{ fontSize: "24px", color: "#006D7E" }}>All Jobs:</p>
+                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Pending Jobs:</p>
                     <Button style={{ color: "white", background: "#006D7E" }} onClick={() => setOpenWithHeader(true)}>Create Jobs</Button>
                     <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
                         <Drawer.Header>
@@ -268,7 +267,7 @@ const PendingJobs = () => {
                 )}
             </Panel>
             <Divider />
-            <p style={{ fontSize: "24px", color: "#006D7E" }}>All Jobs Reports:</p>
+            <p style={{ fontSize: "24px", color: "#006D7E" }}>Pending Jobs Reports:</p>
             <Divider />
             <Grid fluid>
                 <Row className="show-grid">

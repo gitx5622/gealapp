@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, ButtonToolbar, Button, Input, Grid, Row, Col,Panel, Checkbox, CheckboxGroup } from 'rsuite';
 import { useSelector, useDispatch } from 'react-redux';
-import { createRolePermissions, getAllPermissions } from '../../../state/actions/roleAction';
+import { createRolePermissions, getAllPermissions } from '../../state/actions/roleAction';
 
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 

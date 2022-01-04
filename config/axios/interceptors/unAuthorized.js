@@ -3,11 +3,11 @@ export default function unAuthorizedInterceptor(axiosConfig) {
     response => response,
     error => {
       if (error.response && error.response.status === 401) {
-        let currentUser = localStorage.currentUser;
-        localStorage.clear();
-        if (currentUser) {
-          localStorage.currentUser = currentUser;
+        let token = localStorage.token;
+        if (token) {
+          localStorage.token = token;
         }
+        localStorage.clear();
         window.location.replace('/user/login');
       }
 

@@ -15,7 +15,7 @@ const ServicemanDetails = () => {
     useEffect(() => {
         getServiceman(dispatch, servicemenUserID);
     }, [dispatch, servicemenUserID]);
-
+    console.log(serviceman)
     return (
         <div>
             <Grid fluid style={{ fontFamily: "Raleway, sans-serif" }}>
@@ -25,7 +25,7 @@ const ServicemanDetails = () => {
                             <Grid fluid>
                                 <Row>
                                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Show Serviceman</p>
-                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Status: <Tag color="red">{serviceman.status}</Tag></p>
+                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Status: <Tag color="red">{serviceman}</Tag></p>
                                     <p style={{ fontSize: "20px" }}><b>Serviceman Documents:</b> </p>
                                     <table style={styles.table}>
                                         <tr>
@@ -39,7 +39,7 @@ const ServicemanDetails = () => {
                                             <th style={styles.table.thd}>1</th>
                                             <th style={styles.table.td}>Application Letter</th>
                                             <th style={styles.table.td}>
-                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman.application_letter}`}>
+                                                <Link href={`https://geal.doctorateessays.com/uploads/${serviceman?.serviceman_details?.serviceman?.application_letter}`}>
                                                     <a>{serviceman.application_letter}</a>
                                                 </Link>
                                             </th>

@@ -1,34 +1,32 @@
 import axiosConfig from "../../config/axios";
 import {
-    GET_ACTIVE_JOBS,
-    GET_ACTIVE_JOBS_ERROR,
-    GET_ACTIVE_JOBS_SUCCESS,
-    GET_ALL_JOBS,
-    GET_ALL_JOBS_ERROR,
-    GET_ALL_JOBS_SUCCESS,
-    GET_DECLINED_JOBS,
-    GET_DECLINED_JOBS_ERROR,
-    GET_DECLINED_JOBS_SUCCESS,
-    GET_JOB_DETAILS, GET_JOB_DETAILS_ERROR,
-    GET_JOB_DETAILS_SUCCESS,
-    GET_PENDING_JOBS,
-    GET_PENDING_JOBS_ERROR,
-    GET_PENDING_JOBS_SUCCESS,
-    GET_REJECTED_JOBS,
-    GET_REJECTED_JOBS_ERROR,
-    GET_REJECTED_JOBS_SUCCESS,
-    GET_SCHEDULED_JOBS,
-    GET_SCHEDULED_JOBS_ERROR,
-    GET_SCHEDULED_JOBS_SUCCESS
+    GET_CATEGORIES,
+    GET_CATEGORIES_ERROR,
+    GET_CATEGORIES_SUCCESS,
+    GET_SERVICES,
+    GET_SERVICES_ERROR,
+    GET_SERVICES_SUCCESS,
+    GET_SUB_CATEGORY_AND_SERVICES,
+    GET_SUB_CATEGORY_AND_SERVICES_ERROR,
+    GET_SUB_CATEGORY_AND_SERVICES_SUCCESS,
+    UPDATE_CATEGORY_STATUS,
+    UPDATE_CATEGORY_STATUS_ERROR,
+    UPDATE_CATEGORY_STATUS_SUCCESS,
+    UPDATE_SERVICES_STATUS,
+    UPDATE_SERVICES_STATUS_ERROR,
+    UPDATE_SERVICES_STATUS_SUCCESS,
+    UPDATE_SUB_CATEGORY_STATUS,
+    UPDATE_SUB_CATEGORY_STATUS_ERROR,
+    UPDATE_SUB_CATEGORY_STATUS_SUCCESS,
 } from "../dispatchTypes";
 
-export const getAllJobs = async (dispatch, page, per) => {
+export const getCategories = async (dispatch) => {
     dispatch({
-        type: GET_ALL_JOBS
+        type: GET_CATEGORIES
     })
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-jobs?page=${page}&per=${per}`, {
+            .get(`/api/categories`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -37,56 +35,114 @@ export const getAllJobs = async (dispatch, page, per) => {
             .then(response => {
                 console.log(response);
                 dispatch({
-                    type: GET_ALL_JOBS_SUCCESS,
+                    type: GET_CATEGORIES_SUCCESS,
+                    categories: response.data,
+                })
+                return response;
+            })
+    } catch (error) {
+        dispatch({
+            type: GET_CATEGORIES_ERROR,
+            errorMessage: error.response.data.message
+        })
+        return error.response;
+    }
+};
+
+export const updateCategoryStatus = async (dispatch, categoryID) => {
+    dispatch({
+        type: UPDATE_CATEGORY_STATUS
+    })
+    try {
+        return await axiosConfig
+            .put(`/admin-api/update-category-status/${categoryID}`, {},{
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                },
+            })
+            .then(response => {
+                console.log(response);
+                dispatch({
+                    type: UPDATE_CATEGORY_STATUS_SUCCESS,
+                    updated_category: response.data,
+                })
+                return response;
+            })
+    } catch (error) {
+        dispatch({
+            type: UPDATE_CATEGORY_STATUS_ERROR,
+            errorMessage: error.response.data.message
+        })
+        return error.response;
+    }
+};
+
+export const getSubCategoriesAndServices = async (dispatch, subCategoryID) => {
+    dispatch({
+        type: GET_SUB_CATEGORY_AND_SERVICES
+    })
+    try {
+        return await axiosConfig
+            .get(`/api/sub-categories/${subCategoryID}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                },
+            })
+            .then(response => {
+                console.log(response);
+                dispatch({
+                    type: GET_SUB_CATEGORY_AND_SERVICES_SUCCESS,
+                    sub_categories: response.data,
+                })
+                return response;
+            })
+    } catch (error) {
+        dispatch({
+            type: GET_SUB_CATEGORY_AND_SERVICES_ERROR,
+            errorMessage: error.response.data.message
+        })
+        return error.response;
+    }
+};
+
+export const updateSubCategoryAndServices = async (dispatch, subCategoryID) => {
+    dispatch({
+        type: UPDATE_SUB_CATEGORY_STATUS
+    })
+    try {
+        return await axiosConfig
+            .put(`/admin-api/update-sub-category-status/${subCategoryID}`, {}, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.token}`,
+                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                },
+            })
+            .then(response => {
+                console.log(response);
+                dispatch({
+                    type: UPDATE_SUB_CATEGORY_STATUS_SUCCESS,
                     job_list: response.data,
                 })
                 return response;
             })
     } catch (error) {
         dispatch({
-            type: GET_ALL_JOBS_ERROR,
-            errorMessage: error.response.data.message
-        })
-        return error.response;
-    }
- };
-
-export const getPendingJobs = async (dispatch, page, per) => {
-    dispatch({
-        type: GET_PENDING_JOBS
-    })
-    try {
-        return await axiosConfig
-            .get(`/admin-api/filter-jobs?service_status=pending&page=${page}&per=${per}`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
-                },
-            })
-            .then(response => {
-                console.log(response);
-                dispatch({
-                    type: GET_PENDING_JOBS_SUCCESS,
-                    pending_list: response.data,
-                })
-                return response;
-            })
-    } catch (error) {
-        dispatch({
-            type: GET_PENDING_JOBS_ERROR,
+            type: UPDATE_SUB_CATEGORY_STATUS_ERROR,
             errorMessage: error.response.data.message
         })
         return error.response;
     }
 };
 
-export const getActiveJobs = async (dispatch, page, per) => {
+export const getServices = async (dispatch, subCategoryID) => {
     dispatch({
-        type: GET_ACTIVE_JOBS
+        type: GET_SERVICES
     })
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-jobs?service_status=active&page=${page}&per=${per}`, {
+            .get(`/api/sub-categories/${subCategoryID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -95,27 +151,27 @@ export const getActiveJobs = async (dispatch, page, per) => {
             .then(response => {
                 console.log(response);
                 dispatch({
-                    type: GET_ACTIVE_JOBS_SUCCESS,
-                    active_list: response.data,
+                    type: GET_SERVICES_SUCCESS,
+                    services: response.data,
                 })
                 return response;
             })
     } catch (error) {
         dispatch({
-            type: GET_ACTIVE_JOBS_ERROR,
+            type: GET_SERVICES_ERROR,
             errorMessage: error.response.data.message
         })
         return error.response;
     }
 };
 
-export const getRejectedJobs = async (dispatch, page, per) => {
+export const updateService = async (dispatch, serviceID) => {
     dispatch({
-        type: GET_REJECTED_JOBS
+        type: UPDATE_SERVICES_STATUS
     })
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-jobs?service_status=rejected&page=${page}&per=${per}`, {
+            .put(`/admin-api/update-service-status/${serviceID}`, {}, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -124,101 +180,14 @@ export const getRejectedJobs = async (dispatch, page, per) => {
             .then(response => {
                 console.log(response);
                 dispatch({
-                    type: GET_REJECTED_JOBS_SUCCESS,
-                    rejected_list: response.data,
+                    type: UPDATE_SERVICES_STATUS_SUCCESS,
+                    job_list: response.data,
                 })
                 return response;
             })
     } catch (error) {
         dispatch({
-            type: GET_REJECTED_JOBS_ERROR,
-            errorMessage: error.response.data.message
-        })
-        return error.response;
-    }
-};
-
-export const getScheduledJobs = async (dispatch, page, per) => {
-    dispatch({
-        type: GET_SCHEDULED_JOBS
-    })
-    try {
-        return await axiosConfig
-            .get(`/admin-api/filter-jobs?scheduled=true&page=${page}&per=${per}`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
-                },
-            })
-            .then(response => {
-                console.log(response);
-                dispatch({
-                    type: GET_SCHEDULED_JOBS_SUCCESS,
-                    scheduled_list: response.data,
-                })
-                return response;
-            })
-    } catch (error) {
-        dispatch({
-            type: GET_SCHEDULED_JOBS_ERROR,
-            errorMessage: error.response.data.message
-        })
-        return error.response;
-    }
-};
-
-export const getDeclinedJobs = async (dispatch, page, per) => {
-    dispatch({
-        type: GET_DECLINED_JOBS
-    })
-    try {
-        return await axiosConfig
-            .get(`/admin-api/filter-jobs?service_status=declined&page=${page}&per=${per}`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
-                },
-            })
-            .then(response => {
-                console.log(response);
-                dispatch({
-                    type: GET_DECLINED_JOBS_SUCCESS,
-                    declined_list: response.data,
-                })
-                return response;
-            })
-    } catch (error) {
-        dispatch({
-            type: GET_DECLINED_JOBS_ERROR,
-            errorMessage: error.response.data.message
-        })
-        return error.response;
-    }
-};
-
-export const getJobDetails = async (dispatch, jobID) => {
-    dispatch({
-        type: GET_JOB_DETAILS
-    })
-    try {
-        return await axiosConfig
-            .get(`/admin-api/get-job-details/${jobID}`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
-                },
-            })
-            .then(response => {
-                console.log(response);
-                dispatch({
-                    type: GET_JOB_DETAILS_SUCCESS,
-                    job: response.data,
-                })
-                return response;
-            })
-    } catch (error) {
-        dispatch({
-            type: GET_JOB_DETAILS_ERROR,
+            type: UPDATE_SERVICES_STATUS_ERROR,
             errorMessage: error.response.data.message
         })
         return error.response;

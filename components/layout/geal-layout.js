@@ -146,6 +146,18 @@ const GealLayout = ({ children }) => {
                   Clients
                 </Nav.Item>
                 <Nav.Item
+                    eventKey="14"
+                    icon={<PeopleBranchIcon color="#3498FF" />}
+                    onClick={() => router.push('/dashboard/categories/list-categories', undefined, { shallow: true })}>
+                  Categories
+                </Nav.Item>
+                <Nav.Item
+                    eventKey="15"
+                    icon={<PeopleBranchIcon color="#3498FF" />}
+                    onClick={() => router.push('/dashboard/services/list-services', undefined, { shallow: true })}>
+                  Services
+                </Nav.Item>
+                <Nav.Item
                   eventKey="4"
                   icon={<AlipayIcon color="#3498FF" />}
                   onClick={() => router.push('/dashboard/payments/payments', undefined, { shallow: true })}>
@@ -168,7 +180,7 @@ const GealLayout = ({ children }) => {
                     eventKey="5-2"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
-                    onClick={() => router.push('/dashboard/jobs/list-jobs', undefined, { shallow: true })}
+                    onClick={() => router.push('/dashboard/jobs/active-jobs', undefined, { shallow: true })}
                   >
                     Active Jobs
                   </Dropdown.Item>
@@ -176,7 +188,7 @@ const GealLayout = ({ children }) => {
                     eventKey="5-3"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
-                    onClick={() => router.push('/dashboard/jobs/active-jobs', undefined, { shallow: true })}
+                    onClick={() => router.push('/dashboard/jobs/scheduled-jobs', undefined, { shallow: true })}
                   >
                     Scheduled Jobs
                   </Dropdown.Item>
@@ -184,15 +196,15 @@ const GealLayout = ({ children }) => {
                     eventKey="5-4"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
-                    onClick={() => router.push('/dashboard/jobs/scheduled-jobs', undefined, { shallow: true })}
+                    onClick={() => router.push('/dashboard/jobs/declined-jobs', undefined, { shallow: true })}
                   >
-                    Completed Jobs
+                    Declined Jobs
                   </Dropdown.Item>
                   <Dropdown.Item
                     eventKey="6-5"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
-                    onClick={() => router.push('/dashboard/jobs/completed-jobs', undefined, { shallow: true })}
+                    onClick={() => router.push('/dashboard/jobs/pending-jobs', undefined, { shallow: true })}
                   >
                     Pending Jobs
                   </Dropdown.Item>
@@ -200,7 +212,7 @@ const GealLayout = ({ children }) => {
                     eventKey="7-5"
                     style={{ color: "black" }}
                     icon={<ListIcon color="green" />}
-                    onClick={() => router.push('/dashboard/jobs/pending-jobs', undefined, { shallow: true })}
+                    onClick={() => router.push('/dashboard/jobs/rejected-jobs', undefined, { shallow: true })}
                   >
                     Rejected Jobs
                   </Dropdown.Item>
