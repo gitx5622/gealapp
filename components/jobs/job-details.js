@@ -46,8 +46,8 @@ const JobDetails = () => {
                         <List bordered>
                             <List.Item style={{ background: "#34c3ff" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                    <h4>{job && job && job.job.job && job.job.client.first_name} {job && job.job.last_name}</h4>
-                                    <Tag size="lg" color="violet">{job && job.job.role}</Tag>
+                                    <h4>{job  && job?.job?.client?.first_name} {job && job?.job?.client?.last_name}</h4>
+                                    {/*<Tag size="lg" color="violet">{job && job?.job.role}</Tag>*/}
                                 </div>
                             </List.Item>
                         </List>
@@ -62,56 +62,56 @@ const JobDetails = () => {
                                             Last Name
                                         </List.Item>
                                         <List.Item>
-                                            Gender
+                                            Serviceman Role
                                         </List.Item>
                                         <List.Item>
-                                            Email
+                                            Serviceman Country
                                         </List.Item>
                                         <List.Item>
-                                            Country
+                                            Category Name
                                         </List.Item>
                                         <List.Item>
-                                            Phone Number
+                                            Sub Category Name
                                         </List.Item>
                                         <List.Item>
-                                            Role
+                                            Service Name
                                         </List.Item>
                                         <List.Item>
-                                            Status
+                                            Service Status
                                         </List.Item>
                                         <List.Item>
-                                            Created At
+                                            Paid Status
                                         </List.Item>
                                     </List>
                                 </Col>
                                 <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
                                     <List>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.client.first_name}
+                                            {job && job?.job?.client?.first_name}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.client.last_name}
+                                            {job && job?.job?.client?.last_name}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.gender}
+                                            {job && job?.job?.serviceman?.role}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.email}
+                                            {job && job?.job?.serviceman?.country}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.country}
+                                            {job && job?.job?.category?.name}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.phone}
+                                            {job && job?.job?.sub_category?.name}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.role}
+                                            {job && job?.job?.service?.name}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.status}
+                                            {job && job?.job?.service?.status}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job.job.created_at}
+                                            {job && job?.job?.paid_status}
                                         </List.Item>
                                     </List>
                                 </Col>
