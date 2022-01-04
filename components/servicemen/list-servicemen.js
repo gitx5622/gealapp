@@ -5,7 +5,7 @@ import {
 } from 'rsuite';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import {approveServiceman, getAllServicemen, rejectServiceman} from "../../state/actions/servicemenAction";
+import { approveServiceman, getAllServicemen, rejectServiceman } from "../../state/actions/servicemenAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -111,8 +111,7 @@ const ListServicemen = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [rejectReason, setRejectReason] = useState("");
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -136,10 +135,19 @@ const ListServicemen = () => {
         setCountry(e.target.value);
     }
 
-    const handleRejectServiceman = (data) => {
-        rejectServiceman(dispatch, data.user_id)
+    const handleRejectChange = (event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+        setRejectReason({
+            ...rejectReason,
+            [name]: value
+        })
+    }
+
+    const handleRejectServiceman = (data, reason) => {
+        rejectServiceman(dispatch, data.user_id, reason)
             .then(response => {
-                if(response.status === 200){
+                if (response.status === 200) {
                     setRejectOpen(false);
                 }
             });
@@ -147,7 +155,7 @@ const ListServicemen = () => {
     const handleApproveServiceman = (data) => {
         approveServiceman(dispatch, data.user_id)
             .then(response => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     setOpen(false);
                 }
             });
@@ -163,8 +171,8 @@ const ListServicemen = () => {
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen List:</p>
                     <Button
-                            style={{ color: "white", background: "#006D7E" }}
-                            onClick={() => setOpenWithHeader(true)}>Create Servicemen</Button>
+                        style={{ color: "white", background: "#006D7E" }}
+                        onClick={() => setOpenWithHeader(true)}>Create Servicemen</Button>
                     <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
                         <Drawer.Header>
                             <Drawer.Title>Add Servicemen</Drawer.Title>
@@ -222,7 +230,7 @@ const ListServicemen = () => {
                                 onChange={handleSearchTermChange}
                                 value={searchTerm}
                                 placeholder="Search Name, Email ..."
-                                style={{height:"30px", borderRadius: '10px',padding:"5px" }}
+                                style={{ height: "30px", borderRadius: '10px', padding: "5px" }}
                             />
                         </Col>
                         <Col xs={24} sm={12} md={6}>
@@ -230,7 +238,7 @@ const ListServicemen = () => {
                                 id="country"
                                 onChange={handleCountryChange}
                                 placeholder="Search Country..."
-                                style={{height:"30px", borderRadius: '10px', padding:"5px" }}
+                                style={{ height: "30px", borderRadius: '10px', padding: "5px" }}
                                 value={country}
                             />
                         </Col>
@@ -242,7 +250,7 @@ const ListServicemen = () => {
                             <select
                                 id="gender-label"
                                 value={gender}
-                                style={{ color: 'black', width: '60%',height:"30px", borderRadius: '10px', padding:"5px" }}
+                                style={{ color: 'black', width: '60%', height: "30px", borderRadius: '10px', padding: "5px" }}
                                 onChange={handleGenderChange}
                             >
                                 <option>All</option>
@@ -282,7 +290,7 @@ const ListServicemen = () => {
                                         <Modal.Title>Activate Serviceman</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <h6>Are you sure you want to <span style={{color:"green"}}>Activate</span>  the selected serviceman</h6>
+                                        <h6>Are you sure you want to <span style={{ color: "green" }}>Activate</span>  the selected serviceman</h6>
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button
@@ -302,12 +310,15 @@ const ListServicemen = () => {
                                     </Modal.Header>
                                     <Modal.Body>
                                         <label htmlFor="reason">Reason for decline servimen:</label>
-                                        <textarea id="reason" name="reason" rows="4" cols="50" style={{width: '100%'}}>
-
-                                        </textarea>
+                                        <textarea
+                                            name="reason"
+                                            onChange={handleRejectChange}
+                                            style={{ border: '1px solid #becad6', width: "100%", padding: "10px", borderRadius: "5px", }}
+                                            rows={4}
+                                            placeholder="Decline serviceman reason" /><br />
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button onClick={() => handleRejectServiceman(data)} appearance="primary">
+                                        <Button onClick={() => handleRejectServiceman(data, rejectReason)} appearance="primary">
                                             Yes
                                         </Button>
                                         <Button onClick={handleRejectClose} appearance="subtle">
@@ -320,9 +331,9 @@ const ListServicemen = () => {
                     ))}
                 </table>
             </Panel>
-            <Divider/>
+            <Divider />
             <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen Reports:</p>
-            <Divider/>
+            <Divider />
             <Grid fluid>
                 <Row className="show-grid">
                     <Col xs={12}>
