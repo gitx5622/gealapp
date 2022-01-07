@@ -168,7 +168,7 @@ const ListSubCategories = () => {
                             <td style={styles.table.td}>
                                 <center>
                                     <Tag onClick={() => { updateSubCategoryAndServices(dispatch, data.id); getSubCategoriesAndServices(dispatch) }}
-                                        style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
+                                        style={{ cursor: 'pointer' }} color="red">Deactivate Sub Category</Tag>
                                 </center>
                             </td>
                         </tr>
