@@ -114,8 +114,16 @@ const ListCategories = () => {
     const categorySelector = useSelector(state => state.categoryState);
     const { categories, isLoading, errorMessage } = categorySelector;
 
+    const handleUpdateCategory = (data) => {
+        updateCategoryStatus(dispatch, data.id)
+            .then(response => {
+                if (response.status === 200){
+                   getCategories(dispatch);
+                }
+            })
+    }
     useEffect(() => {
-        getCategories(dispatch);
+        getCategories(dispatch)
     }, [dispatch]);
 
     return (
@@ -147,7 +155,13 @@ const ListCategories = () => {
                             <td style={styles.table.td}>{data && data.status}</td>
                             <td style={styles.table.td}>
                                 <Tag onClick={() => router.push(`/dashboard/categories/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show Sub Categories</Tag>
-                                <Tag onClick={() => { updateCategoryStatus(dispatch, data.id); getCategories(dispatch)}} style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
+                                {data && data.status === "active" ?
+                                    <Tag onClick={() => handleUpdateCategory(data)} style={{cursor: 'pointer'}}
+                                         color="red"> Deactivate</Tag>
+                                    :
+                                    <Tag onClick={() => handleUpdateCategory(data)} style={{cursor: 'pointer'}}
+                                         color="green"> Activate</Tag>
+                                }
                             </td>
                         </tr>
                     ))}

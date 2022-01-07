@@ -8,14 +8,15 @@ import {
     GET_SERVICEMAN,
     GET_SERVICEMAN_ERROR,
     GET_SERVICEMAN_SUCCESS,
-    GET_USER,
-    GET_USER_ERROR,
-    GET_USER_SUCCESS,
-    GET_USERS,
     GET_USERS_ERROR,
-    GET_USERS_SUCCESS,
     REJECT_SERVICEMAN, REJECT_SERVICEMAN_ERROR,
-    REJECT_SERVICEMAN_SUCCESS
+    REJECT_SERVICEMAN_SUCCESS,
+    REJECT_SERVICEMAN_FILE,
+    REJECT_SERVICEMAN_FILE_SUCCESS,
+    REJECT_SERVICEMAN_FILE_ERROR,
+    APPROVE_SERVICEMAN_FILE,
+    APPROVE_SERVICEMAN_FILE_SUCCESS,
+    APPROVE_SERVICEMAN_FILE_ERROR
 } from "../dispatchTypes";
 
 export const initialUserState = {
@@ -27,6 +28,8 @@ export const initialUserState = {
     serviceman: {},
     approved_serviceman: {},
     rejected_serviceman: {},
+    approved_serviceman_file: {},
+    rejected_serviceman_file: {},
 }
 
 export const servicemenReducers = (
@@ -114,6 +117,30 @@ export const servicemenReducers = (
                 errorMessage: action.errorMessage,
             };
         }
+        case APPROVE_SERVICEMAN_FILE: {
+            return {
+                ...state,
+                isError: false,
+                isLoading: true,
+            };
+        }
+        case APPROVE_SERVICEMAN_FILE_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: true,
+                approved_serviceman_file: action.approved_serviceman_file,
+            };
+        }
+        case APPROVE_SERVICEMAN_FILE_ERROR: {
+            return {
+                ...state,
+                isError: true,
+                isSuccess: false,
+                isLoading: false,
+                errorMessage: action.errorMessage,
+            };
+        }
         case REJECT_SERVICEMAN: {
             return {
                 ...state,
@@ -130,6 +157,30 @@ export const servicemenReducers = (
             };
         }
         case REJECT_SERVICEMAN_ERROR: {
+            return {
+                ...state,
+                isError: true,
+                isSuccess: false,
+                isLoading: false,
+                errorMessage: action.errorMessage,
+            };
+        }
+        case REJECT_SERVICEMAN_FILE: {
+            return {
+                ...state,
+                isError: false,
+                isLoading: true,
+            };
+        }
+        case REJECT_SERVICEMAN_FILE_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                isSuccess: true,
+                rejected_serviceman_file: action.approved_serviceman_file,
+            };
+        }
+        case REJECT_SERVICEMAN_FILE_ERROR: {
             return {
                 ...state,
                 isError: true,

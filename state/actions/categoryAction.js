@@ -26,7 +26,7 @@ export const getCategories = async (dispatch) => {
     })
     try {
         return await axiosConfig
-            .get(`/api/categories`, {
+            .get(`/admin-api/categories`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -123,7 +123,7 @@ export const updateSubCategoryAndServices = async (dispatch, subCategoryID) => {
                 console.log(response);
                 dispatch({
                     type: UPDATE_SUB_CATEGORY_STATUS_SUCCESS,
-                    job_list: response.data,
+                    updated_sub_category: response.data,
                 })
                 return response;
             })

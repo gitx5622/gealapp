@@ -152,12 +152,6 @@ const GealLayout = ({ children }) => {
                   Categories
                 </Nav.Item>
                 <Nav.Item
-                    eventKey="15"
-                    icon={<PeopleBranchIcon color="#3498FF" />}
-                    onClick={() => router.push('/dashboard/services/list-services', undefined, { shallow: true })}>
-                  Services
-                </Nav.Item>
-                <Nav.Item
                   eventKey="4"
                   icon={<AlipayIcon color="#3498FF" />}
                   onClick={() => router.push('/dashboard/payments/payments', undefined, { shallow: true })}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { List, Grid, Modal, Row, Col, Tag, Panel, ButtonToolbar, Button, Form } from 'rsuite';
+import { List, Grid, Modal, Row, Col, Panel, Button } from 'rsuite';
 import {getJobDetails} from "../../state/actions/jobAction";
 
 const JobDetails = () => {
@@ -19,7 +19,8 @@ const JobDetails = () => {
     }, [dispatch, jobID]);
 
     return (
-        <div style={{ marginTop: "20px" }}>
+        <Panel>
+        <div>
             <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
                 <h5>job Details:</h5>
             </div>
@@ -46,26 +47,23 @@ const JobDetails = () => {
                         <List bordered>
                             <List.Item style={{ background: "#34c3ff" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                    <h4>{job  && job?.job?.client?.first_name} {job && job?.job?.client?.last_name}</h4>
+                                    <h4>Job ID: {job && job?.job?.id}</h4>
                                     {/*<Tag size="lg" color="violet">{job && job?.job.role}</Tag>*/}
                                 </div>
                             </List.Item>
                         </List>
                         <Grid fluid>
                             <Row>
-                                <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
+                                <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
                                     <List>
                                         <List.Item>
-                                            First Name
+                                            Job ID
                                         </List.Item>
                                         <List.Item>
-                                            Last Name
+                                            Amount Paid
                                         </List.Item>
                                         <List.Item>
-                                            Serviceman Role
-                                        </List.Item>
-                                        <List.Item>
-                                            Serviceman Country
+                                            Payment Time
                                         </List.Item>
                                         <List.Item>
                                             Category Name
@@ -84,20 +82,19 @@ const JobDetails = () => {
                                         </List.Item>
                                     </List>
                                 </Col>
-                                <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
+                                <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
                                     <List>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job?.job?.client?.first_name}
+                                            {job && job?.job?.id}
                                         </List.Item>
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job?.job?.client?.last_name}
-                                        </List.Item>
+                                            {job && job?.job?.amount_paid ? job && job?.job?.amount_paid
+                                            : "null"}
+                                        </List.Item> 
                                         <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job?.job?.serviceman?.role}
-                                        </List.Item>
-                                        <List.Item style={{ color: "#1675e0" }}>
-                                            {job && job?.job?.serviceman?.country}
-                                        </List.Item>
+                                            {job && job?.job?.payment_time ? job && job?.job?.payment_time
+                                            : "null"}
+                                        </List.Item>                             
                                         <List.Item style={{ color: "#1675e0" }}>
                                             {job && job?.job?.category?.name}
                                         </List.Item>
@@ -115,12 +112,71 @@ const JobDetails = () => {
                                         </List.Item>
                                     </List>
                                 </Col>
+                                <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <List>
+                                        <List.Item>
+                                            Service End Time
+                                        </List.Item>
+                                        <List.Item>
+                                            Service Time
+                                        </List.Item>
+                                        <List.Item>
+                                            Created At
+                                        </List.Item>
+                                        <List.Item>
+                                            Updated At
+                                        </List.Item>
+                                        <List.Item>
+                                            Client ID
+                                        </List.Item>
+                                        <List.Item>
+                                            Serviceman ID
+                                        </List.Item>
+                                        <List.Item>
+                                            Client Phone
+                                        </List.Item>
+                                        <List.Item>
+                                            Serviceman Phone
+                                        </List.Item>
+                                    </List>
+                                </Col>
+                                <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <List>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.service_end_time ?
+                                            job && job?.job?.service_end_time : "null"}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.amount_paid ? job && job?.job?.amount_paid
+                                            : "null"}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.created_at}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.updated_at}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.client_id}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.serviceman?.id}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.client?.phone}
+                                        </List.Item>
+                                        <List.Item style={{ color: "#1675e0" }}>
+                                            {job && job?.job?.serviceman?.phone}
+                                        </List.Item>
+                                    </List>
+                                </Col>
                             </Row>
                         </Grid>
                     </Col>
                 </Row>
             </Grid>
         </div>
+        </Panel>
     );
 };
 

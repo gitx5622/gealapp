@@ -105,13 +105,12 @@ const polar = {
     },
 };
 const ListServicemen = () => {
-    const [open, setOpen] = React.useState(false);
-    const [rejectOpen, setRejectOpen] = React.useState(false);
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
-    const [rejectReason, setRejectReason] = useState("");
+    const [approvedMessage, setApprovedMessage] = useState("");
+    const [declineMessage, setDeclineMessage] = useState("");
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -120,10 +119,6 @@ const ListServicemen = () => {
     const { servicemen } = servicemenSelector;
     console.log(servicemen);
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const handleRejectOpen = () => setRejectOpen(true);
-    const handleRejectClose = () => setRejectOpen(false);
 
     const handleSearchTermChange = (e) => {
         setSearchTerm(e.target.value);
@@ -135,28 +130,21 @@ const ListServicemen = () => {
         setCountry(e.target.value);
     }
 
-    const handleRejectChange = (event) => {
-        let name = event.target.name;
-        let value = event.target.value;
-        setRejectReason({
-            ...rejectReason,
-            [name]: value
-        })
-    }
 
-    const handleRejectServiceman = (data, reason) => {
-        rejectServiceman(dispatch, data.user_id, reason)
+    const handleApproveServiceman = (data) => {
+        approveServiceman(dispatch,parseInt(data.user_id))
             .then(response => {
                 if (response.status === 200) {
-                    setRejectOpen(false);
+                    setApprovedMessage("Serviceman have been approved successfully")
                 }
             });
     }
-    const handleApproveServiceman = (data) => {
-        approveServiceman(dispatch, data.user_id)
+
+    const handleRejectServiceman = (data) => {
+        rejectServiceman(dispatch, parseInt(data.user_id))
             .then(response => {
                 if (response.status === 200) {
-                    setOpen(false);
+                    setDeclineMessage("Serviceman have been rejected successfully")
                 }
             });
     }
@@ -169,6 +157,12 @@ const ListServicemen = () => {
         <div>
             <Panel>
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
+                    {approvedMessage && (
+                        <Message type="success">{approvedMessage}</Message>
+                    )}
+                    {declineMessage && (
+                        <Message type="error">{declineMessage}</Message>
+                    )}
                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen List:</p>
                     <Button
                         style={{ color: "white", background: "#006D7E" }}
@@ -284,48 +278,8 @@ const ListServicemen = () => {
                                 <Tag
                                     onClick={() => router.push(`/dashboard/servicemen/${data.user_id}`)}
                                     style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag onClick={handleOpen} style={{ cursor: 'pointer' }} color="green">Activate</Tag>
-                                <Modal open={open} onClose={handleClose}>
-                                    <Modal.Header>
-                                        <Modal.Title>Activate Serviceman</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <h6>Are you sure you want to <span style={{ color: "green" }}>Activate</span>  the selected serviceman</h6>
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button
-                                            onClick={() => handleApproveServiceman(data)}
-                                            appearance="primary">
-                                            Yes
-                                        </Button>
-                                        <Button onClick={handleClose} appearance="subtle">
-                                            Cancel
-                                        </Button>
-                                    </Modal.Footer>
-                                </Modal>
-                                <Tag onClick={handleRejectOpen} style={{ cursor: 'pointer' }} color="red">Reject</Tag>
-                                <Modal open={rejectOpen} onClose={handleRejectClose}>
-                                    <Modal.Header>
-                                        <Modal.Title>Reject Serviceman</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <label htmlFor="reason">Reason for decline servimen:</label>
-                                        <textarea
-                                            name="reason"
-                                            onChange={handleRejectChange}
-                                            style={{ border: '1px solid #becad6', width: "100%", padding: "10px", borderRadius: "5px", }}
-                                            rows={4}
-                                            placeholder="Decline serviceman reason" /><br />
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button onClick={() => handleRejectServiceman(data, rejectReason)} appearance="primary">
-                                            Yes
-                                        </Button>
-                                        <Button onClick={handleRejectClose} appearance="subtle">
-                                            Cancel
-                                        </Button>
-                                    </Modal.Footer>
-                                </Modal>
+                                <Tag onClick={() => handleApproveServiceman(data)} style={{ cursor: 'pointer' }} color="green">Activate Serviceman</Tag>
+                                <Tag onClick={() => handleRejectServiceman(data)} style={{ cursor: 'pointer' }} color="red">Reject Serviceman</Tag>
                             </td>
                         </tr>
                     ))}

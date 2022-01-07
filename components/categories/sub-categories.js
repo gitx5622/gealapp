@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
-    Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form,
-    ButtonToolbar, Divider, Message, List
+    Grid, Row, Col, Nav, Panel, Tag, Button, Toggle, Divider, Message,
 } from 'rsuite';
 import { GiCheckMark } from "react-icons/gi"
-import MenuItem from '@mui/material/MenuItem';
 import dynamic from 'next/dynamic';
 import { BoxLoading } from 'react-loadingg';
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import {
-    getCategories,
     getSubCategoriesAndServices,
-    updateCategoryStatus,
+    updateService,
     updateSubCategoryAndServices
 } from "../../state/actions/categoryAction";
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -133,41 +130,50 @@ const ListSubCategories = () => {
                 </div>
                 <br />
                 {isLoading && (
-                    <BoxLoading/>
+                    <BoxLoading />
                 )}
                 {errorMessage && (
                     <Message type="error">{errorMessage}</Message>
                 )}
                 <table style={styles.table}>
                     <tr>
-                        <th style={styles.table.th}>ID</th>
-                        <th style={styles.table.th}>Sub Category</th>
-                        <th style={styles.table.th}>Services</th>
-                        <th style={styles.table.th}>Deactivate</th>
+                        <th style={styles.table.th}><center>ID</center></th>
+                        <th style={styles.table.th}><center>Sub Category</center></th>
+                        <th style={styles.table.th}><center>Services</center></th>
+                        <th style={styles.table.th}><center>Deactivate</center></th>
                     </tr>
                     {sub_categories?.sub_categories?.map((data, index) => (
                         <tr key={index}>
                             <td style={styles.table.td}>
-                                {data.id}
+                                <center>{data.id}</center>
                             </td>
-                            <td style={styles.table.td}>{data && data.name}</td>
+                            <td style={styles.table.td}><center>{data && data.name}</center></td>
                             <td style={styles.table.td}>
-                                <Grid fluid>
-                                    <Row>
-                                {data && data.services?.map((data) => (
-                                    <div key={data.id}>
-                                        <Col xs={12}><GiCheckMark/><Tag color="green" style={{marginBottom:"5px"}}>{data.status}</Tag>  {data.name}</Col>
-                                    </div>
-                                ))}
-                                    </Row>
-                                </Grid>
+                                <center>
+                                    {data && data.services.length === 0 ? "" :
+                                        <tr>
+                                            <th>Status</th>
+                                            <th>Service</th>
+                                            <th>Deactivate/Activate</th>
+                                        </tr>}
+                                    {data && data.services?.map((data) => (
+                                        <tr key={data.id} style={{ width: "100%" }}>
+                                            <td style={styles.table.td}><Tag color="green" style={{ marginBottom: "5px" }}>{data.status}</Tag></td>
+                                            <td style={styles.table.td}><GiCheckMark />{data.name}</td>
+                                            <td style={styles.table.td}><Toggle onChange={(checked) => { updateService(dispatch, data.id); !checked}} checked={data.status === 'active' ? true : false} size="lg" checkedChildren="Deactivate" unCheckedChildren="Activate" /></td>
+                                        </tr>
+                                    ))}
+                                </center>
                             </td>
                             <td style={styles.table.td}>
-                                <Tag onClick={() => { updateSubCategoryAndServices(dispatch, data.id); getSubCategoriesAndServices(dispatch)}} style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
+                                <center>
+                                    <Tag onClick={() => { updateSubCategoryAndServices(dispatch, data.id); getSubCategoriesAndServices(dispatch) }}
+                                        style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
+                                </center>
                             </td>
                         </tr>
                     ))}
-                </table><br/>
+                </table><br />
             </Panel>
             <Panel>
                 <Divider />
@@ -230,7 +236,7 @@ const ListSubCategories = () => {
                     </Row>
                 </Grid>
             </Panel>
-        </div>
+        </div >
     );
 };
 
