@@ -44,7 +44,6 @@ const ListUsers = () => {
             <Panel>
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Users List:</p>
-                    <Button style={{ color: "white", background: "#006D7E" }} onClick={() => setOpenWithHeader(true)}>Create User</Button>
                     <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
                         <Drawer.Header>
                             <Drawer.Title>Add User</Drawer.Title>
@@ -164,8 +163,6 @@ const ListUsers = () => {
                             <td style={styles.table.td}>{data.country}</td>
                             <td style={styles.table.td}>
                                 <Tag onClick={() => router.push(`/user/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="red">Deactivate</Tag>
                             </td>
                         </tr>
                     ))}

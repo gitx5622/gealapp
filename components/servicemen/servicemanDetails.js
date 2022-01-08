@@ -110,7 +110,7 @@ const ServicemanDetails = () => {
                         <Col xs={24}>
                             <Grid fluid>
                                 <Row>
-                                    <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
                                         <List>
                                             <List.Item>
                                                 Approval Date
@@ -141,7 +141,7 @@ const ServicemanDetails = () => {
                                             </List.Item>
                                         </List>
                                     </Col>
-                                    <Col xs={24} sm={12} md={12} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
                                         <List>
                                             <List.Item style={{ color: "#1675e0" }}>
                                                 {serviceman.serviceman_details?.serviceman?.approval_date ?
