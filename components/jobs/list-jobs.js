@@ -258,8 +258,6 @@ const ListJobs = () => {
                             <td style={styles.table.td}>{data && data.service.name}</td>
                             <td style={styles.table.td}>
                                 <Tag onClick={() => router.push(`/dashboard/jobs/job/${data.id}`)} style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="blue">Edit</Tag>
-                                <Tag style={{ cursor: 'pointer' }} color="red">Delete</Tag>
                             </td>
                         </tr>
                     ))}

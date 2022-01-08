@@ -261,7 +261,8 @@ const ListServicemen = () => {
                         <th style={styles.table.th}>Last Name</th>
                         <th style={styles.table.th}>Phone</th>
                         <th style={styles.table.th}>National ID</th>
-                        <th style={styles.table.th}>Status</th>
+                        <th style={styles.table.th}>Serviceman Status</th>
+                        <th style={styles.table.th}>Rejection Date</th>
                         <th style={styles.table.th}>Actions</th>
                     </tr>
                     {servicemen.registration_list?.service_registrations?.map((data, index) => (
@@ -272,8 +273,9 @@ const ListServicemen = () => {
                             <td style={styles.table.td}>{data.first_name}</td>
                             <td style={styles.table.td}>{data.last_name}</td>
                             <td style={styles.table.td}>{data.phone}</td>
-                            <td style={styles.table.td}>{data.national_id}</td>
-                            <td style={styles.table.td}><Tag color="orange">{data.status}</Tag></td>
+                            <td style={styles.table.td}>{data.national_id ? data.national_id : "null"}</td>
+                            <td style={styles.table.td}><Tag color="orange">{data.serviceman_status}</Tag></td>
+                            <td style={styles.table.td}>{data.rejection_date ? data.rejection_date : "null"}</td>
                             <td style={styles.table.td}>
                                 <Tag
                                     onClick={() => router.push(`/dashboard/servicemen/${data.user_id}`)}
