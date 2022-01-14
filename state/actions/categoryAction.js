@@ -84,7 +84,7 @@ export const getSubCategoriesAndServices = async (dispatch, subCategoryID) => {
     })
     try {
         return await axiosConfig
-            .get(`/api/sub-categories/${subCategoryID}`, {
+            .get(`/admin-api/sub-categories/${subCategoryID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,
@@ -142,7 +142,7 @@ export const getServices = async (dispatch, subCategoryID) => {
     })
     try {
         return await axiosConfig
-            .get(`/api/sub-categories/${subCategoryID}`, {
+            .get(`/admin-api/sub-categories/${subCategoryID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,

@@ -1,29 +1,32 @@
-import React from 'react';
-import GealLayout from '../layout/geal-layout';
-import ListUsers from '../users/list-users';
-import UserDetails from '../users/user-details';
-import ListServicemen from '../servicemen/list-servicemen';
-import ServiceRegistration from '../servicemen/service-registration';
-import ListJobs from '../jobs/list-jobs';
-import ListSkills from '../skills/list-skills';
-import ListClients from '../clients/list-clients';
-import ListRoles from '../roles/list-roles';
-import Payments from '../payments/payments';
-import CreateRole from '../roles/create-role';
-import Home from './home/home';
-import ServicemenMaps from "../servicemen/servicemen-maps";
-import RoleDetails from '../roles/role_details';
-import ServicemanDetails from "../servicemen/servicemanDetails";
-import PendingJobs from "../jobs/pending";
-import ActiveJobs from "../jobs/active";
-import DeclinedJobs from "../jobs/declined";
-import ScheduledJobs from "../jobs/scheduled";
-import RejectedJobs from "../jobs/rejected";
-import JobDetails from "../jobs/job-details";
-import ListCategories from "../categories/list-categories";
-import ListSubCategories from "../categories/sub-categories";
-import ListServices from "../services/list-services";
-import Services from "../services/services";
+import React, { Suspense, lazy } from 'react';
+import { BoxLoading } from 'react-loadingg';
+import dynamic from 'next/dynamic'
+const GealLayout = lazy(() => import('../layout/geal-layout'));
+const ServiceRegistration = lazy(() => import('../servicemen/service-registration'));
+const ServicemanDetails = lazy(() => import('../servicemen/servicemanDetails'));
+const ListSubCategories = lazy(() => import('../categories/sub-categories'));
+const ListServicemen = lazy(() => import('../servicemen/list-servicemen'));
+const ListCategories = lazy(() => import('../categories/list-categories'));
+const ServicemenMaps = lazy(() => import('../servicemen/servicemen-maps'));
+const ListServices = lazy(() => import('../services/list-services'));
+const ListClients = lazy(() => import('../clients/list-clients'));
+const UserDetails = lazy(() => import('../users/user-details'));
+const RoleDetails = lazy(() => import('../roles/role_details'));
+const ListSkills = lazy(() => import('../skills/list-skills'));
+const CreateRole = lazy(() => import('../roles/create-role'));
+const ScheduledJobs = lazy(() => import('../jobs/scheduled'));
+const JobDetails = lazy(() => import('../jobs/job-details'));
+const Services = lazy(() => import('../services/services'));
+const ListUsers = lazy(() => import('../users/list-users'));
+const ListRoles = lazy(() => import('../roles/list-roles'));
+const Payments = lazy(() => import('../payments/payments'));
+const RejectedJobs = lazy(() => import('../jobs/rejected'));
+const DeclinedJobs = lazy(() => import('../jobs/pending'));
+const PendingJobs = lazy(() => import('../jobs/pending'));
+const ListJobs = lazy(() => import('../jobs/list-jobs'));
+const ActiveJobs = lazy(() => import('../jobs/active'));
+const Home = dynamic(() => import('./home/home'), { suspense: true })
+
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
@@ -133,7 +136,9 @@ const GealDashboard = ({ section }) => {
     }
     return (
         <GealLayout>
+            <Suspense fallback={<div>Loading ...</div>}>
             {renderOrderPages()}
+            </Suspense>
         </GealLayout>
     )
 }
