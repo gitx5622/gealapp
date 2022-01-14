@@ -1,5 +1,4 @@
-import React, { Suspense, lazy } from 'react';
-import { BoxLoading } from 'react-loadingg';
+import React, { Suspense, lazy, Fragment } from 'react';
 import dynamic from 'next/dynamic'
 const GealLayout = lazy(() => import('../layout/geal-layout'));
 const ServiceRegistration = lazy(() => import('../servicemen/service-registration'));
@@ -135,11 +134,13 @@ const GealDashboard = ({ section }) => {
         }
     }
     return (
-        <GealLayout>
-            <Suspense fallback={<div>Loading ...</div>}>
-            {renderOrderPages()}
-            </Suspense>
-        </GealLayout>
+        <Fragment>
+            <GealLayout>
+                <Suspense fallback={<div>Loading ...</div>}>
+                    {renderOrderPages()}
+                </Suspense>
+            </GealLayout>
+        </Fragment>
     )
 }
 export default GealDashboard;

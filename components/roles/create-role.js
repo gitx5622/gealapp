@@ -67,11 +67,13 @@ const CreateRole = () => {
                                 <Grid fluid>
                                     <Row>
                                         {all_permissions.user_permissions?.map(item => (
+                                            <div key={item.id}>
                                             <Col xs={12} sm={12} md={8}>
-                                                <Checkbox key={item.id} value={item.name}>
+                                                <Checkbox value={item.name}>
                                                     {item.name}
                                                 </Checkbox>
                                             </Col>
+                                            </div>
                                         ))}
                                     </Row>
                                 </Grid>

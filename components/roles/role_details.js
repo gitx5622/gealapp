@@ -34,11 +34,13 @@ const RoleDetails = () => {
                                     <p style={{ fontSize: "20px" }}><b>Description:</b> {description}</p><br />
                                     <p style={{ fontSize: "20px" }}><b>Permissions:</b> </p>
                                     {role_permissions.assigned_permissions?.map((assigned_permission) => (
+                                        <div key={assigned_permission.id}>
                                         <Col xs={24} sm={12} md={6}>
                                             <Tag style={{ marginBottom:"10px", background: "linear-gradient(rgb(0, 109, 126) 0%, rgb(1, 103, 119) 21%)" }}>
                                                 <h6 style={{ color: "white"}}>{assigned_permission.name}</h6>
                                             </Tag>
                                         </Col>
+                                        </div>
                                     ))}
                                 </Row>
                             </Grid>

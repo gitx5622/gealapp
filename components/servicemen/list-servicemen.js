@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
-    Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Modal, Pagination
+    Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Message
 } from 'rsuite';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
