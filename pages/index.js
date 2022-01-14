@@ -50,8 +50,8 @@ const NavBarInstance = () => {
                 <div style={{ display: 'flex', gap: "2em", color: 'black' }}>
                     <h3>Email   Info@QuicKfix-Si.Com</h3>
                     <h3>CALL US: 0722779770</h3>
-                    <Link>
-                    <a href="/user/login">
+                    <Link href="/user/login">
+                    <a>
                     <Button color="cyan" appearance="primary" style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
                     </a>
                     </Link>
