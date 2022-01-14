@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Row, Col, Tag, Carousel, ButtonToolbar, Dropdown, Divider, Grid } from 'rsuite';
 import Footer from "../components/dashboard/home/footer";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import CheckOutlineIcon from '@rsuite/icons/CheckOutline';
 import Image from "next/image";
 import Repair from '../assets/repair.png';
