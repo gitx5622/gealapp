@@ -2,7 +2,7 @@ import React from 'react';
 
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-class MerchantDocument extends Document {
+class TopratedDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -38,4 +38,4 @@ class MerchantDocument extends Document {
   }
 }
 
-export default MerchantDocument;
+export default TopratedDocument;
