@@ -43,7 +43,6 @@ import Head from 'next/head';
 
 
 const NavBarInstance = () => {
-    const router = useRouter();
     return (
         <Navbar style={{ padding: "10px", background: "white" }}>
             <Navbar.Brand href="#" style={{ borderRadius:"10px", marginTop: "-30px", fontSize: "30px", color: "orange", fontWeight: 700 }}><Image width="100px" height="65px" src={Logo} alt="logo"/></Navbar.Brand>
@@ -51,7 +50,11 @@ const NavBarInstance = () => {
                 <div style={{ display: 'flex', gap: "2em", color: 'black' }}>
                     <h3>Email   Info@QuicKfix-Si.Com</h3>
                     <h3>CALL US: 0722779770</h3>
-                    <Button color="cyan" appearance="primary" onClick={() => router.push('/user/login')} style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
+                    <Link>
+                    <a href="/user/login">
+                    <Button color="cyan" appearance="primary" style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
+                    </a>
+                    </Link>
                 </div>
             </Nav>
         </Navbar>
