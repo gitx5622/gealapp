@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 import { Grid, Row, Tag, Form, Col, Button, ButtonToolbar, Modal, Panel, Input, Checkbox, CheckboxGroup, Drawer } from 'rsuite';
 import { deleteRolePermissions, getAllPermissions, getAllRoles, getRolePermissions } from "../../state/actions/roleAction";
-import Link from 'next/link';
 
 const ListRoles = () => {
     const [role, setRole] = React.useState({
@@ -70,7 +69,6 @@ const ListRoles = () => {
         getRolePermissions(dispatch, selectedRole);
     }, [dispatch, selectedRole]);
 
-    const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
     return (
         <div style={{ marginTop: "20px", marginLeft: "5px" }}>
             <Panel>
@@ -119,7 +117,7 @@ const ListRoles = () => {
                                 </Form.Group>
                                 <Form.Group controlId="description">
                                     <Form.ControlLabel>Description</Form.ControlLabel>
-                                    <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} />
+                                    {/* <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} /> */}
                                 </Form.Group>
                                 <h3>Permissions</h3>
                                 <CheckboxGroup inline name="checkboxList" defaultValue={value} value={value} onChange={handleCheckboxChange}>

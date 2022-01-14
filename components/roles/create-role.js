@@ -4,7 +4,6 @@ import { Form, ButtonToolbar, Button, Input, Grid, Row, Col,Panel, Checkbox, Che
 import { useSelector, useDispatch } from 'react-redux';
 import { createRolePermissions, getAllPermissions } from '../../state/actions/roleAction';
 
-const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
 const CreateRole = () => {
     const [value, setValue] = React.useState([]);
@@ -45,6 +44,7 @@ const CreateRole = () => {
     useEffect(() => {
         getAllPermissions(dispatch);
     }, [dispatch])
+
     return (
         <div>
             <Panel>
@@ -60,7 +60,7 @@ const CreateRole = () => {
                             </Form.Group>
                             <Form.Group controlId="description">
                                 <Form.ControlLabel>Description</Form.ControlLabel>
-                                <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} />
+                                {/* <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} /> */}
                             </Form.Group>
                             <p style={{ fontSize: "24px", color: "#006D7E" }}>Tick Permissions:</p><br/>
                             <CheckboxGroup inline name="checkboxList" value={value} onChange={handleCheckboxChange}>
