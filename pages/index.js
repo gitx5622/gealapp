@@ -51,7 +51,7 @@ const NavBarInstance = () => {
                 <div style={{ display: 'flex', gap: "2em", color: 'black' }}>
                     <h3>Email   Info@QuicKfix-Si.Com</h3>
                     <h3>CALL US: 0722779770</h3>
-                    <Button color="cyan" appearance="primary" onClick={() => router.push('user/login')} style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
+                    <Button color="cyan" appearance="primary" onClick={() => router.push('/user/login')} style={{ marginRight: "10px", borderRadius: "50px" }}>Login to Dashboard</Button>
                 </div>
             </Nav>
         </Navbar>
