@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import GealLayout from '../layout/geal-layout';
 import ServiceRegistration from '../servicemen/service-registration';
 import ServicemanDetails from '../servicemen/servicemanDetails';
@@ -133,11 +133,9 @@ const GealDashboard = ({ section }) => {
         }
     }
     return (
-        <Fragment>
             <GealLayout>
                 {renderOrderPages()}
             </GealLayout>
-        </Fragment>
     )
 }
 export default GealDashboard;
