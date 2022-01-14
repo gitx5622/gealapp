@@ -23,12 +23,16 @@ import DeclinedJobs from '../jobs/pending';
 import PendingJobs from '../jobs/pending';
 import ListJobs from '../jobs/list-jobs';
 import ActiveJobs from '../jobs/active';
+import Login from '../users/login';
 import Home from './home/home';
-
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
         switch (section) {
+            case 'login':
+                return (
+                    <Login />
+                );
             case 'home':
                 return (
                     <Home />
