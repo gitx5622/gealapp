@@ -90,7 +90,7 @@ export default function Login() {
     };
 
     React.useEffect(() => {
-        const user = localStorage.currentUser && JSON.parse(localStorage.currentUser);
+        const user = localStorage?.currentUser && JSON.parse(localStorage?.currentUser);
         if (user) {
             router.push('/dashboard/home');
         } else {
