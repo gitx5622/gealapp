@@ -1,14 +1,16 @@
 import React from 'react';
-import GealLayout from '../layout/geal-layout';
+import { BoxLoading } from 'react-loadingg';
+import dynamic from "next/dynamic";
+import GealLayout  from '../layout/geal-layout';
 import ServiceRegistration from '../servicemen/service-registration';
 import ServicemanDetails from '../servicemen/servicemanDetails';
+import ServicemenMaps from '../servicemen/servicemen-maps';
 import ListSubCategories from '../categories/sub-categories';
 import ListServicemen from '../servicemen/list-servicemen';
 import ListCategories from '../categories/list-categories';
-import ServicemenMaps from '../servicemen/servicemen-maps';
 import ListServices from '../services/list-services';
-import ListClients from '../clients/list-clients';
 import UserDetails from '../users/user-details';
+import ListClients from '../clients/list-clients';
 import RoleDetails from '../roles/role_details';
 import ListSkills from '../skills/list-skills';
 import CreateRole from '../roles/create-role';
@@ -22,17 +24,12 @@ import RejectedJobs from '../jobs/rejected';
 import DeclinedJobs from '../jobs/pending';
 import PendingJobs from '../jobs/pending';
 import ListJobs from '../jobs/list-jobs';
-import ActiveJobs from '../jobs/active';
-import Login from '../users/login';
+import ActiveJobs from '../jobs/pending';
 import Home from './home/home';
 
 const GealDashboard = ({ section }) => {
     const renderOrderPages = () => {
         switch (section) {
-            case 'login':
-                return (
-                    <Login />
-                );
             case 'home':
                 return (
                     <Home />
