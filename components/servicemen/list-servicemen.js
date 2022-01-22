@@ -135,6 +135,7 @@ const ListServicemen = () => {
         approveServiceman(dispatch,parseInt(data.user_id))
             .then(response => {
                 if (response.status === 200) {
+                    getAllServicemen(dispatch)
                     setApprovedMessage("Serviceman have been approved successfully")
                 }
             });
@@ -144,6 +145,7 @@ const ListServicemen = () => {
         rejectServiceman(dispatch, parseInt(data.user_id))
             .then(response => {
                 if (response.status === 200) {
+                    getAllServicemen(dispatch)
                     setDeclineMessage("Serviceman have been rejected successfully")
                 }
             });
@@ -156,64 +158,14 @@ const ListServicemen = () => {
     return (
         <div>
             <Panel>
+                {approvedMessage && (
+                    <Message type="success">{approvedMessage}</Message>
+                )}
+                {declineMessage && (
+                    <Message type="error">{declineMessage}</Message>
+                )}
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                    {approvedMessage && (
-                        <Message type="success">{approvedMessage}</Message>
-                    )}
-                    {declineMessage && (
-                        <Message type="error">{declineMessage}</Message>
-                    )}
                     <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen List:</p>
-                    <Button
-                        style={{ color: "white", background: "#006D7E" }}
-                        onClick={() => setOpenWithHeader(true)}>Create Servicemen</Button>
-                    <Drawer size='xs' open={openWithHeader} onClose={() => setOpenWithHeader(false)}>
-                        <Drawer.Header>
-                            <Drawer.Title>Add Servicemen</Drawer.Title>
-                            <Drawer.Actions>
-                                <Button onClick={() => setOpenWithHeader(false)} appearance="primary">
-                                    Close
-                                </Button>
-                            </Drawer.Actions>
-                        </Drawer.Header>
-                        <Drawer.Body>
-                            <Form fluid>
-                                <Form.Group controlId="name-1">
-                                    <Form.ControlLabel>First Name</Form.ControlLabel>
-                                    <Form.Control name="name-1" />
-                                    <Form.HelpText>Required</Form.HelpText>
-                                </Form.Group>
-                                <Form.Group controlId="name-2">
-                                    <Form.ControlLabel>Last Name</Form.ControlLabel>
-                                    <Form.Control name="name-2" />
-                                    <Form.HelpText>Required</Form.HelpText>
-                                </Form.Group>
-                                <Form.Group controlId="email-1">
-                                    <Form.ControlLabel>Email</Form.ControlLabel>
-                                    <Form.Control name="email-1" type="email" />
-                                    <Form.HelpText>Required</Form.HelpText>
-                                </Form.Group>
-                                <Form.Group controlId="phone-1">
-                                    <Form.ControlLabel>Phone</Form.ControlLabel>
-                                    <Form.Control name="phone-1" />
-                                </Form.Group>
-                                <Form.Group controlId="gender-1">
-                                    <Form.ControlLabel>Gender</Form.ControlLabel>
-                                    <Form.Control name="gender-1" />
-                                </Form.Group>
-                                <Form.Group controlId="country-1">
-                                    <Form.ControlLabel>Gender</Form.ControlLabel>
-                                    <Form.Control name="country-1" />
-                                </Form.Group>
-                                <Form.Group>
-                                    <ButtonToolbar>
-                                        <Button appearance="primary">Submit</Button>
-                                        <Button appearance="default">Cancel</Button>
-                                    </ButtonToolbar>
-                                </Form.Group>
-                            </Form>
-                        </Drawer.Body>
-                    </Drawer>
                 </div>
                 <br />
                 <Grid fluid style={{ marginBottom: "5px", marginTop: "3px" }}>
@@ -274,7 +226,7 @@ const ListServicemen = () => {
                             <td style={styles.table.td}>{data.last_name}</td>
                             <td style={styles.table.td}>{data.phone}</td>
                             <td style={styles.table.td}>{data.national_id ? data.national_id : "null"}</td>
-                            <td style={styles.table.td}><Tag color="orange">{data.serviceman_status}</Tag></td>
+                            <td style={styles.table.td}><Tag color={data.serviceman_status === "active" ? "green" : "orange"}>{data.serviceman_status}</Tag></td>
                             <td style={styles.table.td}>{data.rejection_date ? data.rejection_date : "null"}</td>
                             <td style={styles.table.td}>
                                 <Tag

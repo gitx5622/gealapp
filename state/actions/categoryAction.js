@@ -181,7 +181,7 @@ export const updateService = async (dispatch, serviceID) => {
                 console.log(response);
                 dispatch({
                     type: UPDATE_SERVICES_STATUS_SUCCESS,
-                    job_list: response.data,
+                    updated_service: response.data,
                 })
                 return response;
             })

@@ -34,7 +34,6 @@ const CreateRole = () => {
             user_permissions: value,
             description: role.description
         }
-
         if (role_name !== "" && description !== "") {
             createRolePermissions(dispatch, bodyData);
             router.push('/dashboard/roles/list-roles')
@@ -62,23 +61,23 @@ const CreateRole = () => {
                                 <Form.ControlLabel>Description</Form.ControlLabel>
                                 {/* <Form.Control rows={5} name="description" onChange={handleChange} accepter={Textarea} /> */}
                             </Form.Group>
-                            <p style={{ fontSize: "24px", color: "#006D7E" }}>Tick Permissions:</p><br/>
-                            <CheckboxGroup inline name="checkboxList" value={value} onChange={handleCheckboxChange}>
-                                <Grid fluid>
-                                    <Row>
-                                        {all_permissions.user_permissions?.map(item => (
-                                            <div key={item.id}>
+                        </Col>
+                        <p style={{ fontSize: "24px", color: "#006D7E" }}>Tick Permissions:</p><br/>
+                        <CheckboxGroup inline name="checkboxList" value={value} onChange={handleCheckboxChange}>
+                            <Grid fluid>
+                                <Row>
+                                    {all_permissions.user_permissions?.map(item => (
+                                        <div key={item.id}>
                                             <Col xs={12} sm={12} md={8}>
                                                 <Checkbox value={item.name}>
                                                     {item.name}
                                                 </Checkbox>
                                             </Col>
-                                            </div>
-                                        ))}
-                                    </Row>
-                                </Grid>
-                            </CheckboxGroup>
-                        </Col>
+                                        </div>
+                                    ))}
+                                </Row>
+                            </Grid>
+                        </CheckboxGroup>
                         <Form.Group>
                         <Button style={{color:"white", width:"100%", background:"#006D7E"}} type="submit">Create New Permission</Button>
                         </Form.Group>

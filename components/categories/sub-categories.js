@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     Grid, Row, Col, Nav, Panel, Tag, Button, Toggle, Divider, Message,
 } from 'rsuite';
+import CheckIcon from '@rsuite/icons/Check';
+import CloseIcon from '@rsuite/icons/Close';
 import { GiCheckMark } from "react-icons/gi"
 import dynamic from 'next/dynamic';
 import { BoxLoading } from 'react-loadingg';
@@ -126,7 +128,7 @@ const ListSubCategories = () => {
         <div>
             <Panel>
                 <div style={{ display: "flex", justifyContent: "space-between", marginLeft: "10px", marginRight: "20px" }}>
-                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Sub Categories:</p>
+                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Sub Categories and Services:</p>
                 </div>
                 <br />
                 {isLoading && (
@@ -140,35 +142,87 @@ const ListSubCategories = () => {
                         <th style={styles.table.th}><center>ID</center></th>
                         <th style={styles.table.th}><center>Sub Category</center></th>
                         <th style={styles.table.th}><center>Services</center></th>
+                        <th style={styles.table.th}><center>Sub Category Status</center></th>
                         <th style={styles.table.th}><center>Deactivate</center></th>
                     </tr>
-                    {sub_categories?.sub_categories?.map((data, index) => (
+                    {sub_categories?.sub_categories?.map((sub_category, index) => (
                         <tr key={index}>
                             <td style={styles.table.td}>
-                                <center>{data.id}</center>
+                                <center>{sub_category.id}</center>
                             </td>
-                            <td style={styles.table.td}><center>{data && data.name}</center></td>
+                            <td style={styles.table.td}><center>{sub_category && sub_category.name}</center></td>
                             <td style={styles.table.td}>
                                 <center>
-                                    {data && data.services.length === 0 ? "" :
+                                    {sub_category && sub_category.services.length === 0 ? "" :
                                         <tr>
                                             <th>Status</th>
                                             <th>Service</th>
                                             <th>Deactivate/Activate</th>
                                         </tr>}
-                                    {data && data.services?.map((data) => (
-                                        <tr key={data.id} style={{ width: "100%" }}>
-                                            <td style={styles.table.td}><Tag color="green" style={{ marginBottom: "5px" }}>{data.status}</Tag></td>
-                                            <td style={styles.table.td}><GiCheckMark />{data.name}</td>
-                                            <td style={styles.table.td}><Toggle onChange={(checked) => { updateService(dispatch, data.id); !checked}} checked={data.status === 'active' ? true : false} size="lg" checkedChildren="Deactivate" unCheckedChildren="Activate" /></td>
+                                    {sub_category && sub_category.services?.map((service) => (
+                                        <tr key={service.id} style={{ width: "100%" }}>
+                                            <td style={styles.table.td}><Tag color="green" style={{ marginBottom: "5px" }}>{service.status}</Tag></td>
+                                            <td style={styles.table.td}><GiCheckMark />{service.name}</td>
+                                            <td style={styles.table.td}>
+                                                {service && service.status === "active" ?
+                                                    <Tag onClick={() => {
+                                                        updateService(dispatch, service.id)
+                                                            .then(response => {
+                                                                if(response.status === 200){
+                                                                    getSubCategoriesAndServices(dispatch, sub_category.id)
+                                                                }
+                                                            })
+                                                    }} style={{cursor: 'pointer'}}
+                                                         color="red"> Deactivate</Tag>
+                                                    :
+                                                    <Tag onClick={() =>
+                                                        updateService(dispatch, service.id)
+                                                            .then(response => {
+                                                                if(response.status === 200){
+                                                                    getSubCategoriesAndServices(dispatch, sub_category.id)
+                                                                }
+                                                            })
+                                                    } style={{cursor: 'pointer'}}
+                                                         color="green"> Activate</Tag>
+                                                }
+                                            </td>
                                         </tr>
                                     ))}
                                 </center>
                             </td>
                             <td style={styles.table.td}>
+                                <center><Tag color="orange">{sub_category.status}</Tag></center>
+                            </td>
+                            <td style={styles.table.td}>
                                 <center>
-                                    <Tag onClick={() => { updateSubCategoryAndServices(dispatch, data.id); getSubCategoriesAndServices(dispatch) }}
-                                        style={{ cursor: 'pointer' }} color="red">Deactivate Sub Category</Tag>
+                                    {sub_category.status === "active" ?
+                                        <Tag onClick={() =>
+                                            updateSubCategoryAndServices(dispatch, sub_category.id)
+                                                .then(response => {
+                                                    if (response.status === 200){
+                                                        getSubCategoriesAndServices(dispatch, sub_category.id)
+                                                    }
+                                                })
+                                        }
+                                             style={{ cursor: 'pointer' }}
+                                             color="red">
+                                            Deactivate Sub Category
+                                        </Tag>
+                                    :
+                                        <Tag onClick={() =>
+                                            updateSubCategoryAndServices(dispatch, sub_category.id)
+                                                .then(response => {
+                                                    if (response.status === 200){
+                                                        getSubCategoriesAndServices(dispatch, sub_category.id)
+                                                    }
+                                                })
+                                        }
+                                             style={{ cursor: 'pointer' }}
+                                             color="blue">
+                                            Activate Sub Category
+                                        </Tag>
+                                    }
+
                                 </center>
                             </td>
                         </tr>
