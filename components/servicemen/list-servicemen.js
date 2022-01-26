@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
-    Grid, Row, Col, Nav, Panel, Tag, Button, Drawer, Form, ButtonToolbar, Divider, Message
+    Grid, Row, Col, Nav, Panel, Tag, Button, Divider, Message
 } from 'rsuite';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -238,7 +238,6 @@ const ListServicemen = () => {
                         </tr>
                     ))}
                 </table>
-            </Panel>
             <Divider />
             <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen Reports:</p>
             <Divider />
@@ -298,6 +297,7 @@ const ListServicemen = () => {
                     </Col>
                 </Row>
             </Grid>
+            </Panel>
         </div>
     );
 };

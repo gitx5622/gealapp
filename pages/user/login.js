@@ -75,7 +75,7 @@ export default function Login() {
         } else {
             setLoginStatus({
                 loading: false,
-                error: 'Make sure all fileld are filled'
+                error: 'Make sure all field are filled'
             })
         }
 

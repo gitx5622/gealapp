@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Row, Col, Panel, Modal, Tag, List, Button, Message } from 'rsuite';
 import { getServiceman, approveServicemanFile, rejectServicemanFile } from "../../state/actions/servicemenAction";
+import ServicemenMaps from './servicemen-maps';
 
 const ServicemanDetails = () => {
     const [rejectOpen, setRejectOpen] = React.useState(false);
@@ -57,7 +58,7 @@ const ServicemanDetails = () => {
         <div>
             <Grid fluid style={{ fontFamily: "Raleway, sans-serif" }}>
                 <Row>
-                    <Col xs={24} sm={24} md={24} style={{ borderRight: "1px solid whitesmoke", }}>
+                    <Col xs={24} sm={24} md={24}>
                         <Panel>
                             <Grid fluid>
                                 <Row>
@@ -95,9 +96,14 @@ const ServicemanDetails = () => {
                                             </Modal.Footer>
                                         </Modal>
                                     </div>
+                                    <div style={{display:'flex', gap:"4em"}}>
                                     <p style={{ fontSize: "24px", color: "#006D7E" }}>ID: {serviceman?.serviceman_details?.serviceman?.id}</p>
-                                    <p style={{ fontSize: "24px", color: "#006D7E" }}>Status: <Tag color="red">{serviceman?.serviceman_details?.serviceman?.serviceman_status}</Tag></p>
-                                    <p style={{ fontSize: "20px" }}><b>Serviceman Details:</b> </p>
+                                    <span style={{ fontSize: "24px", color: "#006D7E" }}>Status: <Tag color="red">{serviceman?.serviceman_details?.serviceman?.serviceman_status}</Tag></span>
+                                    </div>
+                                    <div>
+                                    <span style={{float:"left"}}><h5><b>Serviceman Details:</b> </h5></span>
+                                    <span style={{float:"right"}}><h5>Serviceman Location</h5></span>
+                                    </div>
                                 </Row>
                             </Grid>
                         </Panel>
@@ -106,11 +112,11 @@ const ServicemanDetails = () => {
             </Grid>
             <Panel>
                 <Grid fluid>
-                    <Row className="show-grid">
-                        <Col xs={24}>
+                    <Row>
+                        <Col xs={24} sm={12} xs={12}>
                             <Grid fluid>
                                 <Row>
-                                    <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <Col xs={24} sm={12} md={12}>
                                         <List>
                                             <List.Item>
                                                 Approval Date
@@ -141,7 +147,7 @@ const ServicemanDetails = () => {
                                             </List.Item>
                                         </List>
                                     </Col>
-                                    <Col xs={24} sm={6} md={6} style={{ borderRight: "1px solid whitesmoke", }}>
+                                    <Col xs={24} sm={12} md={12}>
                                         <List>
                                             <List.Item style={{ color: "#1675e0" }}>
                                                 {serviceman.serviceman_details?.serviceman?.approval_date ?
@@ -184,6 +190,9 @@ const ServicemanDetails = () => {
                                 </Row>
                             </Grid>
                         </Col>
+                        <Col xs={24} sm={12} md={12}>
+                            <ServicemenMaps lat={serviceman.serviceman_details?.serviceman?.latitude} lng={serviceman.serviceman_details?.serviceman?.longitude}/>
+                        </Col>
                     </Row>
                 </Grid>
             </Panel>
@@ -192,29 +201,3 @@ const ServicemanDetails = () => {
 }
 
 export default ServicemanDetails;
-const styles = {
-    table: {
-        fontFamily: 'Quicksand, sans-serif',
-        borderCollapse: 'collapse',
-        width: '100%',
-        td: {
-            border: '1px solid #dddddd',
-            textAlign: 'left',
-            padding: '8px',
-        },
-        th: {
-            border: '1px solid #dddddd',
-            textAlign: 'left',
-            padding: '8px',
-            background: '#006D7E',
-            color: "white"
-        },
-        thd: {
-            border: '1px solid #dddddd',
-            textAlign: 'left',
-            padding: '8px',
-            background: 'whitesmoke',
-            color: "black"
-        }
-    },
-}

@@ -245,17 +245,6 @@ const GealLayout = ({ children }) => {
                   </Dropdown.Item>
                 </Dropdown>
                 <Nav.Item
-                  eventKey="10"
-                  icon={<ExploreIcon color="#3498FF" />}>
-                  Servicemen Locations
-                </Nav.Item>
-                <Nav.Item
-                  eventKey="11"
-                  onClick={() => router.push('/dashboard/maps/servicemen', undefined, {shallow: true})}
-                  icon={<LocationIcon color="#3498FF" />}>
-                  Maps
-                </Nav.Item>
-                <Nav.Item
                   eventKey="12"
                   icon={<CheckOutlineIcon color="#3498FF" />}
                   onClick={() => router.push('/dashboard/servicemen/service-registration', undefined, { shallow: true })}

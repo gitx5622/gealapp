@@ -3,19 +3,27 @@ import { CustomProvider } from 'rsuite';
 import '../styles/globals.css';
 import "react-multi-carousel/lib/styles.css";
 import 'rsuite/dist/rsuite.min.css';
-import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { useStore } from '../state';
+import InitializeApp from "../containers/app/InitializeApp";
 
 function MyApp({ Component, pageProps }) {
-  const store = useStore();
+  const { initialServerSideState } = pageProps;
+
+  const store = useStore(
+         initialServerSideState
+  );
   return (
     <React.Fragment>
+      <Provider store={store}>
       <CustomProvider themes="dark">
-        <Provider store={store}>
+        <InitializeApp
+            initialServerSideState={initialServerSideState}
+        >
           <Component {...pageProps} />
-        </Provider>
+        </InitializeApp>
       </CustomProvider>
+      </Provider>
     </React.Fragment>
   )
 

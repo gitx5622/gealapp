@@ -109,7 +109,10 @@ const ListRoles = () => {
                             <Form fluid onSubmit={handleRoleUpdateSubmit}>
                                 <Form.Group controlId="role_name">
                                     <Form.ControlLabel>Role Name</Form.ControlLabel>
-                                    <select value={selectedRole} style={{ background: "white", width: "100%", height: "40px", fontSize: "20px", borderRadius: "5px" }} onChange={handleSelectChange}>
+                                    <select
+                                            value={selectedRole}
+                                            style={{ background: "white", width: "100%", height: "40px", fontSize: "20px", borderRadius: "5px" }}
+                                            onChange={handleSelectChange}>
                                         {all_roles.user_permissions?.map((role) => (
                                             <option key={role.id} value={role.name}>{role.name}</option>
                                         ))}

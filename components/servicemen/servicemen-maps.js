@@ -1,64 +1,99 @@
-import React, {useState} from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import { Grid, Row, Col } from 'rsuite';
+import React from 'react';
+import { GoogleMap, useLoadScript, Marker, InfoWindow} from "@react-google-maps/api";
+import mapStyles from "../../styles/mapStyles";
 
-const mapStyles = {
-    width: '100%',
-    height: '100%'
+const libraries = ["places"];
+const mapContainerStyle = {
+    height: "70vh",
+    width: "40vw",
+};
+const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true
 };
 
-const ServicemenMaps = (props) => {
-    const [state, setState] = useState({
-        showingInfoWindow: false,  // Hides or shows the InfoWindow
-        activeMarker: {},          // Shows the active marker upon click
-        selectedPlace: {}
-    })
+const ServicemenMaps = ({lat,lng}) => {
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS,
+        libraries,
+    });
+    const [markers, setMarkers] = React.useState([]);
+    const [selected, setSelected] = React.useState(null);
 
-    const onMarkerClick = (props, marker, e) =>
-        setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
-
-    const onClose = props => {
-        if (state.showingInfoWindow) {
-            setState({
-                ...state,
-                showingInfoWindow: false,
-                activeMarker: null
-            });
-        }
+    const center = {
+        lat: lat,
+        lng: lng,
     };
+    
+
+    const mapRef = React.useRef();
+
+    const onMapLoad = React.useCallback((map) => {
+        mapRef.current = map;
+    }, []);
+
+    const onMapClick = React.useCallback((e) => {
+        setMarkers((current) => [
+            ...current,
+            {
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng(),
+                time: new Date(),
+            },
+        ]);
+    }, []);
+
+    if (loadError) return "Error";
+    if (!isLoaded) return "Loading...";
+
     return (
-                        <Map
-                            google={props.google}
-                            zoom={14}
-                            style={mapStyles}
-                            initialCenter={
-                                {
-                                    lat: -1.2884,
-                                    lng: 36.8233
-                                }
-                            }
-                        >
-                            <Marker
-                                onClick={onMarkerClick}
-                                name={'Kenyatta International Convention Centre'}
-                            />
-                            <InfoWindow
-                                marker={state.activeMarker}
-                                visible={state.showingInfoWindow}
-                                onClose={onClose}
-                            >
-                                <div>
-                                    <h4>{state.selectedPlace.name}</h4>
-                                </div>
-                            </InfoWindow>
-                        </Map>
+        <div>
+            <GoogleMap
+                id="map"
+                mapContainerStyle={mapContainerStyle}
+                zoom={8}
+                center={center}
+                options={options}
+                onClick={onMapClick}
+                onLoad={onMapLoad}
+            >
+                {markers.map((marker) => (
+                    <Marker
+                        key={`${marker.lat}-${marker.lng}`}
+                        position={{ lat: marker.lat, lng: marker.lng }}
+                        onClick={() => {
+                            setSelected(marker);
+                        }}
+                        icon={{
+                            url: `/bear.svg`,
+                            origin: new window.google.maps.Point(0, 0),
+                            anchor: new window.google.maps.Point(15, 15),
+                            scaledSize: new window.google.maps.Size(30, 30),
+                        }}
+                    />
+                ))}
+                {selected ? (
+                    <InfoWindow
+                        position={{ lat: selected.lat, lng: selected.lng }}
+                        onCloseClick={() => {
+                            setSelected(null);
+                        }}
+                    >
+                        <div>
+                            <h2>
+                <span role="img" aria-label="bear">
+                  🐻
+                </span>{" "}
+                                Alert
+                            </h2>
+                            <p>Spotted {selected.time}</p>
+                        </div>
+                    </InfoWindow>
+                ) : null}
+            </GoogleMap>
+        </div>
     );
 };
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDZtDix3SDUmjN4-qTYjKB_kAOf3vbKKwk'
-})(ServicemenMaps);
+export default ServicemenMaps;
