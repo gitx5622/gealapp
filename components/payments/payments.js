@@ -236,7 +236,7 @@ const Payments = () => {
             </Panel>
             <p style={{ fontSize: "24px", color: "#006D7E" }}>Payment Reports:</p>
             <Panel shaded>
-                <CustomButtonGroup appearance="ghost" />
+                <CustomButtonGroup appearance="ghost" /><br/>
                 <Chart
                     options={state.options}
                     series={state.series}

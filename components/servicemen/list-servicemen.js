@@ -79,31 +79,7 @@ const state = {
         }
     },
 };
-const polar = {
-    series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
-    options: {
-        chart: {
-            type: 'polarArea',
-        },
-        stroke: {
-            colors: ['#fff']
-        },
-        fill: {
-            opacity: 0.8
-        },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }]
-    },
-};
+
 const ListServicemen = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [activePage, setActivePage] = React.useState(1);
@@ -214,8 +190,7 @@ const ListServicemen = () => {
                         <th style={styles.table.th}>Phone</th>
                         <th style={styles.table.th}>National ID</th>
                         <th style={styles.table.th}>Serviceman Status</th>
-                        <th style={styles.table.th}>Approval Date</th> 
-                        <th style={styles.table.th}>Rejection Date</th>
+                        <th style={styles.table.th}>Appr/Rej Date</th> 
                         <th style={styles.table.th}>Actions</th>
                     </tr>
                     {servicemen.registration_list?.service_registrations?.map((data, index) => (
@@ -227,8 +202,7 @@ const ListServicemen = () => {
                             <td style={styles.table.td}>{data.phone}</td>
                             <td style={styles.table.td}>{data.national_id ? data.national_id : "null"}</td>
                             <td style={styles.table.td}><Tag color={data.serviceman_status === "active" ? "green" : "orange"}>{data.serviceman_status}</Tag></td>
-                            <td style={styles.table.td}>{data.rejection_date ? data.approval_date : "null"}</td>
-                            <td style={styles.table.td}>{data.rejection_date ? data.rejection_date : "null"}</td>
+                            <td style={styles.table.td}>{data.approval_date ? data.approval_date : data.rejection_date}</td>
                             <td style={styles.table.td}>
                                 <div >
                                 <Tag
@@ -249,7 +223,7 @@ const ListServicemen = () => {
             <Divider />
             <Grid fluid>
                 <Row className="show-grid">
-                    <Col xs={12}>
+                    <Col xs={24}>
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
@@ -276,7 +250,7 @@ const ListServicemen = () => {
                                         <Nav.Dropdown.Item>Period</Nav.Dropdown.Item>
                                     </Nav.Dropdown>
                                 </div>
-                                <div>
+                                <div style={{marginRight:"15em"}}>
                                     <Nav.Dropdown title="Selected Reports">
                                         <Nav.Dropdown.Item>Category</Nav.Dropdown.Item>
                                         <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
@@ -293,33 +267,6 @@ const ListServicemen = () => {
                                 series={state.series}
                                 type="line"
                                 height={350}
-                                width="100%"
-                            />
-                        </Panel>
-                    </Col>
-                    <Col xs={12}>
-                        <p>Cumulative graphs of selected Servicemen</p><br />
-                        <Nav>
-                            <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                <div>
-                                    <Nav.Dropdown title="Reports">
-                                        <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                                    </Nav.Dropdown>
-                                </div>
-                                <div style={{ marginRight: "10px" }}>
-                                    <Nav.Item active><Button size="sm" style={{ color: "white", background: "#006D7E" }}>Selected Servicemen</Button></Nav.Item>
-                                </div>
-                            </div>
-                        </Nav><br />
-                        <Panel shaded>
-                            <Chart
-                                options={polar.options}
-                                series={polar.series}
-                                type="polarArea"
-                                height={360}
                                 width="100%"
                             />
                         </Panel>

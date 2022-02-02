@@ -245,33 +245,6 @@ const GealLayout = ({ children }) => {
                   >Create Role
                   </Dropdown.Item>
                 </Dropdown>
-                <Nav.Item
-                  eventKey="12"
-                  icon={<CheckOutlineIcon color="#3498FF" />}
-                  onClick={() => router.push('/dashboard/servicemen/service-registration', undefined, { shallow: true })}
-                  >
-                  Approval Requests
-                </Nav.Item>
-                <Dropdown
-                  eventKey="13"
-                  trigger="hover"
-                  title="Reports"
-                  icon={<AppSelectIcon color="#3498FF" />}
-                  placement="rightStart"
-                >
-                  <Dropdown.Item
-                    eventKey="9-1"
-                    icon={<AdminIcon color="green" />}
-                    onClick={() => router.push('/dashboard/roles/list-roles', undefined, { shallow: true })}
-                  >Servicemen
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    eventKey="9-2"
-                    icon={<AdminIcon color="green" />}
-                    onClick={() => router.push('/dashboard/roles/create-role', undefined, { shallow: true })}
-                  >Users
-                  </Dropdown.Item>
-                </Dropdown>
               </Nav>
             </Sidenav.Body>
           </Sidenav>
