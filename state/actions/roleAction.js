@@ -116,8 +116,8 @@ export const getAllRoles = (dispatch) => {
             '/admin-api/get-roles-and-permissions?type=1',
             {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.token}`,
-                    'phone': `${JSON.parse(localStorage.currentUser).phone}`,
+                    'Authorization': `Bearer ${localStorage?.token}`,
+                    'phone': `${JSON.parse(localStorage?.currentUser).phone}`,
                 },
             }
         )

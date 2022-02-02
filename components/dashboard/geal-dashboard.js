@@ -1,6 +1,4 @@
 import React from 'react';
-import { BoxLoading } from 'react-loadingg';
-import dynamic from "next/dynamic";
 import GealLayout  from '../layout/geal-layout';
 import ServiceRegistration from '../servicemen/service-registration';
 import ServicemanDetails from '../servicemen/servicemanDetails';

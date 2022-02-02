@@ -13,8 +13,6 @@ import PeopleBranchIcon from '@rsuite/icons/PeopleBranch';
 import GlobalIcon from '@rsuite/icons/Global';
 import PeoplesIcon from '@rsuite/icons/Peoples';
 import AppSelectIcon from '@rsuite/icons/AppSelect';
-import LocationIcon from '@rsuite/icons/Location';
-import ExploreIcon from '@rsuite/icons/Explore';
 import CheckOutlineIcon from '@rsuite/icons/CheckOutline';
 import AlipayIcon from '@rsuite/icons/Alipay';
 import OffIcon from '@rsuite/icons/Off';
@@ -22,9 +20,6 @@ import AdminIcon from '@rsuite/icons/Admin';
 import PageNextIcon from '@rsuite/icons/PageNext';
 import UserBadgeIcon from '@rsuite/icons/UserBadge';
 import ListIcon from '@rsuite/icons/List';
-import TaskIcon from '@rsuite/icons/Task';
-import NoticeIcon from '@rsuite/icons/Notice';
-import SearchIcon from '@rsuite/icons/Search';
 import { useRouter } from "next/router";
 
 
@@ -150,6 +145,12 @@ const GealLayout = ({ children }) => {
                     icon={<PeopleBranchIcon color="#3498FF" />}
                     onClick={() => router.push('/dashboard/categories/list-categories', undefined, { shallow: true })}>
                   Categories
+                </Nav.Item>
+                <Nav.Item
+                    eventKey="15"
+                    icon={<PeopleBranchIcon color="#3498FF" />}
+                    onClick={() => router.push('/dashboard/skills/list-skills', undefined, { shallow: true })}>
+                  Skills
                 </Nav.Item>
                 <Nav.Item
                   eventKey="4"

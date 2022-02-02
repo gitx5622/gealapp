@@ -270,7 +270,6 @@ const PendingJobs = () => {
             <Grid fluid>
                 <Row className="show-grid">
                     <Col xs={12}>
-                        <p>Cumulative graphs of signed servicemen</p><br />
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
@@ -295,7 +294,6 @@ const PendingJobs = () => {
                         </Panel>
                     </Col>
                     <Col xs={12}>
-                        <p>Cumulative graphs of selected Servicemen</p><br />
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>

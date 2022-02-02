@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
-    Grid, Row, Col, Nav, Panel, Tag, Button, Divider, Message
+    Grid, Row, Col, Nav, Panel, Tag, Button, Divider, Message, Pagination,
 } from 'rsuite';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
@@ -105,8 +105,9 @@ const polar = {
     },
 };
 const ListServicemen = () => {
-    const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const [activePage, setActivePage] = React.useState(1);
+    const [per, setPer] = React.useState(10);
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
     const [approvedMessage, setApprovedMessage] = useState("");
@@ -152,8 +153,8 @@ const ListServicemen = () => {
     }
 
     React.useEffect(() => {
-        getAllServicemen(dispatch);
-    }, [dispatch]);
+        getAllServicemen(dispatch,activePage,per);
+    }, [dispatch, activePage,per]);
 
     return (
         <div>
@@ -209,11 +210,11 @@ const ListServicemen = () => {
                 <table style={styles.table}>
                     <tr>
                         <th style={styles.table.th}>ID</th>
-                        <th style={styles.table.th}>First Name</th>
-                        <th style={styles.table.th}>Last Name</th>
+                        <th style={styles.table.th}>Name</th>
                         <th style={styles.table.th}>Phone</th>
                         <th style={styles.table.th}>National ID</th>
                         <th style={styles.table.th}>Serviceman Status</th>
+                        <th style={styles.table.th}>Approval Date</th> 
                         <th style={styles.table.th}>Rejection Date</th>
                         <th style={styles.table.th}>Actions</th>
                     </tr>
@@ -222,39 +223,67 @@ const ListServicemen = () => {
                             <td style={styles.table.td}>
                                 {data.id}
                             </td>
-                            <td style={styles.table.td}>{data.first_name}</td>
-                            <td style={styles.table.td}>{data.last_name}</td>
+                            <td style={styles.table.td}>{data.first_name} {data.last_name}</td>
                             <td style={styles.table.td}>{data.phone}</td>
                             <td style={styles.table.td}>{data.national_id ? data.national_id : "null"}</td>
                             <td style={styles.table.td}><Tag color={data.serviceman_status === "active" ? "green" : "orange"}>{data.serviceman_status}</Tag></td>
+                            <td style={styles.table.td}>{data.rejection_date ? data.approval_date : "null"}</td>
                             <td style={styles.table.td}>{data.rejection_date ? data.rejection_date : "null"}</td>
                             <td style={styles.table.td}>
+                                <div >
                                 <Tag
                                     onClick={() => router.push(`/dashboard/servicemen/${data.user_id}`)}
-                                    style={{ cursor: 'pointer' }} color="cyan">Show</Tag>
-                                <Tag onClick={() => handleApproveServiceman(data)} style={{ cursor: 'pointer' }} color="green">Activate Serviceman</Tag>
-                                <Tag onClick={() => handleRejectServiceman(data)} style={{ cursor: 'pointer' }} color="red">Reject Serviceman</Tag>
+                                    style={{ margin:"3px", cursor: 'pointer' }} color="cyan">Show</Tag>
+                                <Tag onClick={() => handleApproveServiceman(data)} style={{margin:"3px", cursor: 'pointer' }} color="green">Activate Serviceman</Tag>
+                                <Tag onClick={() => handleRejectServiceman(data)} style={{ margin:"3px", cursor: 'pointer' }} color="red">Reject Serviceman</Tag>
+                                </div>
                             </td>
                         </tr>
                     ))}
-                </table>
+                </table><br/>
+                {servicemen.registration_list?.pagination && (
+                    <Pagination size="md" total={servicemen.registration_list?.pagination.count} limit={per} activePage={activePage} onChangePage={(page) => setActivePage(page)}/>
+                )}
             <Divider />
             <p style={{ fontSize: "24px", color: "#006D7E" }}>Servicemen Reports:</p>
             <Divider />
             <Grid fluid>
                 <Row className="show-grid">
                     <Col xs={12}>
-                        <p>Cumulative graphs of signed servicemen</p><br />
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
-                                    <Nav.Dropdown title="Reports">
-                                        <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
+                                    <Nav.Dropdown title="Signed Reports">
+                                        <Nav.Dropdown.Item>Category</Nav.Dropdown.Item>
                                         <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Dates</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Month</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Year</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Ranking</Nav.Dropdown.Item>
                                     </Nav.Dropdown>
                                 </div>
-                                <div style={{ marginRight: "10px" }}>
-                                    <Nav.Item active><Button size="sm" style={{ color: "white", background: "#006D7E" }}>Signed Sevicemen</Button></Nav.Item>
+                                <div>
+                                    <Nav.Dropdown title="Commission Reports">
+                                        <Nav.Dropdown.Item>Month</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Year</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Period</Nav.Dropdown.Item>
+                                    </Nav.Dropdown>
+                                </div>
+                                <div>
+                                    <Nav.Dropdown title="Application Reports">
+                                        <Nav.Dropdown.Item>Month</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Year</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Period</Nav.Dropdown.Item>
+                                    </Nav.Dropdown>
+                                </div>
+                                <div>
+                                    <Nav.Dropdown title="Selected Reports">
+                                        <Nav.Dropdown.Item>Category</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Dates</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Month</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Year</Nav.Dropdown.Item>
+                                    </Nav.Dropdown>
                                 </div>
                             </div>
                         </Nav><br />

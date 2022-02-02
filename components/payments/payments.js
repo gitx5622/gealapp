@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import {
-    Nav, Panel, ButtonToolbar, ButtonGroup, Button, Tag, InputGroup, Table,
+    Nav, Panel, ButtonToolbar, ButtonGroup, Button, Tag,
     Grid, Row, Col, DatePicker, Pagination,
 } from 'rsuite';
-import { TextField, FormControl, Box, InputLabel, Drawer, MenuItem } from '@mui/material';
-import { AiOutlineEye, AiTwotoneDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
+import { MenuItem } from '@mui/material';
 import { getUsers } from '../../state/actions/usersAction';
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';

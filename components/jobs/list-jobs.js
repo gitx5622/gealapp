@@ -273,7 +273,6 @@ const ListJobs = () => {
             <Grid fluid>
                 <Row className="show-grid">
                     <Col xs={12}>
-                        <p>Cumulative graphs of signed servicemen</p><br />
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
@@ -298,15 +297,15 @@ const ListJobs = () => {
                         </Panel>
                     </Col>
                     <Col xs={12}>
-                        <p>Cumulative graphs of selected Servicemen</p><br />
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
-                                    <Nav.Dropdown title="Reports">
-                                        <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
+                                    <Nav.Dropdown title="Job Graphs">
+                                        <Nav.Dropdown.Item>Active</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Declined</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Pending</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Rejected</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Scheduled</Nav.Dropdown.Item>
                                     </Nav.Dropdown>
                                 </div>
                                 <div style={{ marginRight: "10px" }}>

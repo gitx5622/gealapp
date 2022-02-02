@@ -81,36 +81,11 @@ const state = {
         }
     },
 };
-const polar = {
-    series: [14, 23, 21, 17, 15, 10, 12, 17, 21],
-    options: {
-        chart: {
-            type: 'polarArea',
-        },
-        stroke: {
-            colors: ['#fff']
-        },
-        fill: {
-            opacity: 0.8
-        },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                chart: {
-                    width: 200
-                },
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }]
-    },
-};
+let per = 10;
 const ActiveJobs = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [activePage, setActivePage] = React.useState(1);
-    const [per, setPer] = React.useState(10);
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
 
@@ -269,13 +244,12 @@ const ActiveJobs = () => {
             <Divider />
             <Grid fluid>
                 <Row className="show-grid">
-                    <Col xs={12}>
-                        <p>Cumulative graphs of signed servicemen</p><br />
+                    <Col xs={24}>
                         <Nav>
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
                                 <div>
                                     <Nav.Dropdown title="Reports">
-                                        <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
+                                        <Nav.Dropdown.Item>Category</Nav.Dropdown.Item>
                                         <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
                                     </Nav.Dropdown>
                                 </div>
@@ -290,33 +264,6 @@ const ActiveJobs = () => {
                                 series={state.series}
                                 type="line"
                                 height={350}
-                                width="100%"
-                            />
-                        </Panel>
-                    </Col>
-                    <Col xs={12}>
-                        <p>Cumulative graphs of selected Servicemen</p><br />
-                        <Nav>
-                            <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                <div>
-                                    <Nav.Dropdown title="Reports">
-                                        <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                        <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                                    </Nav.Dropdown>
-                                </div>
-                                <div style={{ marginRight: "10px" }}>
-                                    <Nav.Item active><Button size="sm" style={{ color: "white", background: "#006D7E" }}>Selected Servicemen</Button></Nav.Item>
-                                </div>
-                            </div>
-                        </Nav><br />
-                        <Panel shaded>
-                            <Chart
-                                options={polar.options}
-                                series={polar.series}
-                                type="polarArea"
-                                height={360}
                                 width="100%"
                             />
                         </Panel>

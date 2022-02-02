@@ -8,7 +8,6 @@ import {
     GET_SERVICEMAN,
     GET_SERVICEMAN_ERROR,
     GET_SERVICEMAN_SUCCESS,
-    GET_USERS_ERROR,
     REJECT_SERVICEMAN, REJECT_SERVICEMAN_ERROR,
     REJECT_SERVICEMAN_SUCCESS,
     REJECT_SERVICEMAN_FILE,
@@ -16,10 +15,10 @@ import {
     REJECT_SERVICEMAN_FILE_ERROR,
     APPROVE_SERVICEMAN_FILE,
     APPROVE_SERVICEMAN_FILE_SUCCESS,
-    APPROVE_SERVICEMAN_FILE_ERROR
+    APPROVE_SERVICEMAN_FILE_ERROR, GET_ALL_SERVICEMEN_ERROR
 } from "../dispatchTypes";
 
-export const initialUserState = {
+export const initialServicemenState = {
     isLoading: false,
     isError: false,
     isSuccess: false,
@@ -33,7 +32,7 @@ export const initialUserState = {
 }
 
 export const servicemenReducers = (
-    state = initialUserState,
+    state = initialServicemenState,
     action
 ) => {
     switch (action.type) {
@@ -60,7 +59,7 @@ export const servicemenReducers = (
                 servicemen: action.servicemen,
             };
         }
-        case GET_USERS_ERROR: {
+        case GET_ALL_SERVICEMEN_ERROR: {
             return {
                 ...state,
                 isError: true,

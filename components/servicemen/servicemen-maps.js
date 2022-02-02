@@ -1,99 +1,48 @@
-import React from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow} from "@react-google-maps/api";
+import React from "react";
+import {
+  withGoogleMap,
+  withScriptjs,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
 import mapStyles from "../../styles/mapStyles";
 
-const libraries = ["places"];
-const mapContainerStyle = {
-    height: "70vh",
-    width: "40vw",
-};
-const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-    zoomControl: true
-};
+const Map = ({ latitude, longitude }) => {
+  return (
+    <GoogleMap
+      defaultZoom={15}
+      defaultCenter={{ lat: latitude, lng: longitude }}
+      defaultOptions={{ styles: mapStyles }}
+    >
+      <Marker
+        position={{
+          lat: latitude,
+          lng: longitude,
+        }}
+        icon={{
+          url: `/favicon-32x32.png`,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+      />
+    </GoogleMap>
+  );
+}
 
-const ServicemenMaps = ({lat,lng}) => {
-    const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS,
-        libraries,
-    });
-    const [markers, setMarkers] = React.useState([]);
-    const [selected, setSelected] = React.useState(null);
+const MapWrapped = withScriptjs(withGoogleMap(Map));
 
-    const center = {
-        lat: lat,
-        lng: lng,
-    };
-    
-
-    const mapRef = React.useRef();
-
-    const onMapLoad = React.useCallback((map) => {
-        mapRef.current = map;
-    }, []);
-
-    const onMapClick = React.useCallback((e) => {
-        setMarkers((current) => [
-            ...current,
-            {
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng(),
-                time: new Date(),
-            },
-        ]);
-    }, []);
-
-    if (loadError) return "Error";
-    if (!isLoaded) return "Loading...";
-
-    return (
-        <div>
-            <GoogleMap
-                id="map"
-                mapContainerStyle={mapContainerStyle}
-                zoom={8}
-                center={center}
-                options={options}
-                onClick={onMapClick}
-                onLoad={onMapLoad}
-            >
-                {markers.map((marker) => (
-                    <Marker
-                        key={`${marker.lat}-${marker.lng}`}
-                        position={{ lat: marker.lat, lng: marker.lng }}
-                        onClick={() => {
-                            setSelected(marker);
-                        }}
-                        icon={{
-                            url: `/bear.svg`,
-                            origin: new window.google.maps.Point(0, 0),
-                            anchor: new window.google.maps.Point(15, 15),
-                            scaledSize: new window.google.maps.Size(30, 30),
-                        }}
-                    />
-                ))}
-                {selected ? (
-                    <InfoWindow
-                        position={{ lat: selected.lat, lng: selected.lng }}
-                        onCloseClick={() => {
-                            setSelected(null);
-                        }}
-                    >
-                        <div>
-                            <h2>
-                <span role="img" aria-label="bear">
-                  🐻
-                </span>{" "}
-                                Alert
-                            </h2>
-                            <p>Spotted {selected.time}</p>
-                        </div>
-                    </InfoWindow>
-                ) : null}
-            </GoogleMap>
-        </div>
-    );
-};
-
-export default ServicemenMaps;
+export default function ServicemenMaps({ lat, lng }) {
+  return (
+    <div style={{ width: "40vw", height: "70vh" }}>
+      <MapWrapped
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS
+          }`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+        latitude={lat}
+        longitude={lng}
+      />
+    </div>
+  );
+}

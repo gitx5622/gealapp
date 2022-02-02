@@ -167,67 +167,6 @@ const ListCategories = () => {
                     ))}
                 </table><br/>
             </Panel>
-            <Panel>
-                <Divider />
-                <p style={{ fontSize: "24px", color: "#006D7E" }}>Categories Reports:</p>
-                <Divider />
-                <Grid fluid>
-                    <Row className="show-grid">
-                        <Col xs={12}>
-                            <p>Cumulative graphs of signed servicemen</p><br />
-                            <Nav>
-                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                    <div>
-                                        <Nav.Dropdown title="Reports">
-                                            <Nav.Dropdown.Item>Categoty</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Sub Category</Nav.Dropdown.Item>
-                                        </Nav.Dropdown>
-                                    </div>
-                                    <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button size="sm" style={{ color: "white", background: "#006D7E" }}>Signed Sevicemen</Button></Nav.Item>
-                                    </div>
-                                </div>
-                            </Nav><br />
-                            <Panel shaded>
-                                <Chart
-                                    options={state.options}
-                                    series={state.series}
-                                    type="line"
-                                    height={350}
-                                    width="100%"
-                                />
-                            </Panel>
-                        </Col>
-                        <Col xs={12}>
-                            <p>Cumulative graphs of selected Servicemen</p><br />
-                            <Nav>
-                                <div style={{ display: "flex", justifyContent: 'space-between' }}>
-                                    <div>
-                                        <Nav.Dropdown title="Reports">
-                                            <Nav.Dropdown.Item>Daily</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Weekly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Monthly</Nav.Dropdown.Item>
-                                            <Nav.Dropdown.Item>Annually</Nav.Dropdown.Item>
-                                        </Nav.Dropdown>
-                                    </div>
-                                    <div style={{ marginRight: "10px" }}>
-                                        <Nav.Item active><Button size="sm" style={{ color: "white", background: "#006D7E" }}>Selected Servicemen</Button></Nav.Item>
-                                    </div>
-                                </div>
-                            </Nav><br />
-                            <Panel shaded>
-                                <Chart
-                                    options={polar.options}
-                                    series={polar.series}
-                                    type="polarArea"
-                                    height={360}
-                                    width="100%"
-                                />
-                            </Panel>
-                        </Col>
-                    </Row>
-                </Grid>
-            </Panel>
         </div>
     );
 };

@@ -6,15 +6,13 @@ import { getUsers } from '../../state/actions/usersAction';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router';
 
+let per = 10;
 const ListUsers = () => {
     const [openWithHeader, setOpenWithHeader] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [gender, setGender] = useState("");
     const [country, setCountry] = useState("");
     const [activePage, setActivePage] = React.useState(1);
-    const [per, setPer] = React.useState(10);
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
 
     const dispatch = useDispatch();
     const router = useRouter();

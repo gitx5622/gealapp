@@ -15,13 +15,13 @@ import {
     REJECT_SERVICEMAN_SUCCESS
 } from "../dispatchTypes";
 
-export const getAllServicemen = async (dispatch) => {
+export const getAllServicemen = async (dispatch, page, per) => {
     dispatch({
         type: GET_ALL_SERVICEMEN,
     });
     try {
         return await axiosConfig
-            .get(`/admin-api/filter-servicemen-registrations`, {
+            .get(`/admin-api/filter-servicemen-registrations?page=${page}&per=${per}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.token}`,
                     'phone': `${JSON.parse(localStorage.currentUser).phone}`,

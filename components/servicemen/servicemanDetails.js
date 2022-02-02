@@ -102,7 +102,7 @@ const ServicemanDetails = () => {
                                     </div>
                                     <div>
                                     <span style={{float:"left"}}><h5><b>Serviceman Details:</b> </h5></span>
-                                    <span style={{float:"right"}}><h5>Serviceman Location</h5></span>
+                                    <span style={{float:"right"}}><h5>Serviceman Location:</h5></span>
                                     </div>
                                 </Row>
                             </Grid>
